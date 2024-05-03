@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\InsightHive.Application\InsightHive.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\InsightHive.PersistenceDemo\InsightHive.PersistenceDemo.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\InsightHive.Persistence\InsightHive.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

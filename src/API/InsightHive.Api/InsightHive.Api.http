@@ -1,0 +1,6 @@
+@InsightHive.Api_HostAddress = http://localhost:5098
+
+GET {{InsightHive.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
