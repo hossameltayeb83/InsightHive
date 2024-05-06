@@ -10,6 +10,7 @@ namespace InsightHive.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddMediatR(config => config.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddScoped<IValidator<CreateCategoryCommand>, CreateCategoryCommandValidator>();
             return services;
