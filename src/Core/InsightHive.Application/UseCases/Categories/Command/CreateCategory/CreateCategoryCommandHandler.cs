@@ -26,9 +26,20 @@ namespace InsightHive.Application.UseCases.Categories.Command.CreateCategory
             _validator = validator;
         }
 
-        public Task<CreateCategoryResponse> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<CreateCategoryResponse> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var createCategoryResponse = new CreateCategoryResponse();
+
+            var category = new Category() { Name = request.Name };
+            bool isCategoryAdded = await _categoryRepo.AddAsync(category);
+
+            if (isCategoryAdded)
+            {
+                createCategoryResponse.CategoryDto = _mapper.Map<CreateCategoryDto>(category);
+                createCategoryResponse.Success = true;
+            }
+            
+            return createCategoryResponse;
         }
     }
 }
