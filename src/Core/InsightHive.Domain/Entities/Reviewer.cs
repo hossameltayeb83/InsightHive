@@ -14,10 +14,10 @@ namespace InsightHive.Domain.Entities
         public int Age { get; set; }
         public string Image {  get; set; }
         public Gender Gender { get; set; }
-        public ICollection<Badge> Badges { get; set; }
-        public ICollection<Review> Reviews { get; set; }
-        public ICollection<ReviewComment> ReviewComments { get; set; }
-        public ICollection<ReviewReaction> ReviewReactions { get; set; }
+        public ICollection<Badge> Badges { get; set; } = new HashSet<Badge>();
+        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
+        public ICollection<ReviewComment> ReviewComments { get; set; } = new HashSet<ReviewComment>();  
+        public ICollection<ReviewReaction> ReviewReactions { get; set; } = new HashSet<ReviewReaction>();
 
     }
 }

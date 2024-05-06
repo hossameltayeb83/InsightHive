@@ -12,7 +12,7 @@ namespace InsightHive.Domain.Entities
         public int Id { get; set; }
         public string Content { get; set; }
 
-        public ICollection<ReviewComment> ReviewComments { get; set; }
+        public ICollection<ReviewComment> ReviewComments { get; set; } = new HashSet<ReviewComment>();
 
     }
 }

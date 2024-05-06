@@ -12,7 +12,7 @@ namespace InsightHive.Api
 
             // Add services to the container.
 
-            builder.Services.AddApplicationServices().AddPresistenceServices();
+            builder.Services.AddApplicationServices().AddPresistenceDemoServices();
 
             builder.Services.AddCors(
                  options => options.AddPolicy(

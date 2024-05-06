@@ -10,7 +10,7 @@ namespace InsightHive.PersistenceDemo
 {
     public static class PresistenceRegistration
     {
-        public static IServiceCollection AddPresistenceServices(this IServiceCollection services)
+        public static IServiceCollection AddPresistenceDemoServices(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             return services;

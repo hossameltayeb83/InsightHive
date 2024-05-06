@@ -17,7 +17,7 @@ namespace InsightHive.Domain.Entities
         public Business Business { get; set; }
         public int ReviewerId { get; set; }
         public Reviewer Reviewer { get; set; }
-        public ICollection<ReviewComment> ReviewComments { get; set; }
-        public ICollection<ReviewReaction> ReviewReactions { get; set; }
+        public ICollection<ReviewComment> ReviewComments { get; set; } = new HashSet<ReviewComment>();
+        public ICollection<ReviewReaction> ReviewReactions { get; set; } = new HashSet<ReviewReaction>();
     }
 }

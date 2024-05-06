@@ -11,6 +11,6 @@ namespace InsightHive.Domain.Entities
     {
         public int Id { get; set; }
         public RoleTitle Title { get; set; }
-        public ICollection<User> Users { get; set; }
+        public ICollection<User> Users { get; set; } = new HashSet<User>();
     }
 }

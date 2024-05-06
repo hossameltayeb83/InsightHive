@@ -12,6 +12,6 @@ namespace InsightHive.Domain.Entities
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public ICollection<Business> Businesses { get; set; }
+        public ICollection<Business> Businesses { get; set; } = new HashSet<Business>();
     }
 }
