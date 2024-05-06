@@ -64,16 +64,7 @@ namespace InsightHive.PersistenceDemo
             Func<dynamic, bool> predicate = (list) => list.Id == id;
             return Task.FromResult(list.FirstOrDefault(predicate));
         }
-        public async Task<T> GetByNameAsync(string name)
-        {
-            var list = (List<T>)demoData[typeof(T)];
-            Func<dynamic, bool> predicate = (entity) => entity.Name == name;
-            var result = list.FirstOrDefault(predicate);
-            return await Task.FromResult<T>(result);
-        }
-
-
-
+       
         public Task<IReadOnlyList<T>> ListAllAsync()
         {
             return Task.FromResult((IReadOnlyList<T>)demoData[typeof(T)]);
@@ -93,11 +84,8 @@ namespace InsightHive.PersistenceDemo
         {
             throw new NotImplementedException();
         }
-        public async Task<List<SubCategory>> GetByCategoryIdAsync(int categoryId)
-        {
-            var list = (List<SubCategory>)demoData[typeof(SubCategory)];
-            return await Task.FromResult(list.Where(s => s.CategoryId == categoryId).ToList());
-        }
+
+
 
     }
 }

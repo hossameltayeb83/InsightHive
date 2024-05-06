@@ -28,10 +28,15 @@ namespace InsightHive.Application.UseCases.SubCategories.Query
             var subCategories = await _subCategory.GetByCategoryIdAsync(request.CategoryId);
             var categoryWithSubcategoriesDto = new CategoryWithSubcategoriesDto
             {
-                CategoryId = request.CategoryId,
-                CategoryName = request.CategoryName, 
-                Subcategories = _mapper.Map<List<SubcategoryDto>>(subCategories)
+                CategoryId = request.CategoryId
             };
+            if (subCategories != null && subCategories.Count > 0)
+            {
+                categoryWithSubcategoriesDto.Subcategories = _mapper.Map<List<SubcategoryDto>>(subCategories);
+                categoryWithSubcategoriesDto.CategoryName = subCategories[0].Category.Name;
+
+            }
+
             return categoryWithSubcategoriesDto;
         }
 

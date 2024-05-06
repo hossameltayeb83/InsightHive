@@ -16,6 +16,7 @@ namespace InsightHive.PersistenceDemo
         {
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ISubCategoryRepo, SubCategoryRepo>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             return services;
 

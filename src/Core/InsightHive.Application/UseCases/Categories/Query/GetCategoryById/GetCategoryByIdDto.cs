@@ -1,4 +1,5 @@
-﻿using InsightHive.Domain.Entities;
+﻿using InsightHive.Application.UseCases.SubCategories.Query;
+using InsightHive.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetCategoryById
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public List<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
+        public List<SubcategoryDto> SubCategories { get; set; } = new List<SubcategoryDto>();
     }
 }

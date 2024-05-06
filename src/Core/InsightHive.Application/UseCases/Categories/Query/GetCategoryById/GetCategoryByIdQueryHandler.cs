@@ -15,22 +15,23 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetCategoryById
     {
         private readonly IRepository<Category> _categoryRepo;
         private readonly IMapper _mapper;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public GetCategoryByIdQueryHandler(IRepository<Category> categoryRepo,
+        public GetCategoryByIdQueryHandler(IRepository<Category> categoryRepo, ICategoryRepository categoryRepository,
                                             IMapper mapper)
         {
             _categoryRepo = categoryRepo;
             _mapper = mapper;
+            _categoryRepository = categoryRepository;   
         }
 
         public async Task<GetCategoryByIdDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
-            var category = await _categoryRepo.GetByIdAsync(request.CategoryId);
+            var category = await _categoryRepository.GetByIdWithSubCategoriesAsync(request.CategoryId);
             var categoryDto = _mapper.Map<GetCategoryByIdDto>(category);
-            categoryDto.SubCategories = _mapper.Map<List<SubCategory>>(category.SubCategories);
             return categoryDto;
-
         }
+
 
     }
 }
