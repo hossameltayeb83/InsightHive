@@ -1,9 +1,4 @@
 ﻿using InsightHive.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Domain.Entities
 {
@@ -12,7 +7,7 @@ namespace InsightHive.Domain.Entities
         public int Id { get; set; }
         public string Content { get; set; }
         public float Rate { get; set; }
-        public string Image {  get; set; }
+        public string Image { get; set; }
         public int BusinessId { get; set; }
         public Business Business { get; set; }
         public int ReviewerId { get; set; }

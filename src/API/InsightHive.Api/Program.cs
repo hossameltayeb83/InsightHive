@@ -1,4 +1,5 @@
 
+using InsightHive.Api.Middleware;
 using InsightHive.Application;
 using InsightHive.PersistenceDemo;
 
@@ -23,7 +24,12 @@ namespace InsightHive.Api
              .AllowAnyHeader()
              .AllowCredentials()));
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                            .ConfigureApiBehaviorOptions(options =>
+                            {
+                                options.SuppressMapClientErrors = true;
+                            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -36,6 +42,8 @@ namespace InsightHive.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseExceptionHandlerMiddleware();
 
             app.UseHttpsRedirection();
 

@@ -9,8 +9,8 @@ namespace InsightHive.Application.Interfaces.Persistence
         Task<bool> AddAsync(T entity);
         Task<bool> UpdateAsync(T entity);
         Task<bool> DeleteAsync(T entity);
-        Task<IReadOnlyList<T>> SelectOneAsync(Expression<Func<T, bool>> predicate);
-        Task<T> SelectAllAsync(Expression<Func<T, bool>> predicate);
+        Task<T> SelectOneAsync(Expression<Func<T, bool>> predicate);
+        Task<IReadOnlyList<T>> SelectAllAsync(Expression<Func<T, bool>> predicate);
 
     }
 }

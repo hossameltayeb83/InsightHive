@@ -1,6 +1,5 @@
 ﻿using InsightHive.Application.UseCases.Categories.Query.GetAllCategories;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
