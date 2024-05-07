@@ -17,9 +17,7 @@ namespace InsightHive.Application.UseCases.Bussnisses
     {
         public BussnissProfile()
         {
-            CreateMap<Business, BussniessDto>()
-                .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.SubCategory.Name));
-
+            CreateMap<Business, BussniessDto>().ReverseMap();
             CreateMap<Business, UpdateBussnissCommand>().ReverseMap();
             CreateMap<CreateBussnissCommand, Business>().ReverseMap();
             

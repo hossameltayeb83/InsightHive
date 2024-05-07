@@ -5,8 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using InsightHive.Application.Interfaces.Persistence;
-using InsightHive.Application.UseCases.Categories.Query.GetAllCategories;
-using InsightHive.Application.UseCases.SubCategories.Query;
 using InsightHive.Domain.Entities;
 
 namespace InsightHive.PersistenceDemo
@@ -31,7 +29,7 @@ namespace InsightHive.PersistenceDemo
             demoData[typeof(SubCategory)] = new List<SubCategory>
             {
                 new SubCategory { Id = 1, Name = "Burger", CategoryId = 1 },
-                new SubCategory { Id = 2, Name = "Pizza", CategoryId = 1 }
+                new SubCategory { Id = 2, Name = "Pizza", CategoryId = 2}
             };
         }
 
@@ -109,10 +107,10 @@ namespace InsightHive.PersistenceDemo
             {
                 var subCategories = ((List<SubCategory>)demoData[typeof(SubCategory)])
                     .Where(s => s.CategoryId == category.Id)
-                    .Select(s => new SubcategoryDto { SubcategoryId = s.Id, SubcategoryName = s.Name })
+                    .Select(s => new SubCategory{ Id = s.Id, Name = s.Name })
                     .ToList();
 
-                category.SubCategories = (ICollection<SubCategory>)subCategories;
+                category.SubCategories = (List<SubCategory>)subCategories;
             }
             return await Task.FromResult(categories);
         }

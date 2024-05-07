@@ -1,4 +1,5 @@
 
+using InsightHive.Api.Middleware;
 using InsightHive.Application;
 using InsightHive.PersistenceDemo;
 
@@ -36,6 +37,7 @@ namespace InsightHive.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseExceptionHandlerMiddleware();
 
             app.UseHttpsRedirection();
 

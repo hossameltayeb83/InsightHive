@@ -24,7 +24,8 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetAllCategories
 
         public async Task<List<CategoryListDto>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var categories = await _categoryRepo.ListAllAsync();
+            var categories = await _categoryRepository.GetAllCategoriesWithSubCategoriesAsync();
+
 
             var categoryDtos = _mapper.Map<List<CategoryListDto>>(categories);
 

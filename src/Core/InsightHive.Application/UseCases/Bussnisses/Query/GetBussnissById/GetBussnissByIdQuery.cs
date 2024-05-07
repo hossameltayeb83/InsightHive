@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsightHive.Application.UseCases.Bussnisses.Command.CreateBussniss
+namespace InsightHive.Application.UseCases.Bussnisses.Query.GetBussnissById
 {
-    public class CreateBussnissCommand:IRequest<BussniessDto>
+    public class GetBussnissByIdQuery:IRequest<BussniessDto>
     {
-        public BussniessDto? bussniessDto { get; set; }
+        public int Id { get; set; }
     }
 }

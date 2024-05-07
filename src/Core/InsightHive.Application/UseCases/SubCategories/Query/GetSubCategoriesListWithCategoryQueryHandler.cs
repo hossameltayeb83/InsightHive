@@ -12,14 +12,12 @@ namespace InsightHive.Application.UseCases.SubCategories.Query
 {
     public class GetSubCategoriesListWithCategoryQueryHandler : IRequestHandler<GetSubCategoriesListWithCategoryQuery, CategoryWithSubcategoriesDto>
     {
-        private readonly IRepository<SubCategory> _SubcategoryRepo;
         private readonly ISubCategoryRepo _subCategory;
         private readonly IMapper _mapper;
 
-        public GetSubCategoriesListWithCategoryQueryHandler(IRepository<SubCategory> SubcategoryRepo, ISubCategoryRepo subCategory,
+        public GetSubCategoriesListWithCategoryQueryHandler( ISubCategoryRepo subCategory,
                                             IMapper mapper)
         {
-            _SubcategoryRepo = SubcategoryRepo;
             _mapper = mapper;
             _subCategory = subCategory;
         }

@@ -28,6 +28,10 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetCategoryById
         public async Task<GetCategoryByIdDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
             var category = await _categoryRepository.GetByIdWithSubCategoriesAsync(request.CategoryId);
+            if (category == null) 
+            {
+                throw new Exceptions.NotFoundException("categoryId not found");
+            }
             var categoryDto = _mapper.Map<GetCategoryByIdDto>(category);
             return categoryDto;
         }

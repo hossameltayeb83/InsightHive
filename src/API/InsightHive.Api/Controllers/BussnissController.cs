@@ -2,6 +2,7 @@
 using InsightHive.Application.UseCases.Bussnisses.Command.DeleteBussniss;
 using InsightHive.Application.UseCases.Bussnisses.Command.UpdateBusssniss;
 using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
+using InsightHive.Application.UseCases.Bussnisses.Query.GetBussnissById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,13 +37,20 @@ namespace InsightHive.Api.Controllers
         public async Task<ActionResult> UpdateBussniss([FromBody] UpdateBussnissCommand updateBussnissCommand)
         {
             await _mediatr.Send(updateBussnissCommand);
-            return Ok("bussniss upated");
+            return Ok("bussniss updated");
         }
         [HttpPost(Name = "CreateBussniss")]
         public async Task<ActionResult> createBussniss([FromBody] CreateBussnissCommand createBussnissCommand)
         {
-            await _mediatr.Send(createBussnissCommand);
-                return Created();
+            var bussnissresult=  await _mediatr.Send(createBussnissCommand);
+            return Created("bussnisscreated",bussnissresult);
+        }
+        [HttpGet("{id}", Name = "GetbussnissById")]
+        public async Task<ActionResult<BussniessDto>> GetbussnissById(int id) 
+        {
+            var bussnissresult = await _mediatr.Send(new GetBussnissByIdQuery { Id = id });
+            return Ok(bussnissresult);
+        
         }
 
     }

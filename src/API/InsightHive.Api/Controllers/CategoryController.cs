@@ -31,15 +31,8 @@ namespace InsightHive.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CategoryByNameDto>> GetCategoryByName(string name)
         {
-            try
-            {
-                var response = await _mediatr.Send(new GetCategoryByNameQuery { Name = name });
-                return Ok(response);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var response = await _mediatr.Send(new GetCategoryByNameQuery { Name = name });
+            return Ok(response);
         }
         [HttpGet("byid/{id}", Name = "GetCategoryById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -47,23 +40,21 @@ namespace InsightHive.Api.Controllers
         public async Task<ActionResult<GetCategoryByIdDto>> GetCategoryById(int id)
         {
             var response = await _mediatr.Send(new GetCategoryByIdQuery { CategoryId = id });
-            if (response == null)
-            {
-                return NotFound("Category not found");
-            }
             return Ok(response);
         }
 
         [HttpPost("Add", Name = "AddCategory")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<CreateCategoryResponse>> AddCategory([FromBody] CreateCategoryCommand createCategoryCommand)
         {
             var response = await _mediatr.Send(createCategoryCommand);
-            return Ok(response);
+            return Created("category created", response);
         }
-
-
     }
 
 
 }
+
+
+
 

@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="UseCases\Owners\Query\" />
     <Folder Include="UseCases\SubCategories\Command\" />
   </ItemGroup>
 
