@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Owners.command.UpdateOwner
 {
-    public class UpdateOwnerCommandValidetor:AbstractValidator<UpdateOwnerCommand>
+    public class UpdateOwnerCommandValidetor : AbstractValidator<UpdateOwnerCommand>
     {
         public UpdateOwnerCommandValidetor()
         {
