@@ -110,7 +110,7 @@ namespace InsightHive.PersistenceDemo
                     .Select(s => new SubCategory{ Id = s.Id, Name = s.Name })
                     .ToList();
 
-                category.SubCategories = (List<SubCategory>)subCategories;
+                category.SubCategories = subCategories;
             }
             return await Task.FromResult(categories);
         }

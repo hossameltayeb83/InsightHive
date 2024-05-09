@@ -20,6 +20,7 @@ namespace InsightHive.Application.UseCases.Bussnisses
             CreateMap<Business, BussniessDto>().ReverseMap();
             CreateMap<Business, UpdateBussnissCommand>().ReverseMap();
             CreateMap<CreateBussnissCommand, Business>().ReverseMap();
+            CreateMap<UpdateBussnissCommand, Business>();    
             
 
 

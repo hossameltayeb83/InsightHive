@@ -1,5 +1,8 @@
 ﻿using InsightHive.Application.Exceptions;
+using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Categories.Command.CreateCategory;
+using InsightHive.Application.UseCases.Categories.Command.DeleteCategory;
+using InsightHive.Application.UseCases.Categories.Command.UpdateCategory;
 using InsightHive.Application.UseCases.Categories.Query.GetAllCategories;
 using InsightHive.Application.UseCases.Categories.Query.GetCategoryById;
 using InsightHive.Application.UseCases.Categories.Query.GetCtegoryByName;
@@ -21,7 +24,7 @@ namespace InsightHive.Api.Controllers
         }
         [HttpGet("all", Name = "GetAllCategories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<CategoryListDto>>> GetAllCategories()
+        public async Task<ActionResult<BaseResponse<List<CategoryListDto>>>> GetAllCategories()
         {
             var dtos = await _mediatr.Send(new GetAllCategoriesQuery());
             return Ok(dtos);
@@ -45,10 +48,24 @@ namespace InsightHive.Api.Controllers
 
         [HttpPost("Add", Name = "AddCategory")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<CreateCategoryResponse>> AddCategory([FromBody] CreateCategoryCommand createCategoryCommand)
+        public async Task<ActionResult<BaseResponse<CategoryDto>>> AddCategory([FromBody] CreateCategoryCommand createCategoryCommand)
         {
             var response = await _mediatr.Send(createCategoryCommand);
             return Created("category created", response);
+        }
+
+        [HttpPut("update", Name = "UpdateCategory")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<BaseResponse<CategoryDto>>> UpdateCategory([FromBody] UpdateCategoryCommand updateCategoryCommand)
+        {
+            var responce =await _mediatr.Send(updateCategoryCommand);
+            return Ok(responce);
+        }
+        [HttpDelete(Name ="DeleteCategory")]
+        public async Task<ActionResult> DeleteCategory([FromBody] DeleteCategoryCommand deleteCategoryCommand)
+        {
+            await _mediatr.Send(deleteCategoryCommand);
+            return NoContent();
         }
     }
 

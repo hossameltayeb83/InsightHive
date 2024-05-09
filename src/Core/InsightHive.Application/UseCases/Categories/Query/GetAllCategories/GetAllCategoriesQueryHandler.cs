@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InsightHive.Application.Interfaces.Persistence;
+using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.SubCategories.Query;
 using InsightHive.Domain.Entities;
 using MediatR;
@@ -36,5 +37,7 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetAllCategories
 
             return categoryDtos;
         }
+
+
     }
 }

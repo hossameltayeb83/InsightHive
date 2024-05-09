@@ -1,4 +1,5 @@
-﻿using InsightHive.Application.UseCases.Bussnisses.Command.CreateBussniss;
+﻿using InsightHive.Application.Responses;
+using InsightHive.Application.UseCases.Bussnisses.Command.CreateBussniss;
 using InsightHive.Application.UseCases.Bussnisses.Command.DeleteBussniss;
 using InsightHive.Application.UseCases.Bussnisses.Command.UpdateBusssniss;
 using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
@@ -34,16 +35,16 @@ namespace InsightHive.Api.Controllers
             return NoContent();
         }
         [HttpPut(Name = "UpdateBussniss")]
-        public async Task<ActionResult> UpdateBussniss([FromBody] UpdateBussnissCommand updateBussnissCommand)
+        public async Task<ActionResult<BaseResponse<BussniessDto>>> UpdateBussniss([FromBody] UpdateBussnissCommand updateBussnissCommand)
         {
-            await _mediatr.Send(updateBussnissCommand);
-            return Ok("bussniss updated");
+           var businessUpdated= await _mediatr.Send(updateBussnissCommand);
+            return Ok( businessUpdated);
         }
         [HttpPost(Name = "CreateBussniss")]
-        public async Task<ActionResult> createBussniss([FromBody] CreateBussnissCommand createBussnissCommand)
+        public async Task<ActionResult <BaseResponse<BussniessDto>>> createBussniss([FromBody] CreateBussnissCommand createBussnissCommand)
         {
             var bussnissresult=  await _mediatr.Send(createBussnissCommand);
-            return Created("bussnisscreated",bussnissresult);
+            return Created("BussnissCreated", bussnissresult);
         }
         [HttpGet("{id}", Name = "GetbussnissById")]
         public async Task<ActionResult<BussniessDto>> GetbussnissById(int id) 

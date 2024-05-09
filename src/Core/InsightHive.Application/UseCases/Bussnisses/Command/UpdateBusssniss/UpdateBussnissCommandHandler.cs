@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using InsightHive.Application.Interfaces.Persistence;
+using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Bussnisses.Command.CreateBussniss;
+using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
 using InsightHive.Domain.Entities;
 using MediatR;
 using System;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Bussnisses.Command.UpdateBusssniss
 {
-    public class UpdateBussnissCommandHandler:IRequestHandler<UpdateBussnissCommand>
+    public class UpdateBussnissCommandHandler : IRequestHandler<UpdateBussnissCommand, BaseResponse<BussniessDto>>
     {
         private readonly IRepository<Business> _businessRepo;
         private readonly IMapper _mapper;
@@ -24,19 +26,41 @@ namespace InsightHive.Application.UseCases.Bussnisses.Command.UpdateBusssniss
             _mapper = mapper;
 
         }
-
-        public async Task Handle(UpdateBussnissCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<BussniessDto>> Handle(UpdateBussnissCommand request, CancellationToken cancellationToken)
         {
-            var validetor = new UpdateBussnissCommandValidetor();
-            var validationResult = await validetor.ValidateAsync(request);
-            if (validationResult.Errors.Count > 0)
+            var validator = new UpdateBussnissCommandValidetor();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
             {
                 throw new Exceptions.ValidationException(validationResult);
             }
-            var Updatedbussniss = await _businessRepo.GetByIdAsync(request.Id);
-            //_mapper.Map(request, Updatedbussniss);
-            await _businessRepo.UpdateAsync(Updatedbussniss);
 
+            var response = new BaseResponse<BussniessDto>();
+            var businessToUpdate = await _businessRepo.GetByIdAsync(request.Id);
+
+            if (businessToUpdate == null)
+            {
+                throw new Exceptions.NotFoundException("Business not found");
+            }
+
+            _mapper.Map(request, businessToUpdate);
+
+            var updated = await _businessRepo.UpdateAsync(businessToUpdate);
+
+            if (updated)
+            {
+                response.Message = "Business updated successfully.";
+                response.Result = _mapper.Map<BussniessDto>(businessToUpdate);
+            }
+            else
+            {
+                response.Success = false;
+                response.Message = "Failed to update the business!";
+            }
+
+            return response;
         }
+
     }
 }
