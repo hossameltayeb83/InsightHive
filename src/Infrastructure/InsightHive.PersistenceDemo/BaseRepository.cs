@@ -16,8 +16,24 @@ namespace InsightHive.PersistenceDemo
         
         public BaseRepository()
         {
-            demoData[typeof(Category)] = new List<Category> { new Category { Id=1,Name="Restaurants" },new Category {Id=2,Name="Repairs" } };
-            demoData[typeof(SubCategory)] = new List<SubCategory> { new SubCategory { Id=1,Name="Burger",CategoryId=1 },new SubCategory {Id=2,Name="Pizza",CategoryId=1 } };
+            demoData[typeof(Category)] = new List<Category> {
+                new Category { Id=1,Name="Restaurants" },
+                new Category {Id=2,Name="Repairs" } 
+            };
+            demoData[typeof(SubCategory)] = new List<SubCategory> { 
+                new SubCategory { Id=1,Name="Burger",CategoryId=1 },
+                new SubCategory {Id=2,Name="Pizza",CategoryId=1 } 
+            };
+            demoData[typeof(Filter)] = new List<Filter> { 
+                new Filter { Id=1,Name="Price",Categories=new List<Category> {
+                new Category { Id=1,Name="Restaurants" },
+                new Category {Id=2,Name="Repairs" }
+            } },
+                new Filter {Id=2,Name="Features",Categories=new List<Category> {
+                new Category { Id=1,Name="Restaurants" },
+                new Category {Id=2,Name="Repairs" }
+            } } 
+            };
         }
         public Task<bool> AddAsync(T entity)
         {

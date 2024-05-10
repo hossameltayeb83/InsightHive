@@ -40,7 +40,7 @@ namespace InsightHive.Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            
             app.UseCors("angularApp");
             app.MapControllers();
 

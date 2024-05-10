@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using InsightHive.Application.UseCases.Categories.Command.CreateCategory;
+using InsightHive.Application.UseCases.Filters.Command.CreateFilter;
+using InsightHive.Application.UseCases.Filters.Command.UpdateFilter;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace InsightHive.Application
@@ -11,6 +13,8 @@ namespace InsightHive.Application
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMediatR(config => config.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddScoped<IValidator<CreateCategoryCommand>, CreateCategoryCommandValidator>();
+            services.AddScoped<IValidator<CreateFilterCommand>, CreateFilterCommandValidator>();
+            services.AddScoped<IValidator<UpdateFilterCommand>, UpdateFilterCommandValidator>();
 
             return services;
         }

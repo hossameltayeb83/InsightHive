@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using InsightHive.Application.Responses;
+using InsightHive.Domain.Entities;
+using MediatR;
 
 namespace InsightHive.Application.UseCases.Categories.Command.CreateCategory
 {
-    public class CreateCategoryCommand : IRequest<CreateCategoryResponse>
+    public class CreateCategoryCommand : IRequest<BaseResponse<Category>>
     {
         public string Name { get; set; } = string.Empty;
     }

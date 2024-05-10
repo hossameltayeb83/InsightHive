@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsightHive.Domain.Entities
+namespace InsightHive.Application.UseCases.Filters.Query.Dtos
 {
-    public class Option
+    public class OptionDto
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public int FilterId { get; set; }
-        public Filter Filter { get; set; }
     }
 }
