@@ -1,6 +1,7 @@
 
 using InsightHive.Application;
 using InsightHive.PersistenceDemo;
+using InsightHive.Infrastructure;
 
 namespace InsightHive.Api
 {
@@ -12,7 +13,7 @@ namespace InsightHive.Api
 
             // Add services to the container.
 
-            builder.Services.AddApplicationServices().AddPresistenceServices();
+            builder.Services.AddApplicationServices().AddPresistenceDemoServices().AddInfrastructureServices();
 
             builder.Services.AddCors(
                  options => options.AddPolicy(
