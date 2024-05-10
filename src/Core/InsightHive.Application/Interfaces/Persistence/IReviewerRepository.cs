@@ -12,7 +12,8 @@ namespace InsightHive.Application.Interfaces.Persistence
     {
         Task<Reviewer> GetByIdWithUserAsync(int id);
         Task<Reviewer> GetByUserIdWithUserAsync(int id);
-        Task<IReadOnlyList<Reviewer>> GetMonthlyTopContributorsAsync();
-        Task<Reviewer> GetReviewerOfWeeklyBadgeAsync(BadgeName badgeName);
+        Task AddImagePathAsync(int id, string path);
+
+        Task<List<Reviewer>> CalculateTopContributorsAsync();
     }
 }
