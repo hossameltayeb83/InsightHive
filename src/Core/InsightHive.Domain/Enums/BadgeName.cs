@@ -8,6 +8,12 @@ namespace InsightHive.Domain.Enums
 {
     public enum BadgeName
     {
-        TopContributor,Active,FoodBlogger
+        NAN,
+        TopContributor,
+        ReviewsEmperor,
+        CommentsMaster,
+        ReactionsLord
+
+
     }
 }

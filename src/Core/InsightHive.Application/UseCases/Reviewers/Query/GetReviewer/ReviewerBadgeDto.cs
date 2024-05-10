@@ -1,12 +1,11 @@
 ﻿using InsightHive.Domain.Enums;
 
-namespace InsightHive.Domain.Entities
+namespace InsightHive.Application.UseCases.Reviewers.Query.GetReviewer
 {
-    public class Badge
+    public class ReviewerBadgeDto
     {
         public int Id { get; set; }
         public BadgeName Name { get; set; }
         public string Image { get; set; }
-        public ICollection<ReviewerBadge> ReviewerBadge { get; set; } = new HashSet<ReviewerBadge>();
     }
 }
