@@ -1,4 +1,5 @@
-﻿using InsightHive.Application.UseCases.Owners.command.CreateOwner;
+﻿using InsightHive.Application.Responses;
+using InsightHive.Application.UseCases.Owners.command.CreateOwner;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Owners.command.UpdateOwner
 {
-    public class UpdateOwnerCommand:IRequest
+    public class UpdateOwnerCommand:IRequest<BaseResponse<OwnerDto>>
     {
         public OwnerDto ownerDto { get; set; }
     }

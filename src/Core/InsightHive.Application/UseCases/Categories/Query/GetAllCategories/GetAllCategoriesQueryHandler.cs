@@ -7,7 +7,7 @@ using MediatR;
 
 namespace InsightHive.Application.UseCases.Categories.Query.GetAllCategories
 {
-    public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, List<CategoryListDto>>
+    public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, BaseResponse<List<CategoryListDto>>>
     {
         private readonly IRepository<Category> _categoryRepo;
         private readonly IMapper _mapper;
@@ -23,21 +23,24 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetAllCategories
 
         }
 
-        public async Task<List<CategoryListDto>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<List<CategoryListDto>>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
         {
             var categories = await _categoryRepository.GetAllCategoriesWithSubCategoriesAsync();
 
-
-            var categoryDtos = _mapper.Map<List<CategoryListDto>>(categories);
-
-            foreach (var categoryDto in categoryDtos)
+            var response = new BaseResponse<List<CategoryListDto>>();
+            if (categories != null)
             {
-                categoryDto.SubCategories = _mapper.Map<List<SubcategoryDto>>(categoryDto.SubCategories);
+                response.Message = "All Catrgories found";
+                response.Result = _mapper.Map<List<CategoryListDto>>(categories);
+
+                foreach (var categoryDto in response.Result)
+                {
+                    categoryDto.SubCategories = _mapper.Map<List<SubcategoryDto>>(categoryDto.SubCategories);
+                }
+            }
+                return response;
             }
 
-            return categoryDtos;
+
         }
-
-
     }
-}

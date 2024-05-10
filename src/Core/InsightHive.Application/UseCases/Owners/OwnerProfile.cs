@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InsightHive.Application.UseCases.Owners.command.CreateOwner;
+using InsightHive.Application.UseCases.Owners.command.UpdateOwner;
 using InsightHive.Domain.Entities;
 
 namespace InsightHive.Application.UseCases.Owners
@@ -25,6 +26,9 @@ namespace InsightHive.Application.UseCases.Owners
                 {
                     Name = src.BussnissName
                 }));
+            CreateMap<UpdateOwnerCommand, Owner>();
+
         }
+             
     }
 }

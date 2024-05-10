@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using InsightHive.Application.Responses;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies
 {
-    public class GetAllBussniessQuery : IRequest <List<BussniessDto>>
+    public class GetAllBussniessQuery : IRequest <BaseResponse<List<BussniessDto>>>
     {
 
     }

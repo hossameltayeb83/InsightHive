@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using InsightHive.Application.Interfaces.Persistence;
+using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Categories.Command.CreateCategory;
 using InsightHive.Domain.Entities;
 using MediatR;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 namespace InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies
 {
 
-    public class GetAllBussniessQueryHandler : IRequestHandler<GetAllBussniessQuery,List< BussniessDto>>
+    public class GetAllBussniessQueryHandler : IRequestHandler<GetAllBussniessQuery, BaseResponse<List<BussniessDto>>>
     {
 
         private readonly IRepository<Business> _businessRepo;
@@ -28,10 +29,17 @@ namespace InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies
             _mapper = mapper;
 
         }
-        public async Task<List<BussniessDto>> Handle(GetAllBussniessQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<List<BussniessDto>>> Handle(GetAllBussniessQuery request, CancellationToken cancellationToken)
         {
             var AllBusniess = await _businessRepo.ListAllAsync();
-            return _mapper.Map<List<BussniessDto>>(AllBusniess);
+            if ( AllBusniess == null )
+            {
+                throw new Exceptions.NotFoundException("Businesses not found");
+            }
+            var response= new BaseResponse<List<BussniessDto>>();
+            response.Message = "All businesses found";
+            response.Result= _mapper.Map<List<BussniessDto>>(AllBusniess);
+            return response;
 
         }
     }

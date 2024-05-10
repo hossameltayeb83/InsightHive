@@ -37,21 +37,21 @@ namespace InsightHive.Api.Controllers
         [HttpPut(Name = "UpdateBussniss")]
         public async Task<ActionResult<BaseResponse<BussniessDto>>> UpdateBussniss([FromBody] UpdateBussnissCommand updateBussnissCommand)
         {
-           var businessUpdated= await _mediatr.Send(updateBussnissCommand);
-            return Ok( businessUpdated);
+            var businessUpdated = await _mediatr.Send(updateBussnissCommand);
+            return Ok(businessUpdated);
         }
         [HttpPost(Name = "CreateBussniss")]
-        public async Task<ActionResult <BaseResponse<BussniessDto>>> createBussniss([FromBody] CreateBussnissCommand createBussnissCommand)
+        public async Task<ActionResult<BaseResponse<BussniessDto>>> createBussniss([FromBody] CreateBussnissCommand createBussnissCommand)
         {
-            var bussnissresult=  await _mediatr.Send(createBussnissCommand);
+            var bussnissresult = await _mediatr.Send(createBussnissCommand);
             return Created("BussnissCreated", bussnissresult);
         }
         [HttpGet("{id}", Name = "GetbussnissById")]
-        public async Task<ActionResult<BussniessDto>> GetbussnissById(int id) 
+        public async Task<ActionResult<BussniessDto>> GetbussnissById(int id)
         {
             var bussnissresult = await _mediatr.Send(new GetBussnissByIdQuery { Id = id });
             return Ok(bussnissresult);
-        
+
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InsightHive.Application.Exceptions;
 using InsightHive.Application.Interfaces.Persistence;
+using InsightHive.Application.Responses;
 using InsightHive.Domain.Entities;
 using MediatR;
 using System;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace InsightHive.Application.UseCases.Categories.Query.GetCtegoryByName
 {
 
-    public class GetCategoryByNameQueryHandler : IRequestHandler<GetCategoryByNameQuery, CategoryByNameDto>
+    public class GetCategoryByNameQueryHandler : IRequestHandler<GetCategoryByNameQuery, BaseResponse<CategoryByNameDto>>
     {
         private readonly IRepository<Category> _categoryRepo;
         private readonly IMapper _mapper;
@@ -25,20 +26,24 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetCtegoryByName
             _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
-        public async Task<CategoryByNameDto> Handle(GetCategoryByNameQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<CategoryByNameDto>> Handle(GetCategoryByNameQuery request, CancellationToken cancellationToken)
         {
             var categoryName = request.Name;
             var category = await _categoryRepository.GetByNameWithSubCategoriesAsync(categoryName);
-
-            if (category != null)
+            var response= new BaseResponse<CategoryByNameDto>();
+            if (category == null)
             {
-                var categoryDto = _mapper.Map<CategoryByNameDto>(category);
-                return categoryDto;
+                throw new NotFoundException($"Category with name '{categoryName}' not found.");
+               
             }
             else
             {
-                throw new NotFoundException($"Category with name '{categoryName}' not found.");
+                response.Message = "Category found";
+                response.Result= _mapper.Map<CategoryByNameDto>(category);
+
             }
+             
+            return response;
         }
     }
 }
