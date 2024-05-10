@@ -7,14 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.2.0" />
+
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\InsightHive.Infrastructure\InsightHive.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Core\InsightHive.Application\InsightHive.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\InsightHive.PersistenceDemo\InsightHive.PersistenceDemo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\InsightHive.Persistence\InsightHive.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Business\Logo\" />
+    <Folder Include="wwwroot\Images\Business\Gallary\" />
+    <Folder Include="wwwroot\Images\Owner\" />
+    <Folder Include="wwwroot\Images\Review\" />
+    <Folder Include="wwwroot\Images\Reviewer\" />
   </ItemGroup>
 
 </Project>

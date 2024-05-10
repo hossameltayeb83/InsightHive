@@ -1,0 +1,26 @@
+﻿using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InsightHive.Application.UseCases.Reviewers.Command.CreateReviewer
+{
+    internal class CreateReviewerCommandValidator : AbstractValidator<CreateReviewerCommand>
+    {
+        public CreateReviewerCommandValidator()
+        {
+            RuleFor(r => r.Email)
+                .NotNull()
+                .NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(r => r.Name)
+               .NotNull()
+               .NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(r => r.Password)
+                .NotEmpty()
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .MinimumLength(8).WithMessage("{PropertyName} must be at least 8 Charachers.");
+        }
+    }
+}

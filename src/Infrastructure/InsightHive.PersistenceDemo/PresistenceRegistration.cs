@@ -13,6 +13,7 @@ namespace InsightHive.PersistenceDemo
         public static IServiceCollection AddPresistenceDemoServices(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IReviewerRepository, ReviewerRepositroy>();
             return services;
 
         }
