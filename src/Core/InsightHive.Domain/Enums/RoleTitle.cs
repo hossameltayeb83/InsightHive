@@ -8,6 +8,6 @@ namespace InsightHive.Domain.Enums
 {
     public enum RoleTitle
     {
-        Owner,Reviewer,Admin
+        NaN,Owner,Reviewer,Admin
     }
 }

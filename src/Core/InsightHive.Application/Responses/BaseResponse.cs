@@ -1,6 +1,6 @@
 ﻿namespace InsightHive.Application.Responses
 {
-    public class BaseResponse<T> where T : class
+    public class BaseResponse<T> 
     {
         public bool Success { get; set; } = true;
         public string Message { get; set; } = string.Empty;

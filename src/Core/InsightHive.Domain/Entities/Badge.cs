@@ -7,6 +7,6 @@ namespace InsightHive.Domain.Entities
         public int Id { get; set; }
         public BadgeName Name { get; set; }
         public string Image { get; set; }
-        public ICollection<ReviewerBadge> ReviewerBadge { get; set; } = new HashSet<ReviewerBadge>();
+        public ICollection<Reviewer> Reviewers { get; set; } = new HashSet<Reviewer>();
     }
 }

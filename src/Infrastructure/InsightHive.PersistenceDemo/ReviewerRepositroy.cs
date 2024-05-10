@@ -1,6 +1,7 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
 using InsightHive.Domain.Entities;
+using InsightHive.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,16 @@ namespace InsightHive.PersistenceDemo
         }
 
         public Task<Reviewer> GetByUserIdWithUserAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<Reviewer>> GetMonthlyTopContributorsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Reviewer> GetReviewerOfWeeklyBadgeAsync(BadgeName badgeName)
         {
             throw new NotImplementedException();
         }
