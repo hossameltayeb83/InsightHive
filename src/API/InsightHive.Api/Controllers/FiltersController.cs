@@ -26,8 +26,8 @@ namespace InsightHive.Api.Controllers
         [ProducesResponseType(typeof(List<FilterDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFilter([FromRoute] GetFilterQuery query)
         {
-            var filters = await _mediatr.Send(query);
-            return Ok();
+            var filter = await _mediatr.Send(query);
+            return Ok(filter);
         }
         [HttpGet]
         [ProducesResponseType(typeof(BaseResponse<List<FilterDto>>), StatusCodes.Status200OK)]

@@ -1,30 +1,29 @@
 ﻿using AutoMapper;
 using InsightHive.Application.Interfaces.Persistence;
+using InsightHive.Application.Responses;
 using InsightHive.Domain.Entities;
 using MediatR;
 
 namespace InsightHive.Application.UseCases.Reviewers.Query.GetReviewer
 {
-    public class GetReviewerQueryHandler : IRequestHandler<GetReviewerQuery, ReviewerDetailsDto>
+    public class GetReviewerQueryHandler : IRequestHandler<GetReviewerQuery, BaseResponse<ReviewerDetailsDto>>
     {
         private readonly IMapper _mapper;
-        private readonly IRepository<Reviewer> _reviewerRepository;
+        private readonly IReviewerRepository _reviewerRepository;
 
         public GetReviewerQueryHandler(
             IMapper mapper,
-            IRepository<Reviewer> reviewerRepository)
+            IReviewerRepository reviewerRepository)
         {
             _mapper = mapper;
             _reviewerRepository = reviewerRepository;
         }
-        public async Task<ReviewerDetailsDto> Handle(GetReviewerQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<ReviewerDetailsDto>> Handle(GetReviewerQuery request, CancellationToken cancellationToken)
         {
-            var reviewer = await _reviewerRepository.GetByIdAsync(request.Id);
+            var reviewer = await _reviewerRepository.GetByIdWithReviewsAndBadgesAsync(request.Id);
             var reviewerDto = _mapper.Map<ReviewerDetailsDto>(reviewer);
-
-            //enject the two list repos and assign them inside the reviewerDto
-
-            return reviewerDto;
+            var response = new BaseResponse<ReviewerDetailsDto>() { Result = reviewerDto };
+            return response;
         }
     }
 }
