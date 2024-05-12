@@ -11,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace InsightHive.PersistenceDemo
 {
-    internal class ReviewerRepositroy : BaseResponse<Reviewer>, IReviewerRepository
+    internal class ReviewerRepositroy : BaseRepository<Reviewer>, IReviewerRepository
     {
-        public Task<bool> AddAsync(Reviewer entity)
+        public Task AddImagePathAsync(int id, string path)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Reviewer entity)
+        public Task<List<Reviewer>> CalculateTopContributorsAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Reviewer> GetByIdAsync(int id)
+        public Task<Reviewer> GetByIdWithReviewsAndBadgesAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -34,36 +34,6 @@ namespace InsightHive.PersistenceDemo
         }
 
         public Task<Reviewer> GetByUserIdWithUserAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IReadOnlyList<Reviewer>> GetMonthlyTopContributorsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Reviewer> GetReviewerOfWeeklyBadgeAsync(BadgeName badgeName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IReadOnlyList<Reviewer>> ListAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Reviewer> SelectAllAsync(Expression<Func<Reviewer, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IReadOnlyList<Reviewer>> SelectOneAsync(Expression<Func<Reviewer, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateAsync(Reviewer entity)
         {
             throw new NotImplementedException();
         }
