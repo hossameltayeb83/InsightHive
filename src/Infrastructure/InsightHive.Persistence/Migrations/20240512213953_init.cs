@@ -39,23 +39,6 @@ namespace InsightHive.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Filters",
                 columns: table => new
                 {
@@ -74,7 +57,7 @@ namespace InsightHive.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -303,10 +286,8 @@ namespace InsightHive.Persistence.Migrations
                     Rate = table.Column<float>(type: "real", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     BusinessId = table.Column<int>(type: "int", nullable: false),
-                    ReviewerId = table.Column<int>(type: "int", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReviewerId = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -322,35 +303,31 @@ namespace InsightHive.Persistence.Migrations
                         name: "FK_Reviews_Reviewers_ReviewerId",
                         column: x => x.ReviewerId,
                         principalTable: "Reviewers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReviewsComment",
+                name: "Comments",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ReviewId = table.Column<int>(type: "int", nullable: false),
-                    CommentId = table.Column<int>(type: "int", nullable: false),
-                    ReviewerId = table.Column<int>(type: "int", nullable: false)
+                    ReviewerId = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReviewsComment", x => new { x.ReviewId, x.CommentId, x.ReviewerId });
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ReviewsComment_Comments_CommentId",
-                        column: x => x.CommentId,
-                        principalTable: "Comments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReviewsComment_Reviewers_ReviewerId",
+                        name: "FK_Comments_Reviewers_ReviewerId",
                         column: x => x.ReviewerId,
                         principalTable: "Reviewers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ReviewsComment_Reviews_ReviewId",
+                        name: "FK_Comments_Reviews_ReviewId",
                         column: x => x.ReviewId,
                         principalTable: "Reviews",
                         principalColumn: "Id",
@@ -363,7 +340,9 @@ namespace InsightHive.Persistence.Migrations
                 {
                     ReviewId = table.Column<int>(type: "int", nullable: false),
                     ReactionId = table.Column<int>(type: "int", nullable: false),
-                    ReviewerId = table.Column<int>(type: "int", nullable: false)
+                    ReviewerId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -384,8 +363,7 @@ namespace InsightHive.Persistence.Migrations
                         name: "FK_ReviewsReaction_Reviews_ReviewId",
                         column: x => x.ReviewId,
                         principalTable: "Reviews",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -415,6 +393,16 @@ namespace InsightHive.Persistence.Migrations
                 column: "FiltersId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_ReviewerId",
+                table: "Comments",
+                column: "ReviewerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ReviewId",
+                table: "Comments",
+                column: "ReviewId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Option_FilterId",
                 table: "Option",
                 column: "FilterId");
@@ -439,16 +427,6 @@ namespace InsightHive.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_ReviewerId",
                 table: "Reviews",
-                column: "ReviewerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReviewsComment_CommentId",
-                table: "ReviewsComment",
-                column: "CommentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReviewsComment_ReviewerId",
-                table: "ReviewsComment",
                 column: "ReviewerId");
 
             migrationBuilder.CreateIndex(
@@ -485,10 +463,10 @@ namespace InsightHive.Persistence.Migrations
                 name: "CategoryFilter");
 
             migrationBuilder.DropTable(
-                name: "Option");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "ReviewsComment");
+                name: "Option");
 
             migrationBuilder.DropTable(
                 name: "ReviewsReaction");
@@ -498,9 +476,6 @@ namespace InsightHive.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Filters");
-
-            migrationBuilder.DropTable(
-                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Reactions");

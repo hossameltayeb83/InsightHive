@@ -17,7 +17,7 @@ namespace InsightHive.Domain.Entities
         public User User { get; set; }  
         public ICollection<Badge> Badges { get; set; } = new HashSet<Badge>();
         public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
-        public ICollection<ReviewComment> ReviewComments { get; set; } = new HashSet<ReviewComment>();  
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();  
         public ICollection<ReviewReaction> ReviewReactions { get; set; } = new HashSet<ReviewReaction>();
 
     }

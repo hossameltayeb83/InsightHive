@@ -158,19 +158,23 @@ namespace InsightHive.Persistence.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ReviewId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReviewerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ReviewId");
+
+                    b.HasIndex("ReviewerId");
 
                     b.ToTable("Comments");
                 });
@@ -246,8 +250,9 @@ namespace InsightHive.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -270,9 +275,6 @@ namespace InsightHive.Persistence.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -281,16 +283,13 @@ namespace InsightHive.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<float>("Rate")
                         .HasColumnType("real");
 
-                    b.Property<int>("ReviewerId")
+                    b.Property<int?>("ReviewerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -302,29 +301,9 @@ namespace InsightHive.Persistence.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("InsightHive.Domain.Entities.ReviewComment", b =>
-                {
-                    b.Property<int>("ReviewId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CommentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReviewerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ReviewId", "CommentId", "ReviewerId");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("ReviewerId");
-
-                    b.ToTable("ReviewsComment");
-                });
-
             modelBuilder.Entity("InsightHive.Domain.Entities.ReviewReaction", b =>
                 {
-                    b.Property<int>("ReviewId")
+                    b.Property<int?>("ReviewId")
                         .HasColumnType("int");
 
                     b.Property<int>("ReactionId")
@@ -332,6 +311,12 @@ namespace InsightHive.Persistence.Migrations
 
                     b.Property<int>("ReviewerId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ReviewId", "ReactionId", "ReviewerId");
 
@@ -506,6 +491,23 @@ namespace InsightHive.Persistence.Migrations
                     b.Navigation("SubCategory");
                 });
 
+            modelBuilder.Entity("InsightHive.Domain.Entities.Comment", b =>
+                {
+                    b.HasOne("InsightHive.Domain.Entities.Review", "Review")
+                        .WithMany("Comments")
+                        .HasForeignKey("ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InsightHive.Domain.Entities.Reviewer", "Reviewer")
+                        .WithMany("Comments")
+                        .HasForeignKey("ReviewerId");
+
+                    b.Navigation("Review");
+
+                    b.Navigation("Reviewer");
+                });
+
             modelBuilder.Entity("InsightHive.Domain.Entities.Option", b =>
                 {
                     b.HasOne("InsightHive.Domain.Entities.Filter", "Filter")
@@ -538,38 +540,9 @@ namespace InsightHive.Persistence.Migrations
 
                     b.HasOne("InsightHive.Domain.Entities.Reviewer", "Reviewer")
                         .WithMany("Reviews")
-                        .HasForeignKey("ReviewerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReviewerId");
 
                     b.Navigation("Business");
-
-                    b.Navigation("Reviewer");
-                });
-
-            modelBuilder.Entity("InsightHive.Domain.Entities.ReviewComment", b =>
-                {
-                    b.HasOne("InsightHive.Domain.Entities.Comment", "Comment")
-                        .WithMany("ReviewComments")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("InsightHive.Domain.Entities.Review", "Review")
-                        .WithMany("ReviewComments")
-                        .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("InsightHive.Domain.Entities.Reviewer", "Reviewer")
-                        .WithMany("ReviewComments")
-                        .HasForeignKey("ReviewerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("Review");
 
                     b.Navigation("Reviewer");
                 });
@@ -585,7 +558,7 @@ namespace InsightHive.Persistence.Migrations
                     b.HasOne("InsightHive.Domain.Entities.Review", "Review")
                         .WithMany("ReviewReactions")
                         .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("InsightHive.Domain.Entities.Reviewer", "Reviewer")
@@ -646,11 +619,6 @@ namespace InsightHive.Persistence.Migrations
                     b.Navigation("SubCategories");
                 });
 
-            modelBuilder.Entity("InsightHive.Domain.Entities.Comment", b =>
-                {
-                    b.Navigation("ReviewComments");
-                });
-
             modelBuilder.Entity("InsightHive.Domain.Entities.Filter", b =>
                 {
                     b.Navigation("Options");
@@ -669,14 +637,14 @@ namespace InsightHive.Persistence.Migrations
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Review", b =>
                 {
-                    b.Navigation("ReviewComments");
+                    b.Navigation("Comments");
 
                     b.Navigation("ReviewReactions");
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Reviewer", b =>
                 {
-                    b.Navigation("ReviewComments");
+                    b.Navigation("Comments");
 
                     b.Navigation("ReviewReactions");
 

@@ -15,6 +15,7 @@ namespace InsightHive.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Reaction> builder)
         {
             builder.Property(e => e.Name)
+            .HasConversion<string>()
             .HasSentinel(ReactionValue.NaN);
         }
     }

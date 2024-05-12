@@ -19,6 +19,7 @@ namespace InsightHive.Persistence.Configurations
                 .IsRequired();
             builder.Property(e => e.Image)
                 .HasMaxLength(50);
+            
         }
     }
 }

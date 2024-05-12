@@ -16,8 +16,9 @@ namespace InsightHive.Persistence.Configurations
             builder.HasKey(e => new { e.ReviewId, e.ReactionId, e.ReviewerId });
 
             builder.HasOne(e => e.Review)
-                .WithMany(e=>e.ReviewReactions)
-                .HasForeignKey(e => e.ReviewId);
+                .WithMany(e => e.ReviewReactions)
+                .HasForeignKey(e => e.ReviewId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(e => e.Reaction)
                 .WithMany(e=>e.ReviewReactions)

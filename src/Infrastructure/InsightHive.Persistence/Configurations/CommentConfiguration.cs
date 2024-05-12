@@ -15,6 +15,13 @@ namespace InsightHive.Persistence.Configurations
         {
             builder.Property(e => e.Content)
                .HasMaxLength(200);
+            builder.HasOne(e => e.Review)
+                .WithMany(e => e.Comments)
+                .HasForeignKey(e => e.ReviewId);
+
+            builder.HasOne(e => e.Reviewer)
+                .WithMany(e => e.Comments)
+                .HasForeignKey(e => e.ReviewerId);
         }
     }
 }

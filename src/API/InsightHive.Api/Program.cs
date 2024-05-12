@@ -4,6 +4,7 @@ using InsightHive.PersistenceDemo;
 using InsightHive.Infrastructure;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
+using InsightHive.Api.Middleware;
 
 namespace InsightHive.Api
 {
@@ -42,7 +43,7 @@ namespace InsightHive.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseExceptionHandlerMiddleware();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

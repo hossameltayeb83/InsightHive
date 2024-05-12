@@ -8,7 +8,6 @@ namespace InsightHive.Application.UseCases.Filters.Command.CreateFilter
 {
     public class CreateOptionDto
     {
-        public int Id { get; set; }
         public string Content { get; set; }
     }
 }
