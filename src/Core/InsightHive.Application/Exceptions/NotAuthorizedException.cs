@@ -1,4 +1,10 @@
-﻿namespace InsightHive.Application.Exceptions
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InsightHive.Application.Exceptions
 {
     public class NotAuthorizedException : Exception
     {

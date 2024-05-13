@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public ICollection<Filter> Filters { get; set; } = new HashSet<Filter>();
+        public int FilterId { get; set; }
+        public Filter Filter { get; set; }
     }
 }

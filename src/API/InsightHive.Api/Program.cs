@@ -2,6 +2,10 @@
 using InsightHive.Api.Middleware;
 using InsightHive.Application;
 using InsightHive.PersistenceDemo;
+using InsightHive.Infrastructure;
+using InsightHive.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
+using InsightHive.Api.Middleware;
 
 namespace InsightHive.Api
 {
@@ -12,8 +16,11 @@ namespace InsightHive.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-            builder.Services.AddApplicationServices().AddPresistenceDemoServices();
+            builder.Services.AddDbContext<InsightHiveDbContext>(c =>
+            {
+                c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
+            });
+            builder.Services.AddApplicationServices().AddPresistenceDemoServices().AddInfrastructureServices();
 
             builder.Services.AddCors(
                  options => options.AddPolicy(
@@ -48,7 +55,7 @@ namespace InsightHive.Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            
             app.UseCors("angularApp");
             app.MapControllers();
 
