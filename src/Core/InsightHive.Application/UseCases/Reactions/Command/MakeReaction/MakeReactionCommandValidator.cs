@@ -7,8 +7,8 @@ namespace InsightHive.Application.UseCases.Reactions.Command.MakeReaction
         public MakeReactionCommandValidator()
         {
             RuleFor(p => p.ReviewId).GreaterThan(0).WithMessage("{PropertyName} is required.");
-
-            RuleFor(p => p.Reaction).IsInEnum().WithMessage("{PropertyValue} is invalid value.");
+            RuleFor(p => p.ReviewerId).GreaterThan(0).WithMessage("{PropertyName} is required.");
+            RuleFor(p => p.ReactionId).GreaterThan(0).WithMessage("{PropertyName} is required.");
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InsightHive.Domain.Enums
+﻿namespace InsightHive.Domain.Enums
 {
     public enum ReactionValue
     {
@@ -13,6 +7,6 @@ namespace InsightHive.Domain.Enums
         Dislike,
         Helpful,
         Exciting
-        
+
     }
 }

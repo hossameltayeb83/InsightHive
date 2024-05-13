@@ -23,7 +23,6 @@ namespace InsightHive.Application.UseCases.Reviews.Command.DeleteComment
             //if (commentToDelete.ReviewerId != request.CommenterId)
             //    throw new Exceptions.NotAuthorizedException("Not authorized to delete this comment!");
 
-
             await _commentRepo.DeleteAsync(commentToDelete);
 
         }

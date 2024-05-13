@@ -7,8 +7,8 @@ using MediatR;
 
 namespace InsightHive.Application.UseCases.Reviews.Query.GetCommentList
 {
-    public class GetCommentListQueryHandler : IRequestHandler<GetCommentListQuery,
-                                                                    BaseResponse<PaginatedList<CommentDto, ReviewComment>>>
+    public class GetCommentListQueryHandler :
+        IRequestHandler<GetCommentListQuery, BaseResponse<PaginatedList<CommentDto, Comment>>>
     {
         private readonly IReviewRepository _reviewRepo;
         private readonly IMapper _mapper;
@@ -20,18 +20,16 @@ namespace InsightHive.Application.UseCases.Reviews.Query.GetCommentList
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<PaginatedList<CommentDto, ReviewComment>>> Handle(GetCommentListQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<PaginatedList<CommentDto, Comment>>> Handle(GetCommentListQuery request, CancellationToken cancellationToken)
         {
 
-            IQueryable<ReviewComment> reviewComments = await _reviewRepo.GetCommentListAsync(request.ReviewId);
+            IQueryable<Comment> comments = await _reviewRepo.GetCommentListAsync(request.ReviewId);
 
-            var result = await PaginatedList<CommentDto, ReviewComment>.CreateAsync(reviewComments, _mapper, request.Page, request.PageSize);
+            var result = await PaginatedList<CommentDto, Comment>.CreateAsync(comments, _mapper, request.Page, request.PageSize);
 
             string msg = result.TotalCount > 0 ? "Comments successfully retrieved" : "No comments!";
 
-            var response = new BaseResponse<PaginatedList<CommentDto, ReviewComment>> { Message = msg, Result = result };
-
-            return response;
+            return new BaseResponse<PaginatedList<CommentDto, Comment>> { Message = msg, Result = result };
         }
     }
 }

@@ -1,62 +1,105 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using InsightHive.Domain.Enums;
+using InsightHive.PersistenceDemo.Data;
 using Moq;
 using Moq.EntityFrameworkCore;
-using System.ComponentModel.Design;
 
-namespace InsightHive.PersistenceDemo
+namespace InsightHive.PersistenceDemo.Repositories
 {
-    public class ReviewsContext : DbContext
-    {
-        public virtual DbSet<Review> Reviews { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<ReviewComment> ReviewComments { get; set; }
-    }
-
     public class ReviewRepository : BaseRepository<Review>, IReviewRepository
     {
         private readonly List<Review> _reviewList;
-        private readonly Mock<ReviewsContext> _context;
+        private readonly List<Comment> _commentList;
+        private readonly List<ReviewReaction> _reviewReactionList;
+        private readonly List<Reaction> _reactionList;
+        private readonly Mock<FakeContext> _context;
         public ReviewRepository()
         {
-            var reviewComments = new List<ReviewComment>
+            _reactionList = new List<Reaction>
             {
-               new ReviewComment
+               new Reaction
                {
-                   ReviewId = 2,
-                   ReviewerId = 2,
-                   CommentId = 1,
-                   Comment = new Comment{Id = 1, Content= "nice"}
+                   Id = 1,
+                   Name = ReactionValue.Like
                },
-                new ReviewComment
+               new Reaction
                {
-                   ReviewId = 2,
-                   ReviewerId = 3,
-                   CommentId = 2,
-                   Comment = new Comment{Id = 2, Content= "good to know"}
+                   Id = 2,
+                   Name = ReactionValue.Dislike
                },
-                 new ReviewComment
+               new Reaction
                {
-                   ReviewId = 2,
-                   ReviewerId = 4,
-                   CommentId = 3,
-                   Comment = new Comment{Id = 3, Content= "i don't think so"}
+                   Id = 3,
+                   Name = ReactionValue.Helpful
                },
-                  new ReviewComment
+               new Reaction
+               {
+                   Id = 4,
+                   Name = ReactionValue.Exciting
+               },
+            };
+            _reviewReactionList = new List<ReviewReaction>
+            {
+               new ReviewReaction
                {
                    ReviewId = 2,
                    ReviewerId = 5,
-                   CommentId = 4,
-                   Comment = new Comment{Id = 4, Content= "wow"}
+                   ReactionId = 1,
+                   Reaction = _reactionList[0]
                },
-                   new ReviewComment
+               new ReviewReaction
                {
                    ReviewId = 2,
                    ReviewerId = 6,
-                   CommentId = 5,
-                   Comment = new Comment{Id = 5, Content= "ok"}
-               }
+                   ReactionId = 1,
+                   Reaction = _reactionList[0]
+               },
+               new ReviewReaction
+               {
+                   ReviewId = 2,
+                   ReviewerId = 11,
+                   ReactionId = 2,
+                   Reaction = _reactionList[1]
+               },
+               new ReviewReaction
+               {
+                   ReviewId = 2,
+                   ReviewerId = 15,
+                   ReactionId = 3,
+                   Reaction = _reactionList[2]
+               },
+            };
+            _commentList = new List<Comment>
+            {
+               new Comment
+               {
+                   Id = 1,
+                   ReviewId = 2,
+                   ReviewerId = 4,
+                   Content = "nice"
+               },
+               new Comment
+               {
+                   Id = 2,
+                   ReviewId = 2,
+                   ReviewerId = 4,
+                   Content = "good eye"
+               },
+               new Comment
+               {
+                   Id = 3,
+                   ReviewId = 2,
+                   ReviewerId = 4,
+                   Content = "helpful maybe"
+               },
+               new Comment
+               {
+                   Id = 4,
+                   ReviewId = 2,
+                   ReviewerId = 4,
+                   Content = "not enough"
+               },
             };
 
             _reviewList = new List<Review>()
@@ -76,12 +119,13 @@ namespace InsightHive.PersistenceDemo
                     ReviewerId = 3,
                     BusinessId = 4,
                     CreatedDate = DateTime.Now - TimeSpan.FromHours(1),
-                    ReviewComments = reviewComments
+                    Comments = _commentList,
+                    ReviewReactions = _reviewReactionList
                 },
             };
-            _context = new Mock<ReviewsContext>();
+            _context = new Mock<FakeContext>();
             _context.Setup(e => e.Reviews).ReturnsDbSet(_reviewList);
-            _context.Setup(e => e.ReviewComments).ReturnsDbSet(reviewComments);
+            _context.Setup(e => e.Comments).ReturnsDbSet(_commentList);
         }
 
         public Task<Review?> GetReviewByIdAsync(int reviewId, int maxComments)
@@ -95,7 +139,7 @@ namespace InsightHive.PersistenceDemo
                                                      Image = e.Image,
                                                      BusinessId = e.BusinessId,
                                                      ReviewerId = e.ReviewerId,
-                                                     ReviewComments = e.ReviewComments.Take(maxComments).ToList()
+                                                     Comments = e.Comments.Take(maxComments).ToList()
                                                  })
                                                  .FirstOrDefault();
             return Task.FromResult(review);
@@ -141,25 +185,25 @@ namespace InsightHive.PersistenceDemo
             return Task.FromResult(oldCount == _reviewList.Count - 1);
         }
 
-        public Task<ReviewComment?> GetCommentAsync(int commentId)
+        public Task<Comment?> GetCommentAsync(int commentId)
         {
-            return Task.FromResult(_context.Object.ReviewComments.FirstOrDefault(e => e.CommentId == commentId));
+            return Task.FromResult(_context.Object.Comments.FirstOrDefault(e => e.Id == commentId));
         }
 
-        public Task<IQueryable<ReviewComment>> GetCommentListAsync(int reviewId)
+        public Task<IQueryable<Comment>> GetCommentListAsync(int reviewId)
         {
-            return Task.FromResult(_context.Object.ReviewComments.Where(e => e.ReviewId == reviewId));
+            return Task.FromResult(_context.Object.Comments.Where(e => e.ReviewId == reviewId));
         }
 
-        public Task<bool> AddReviewCommentAsync(ReviewComment reviewComment)
+        public Task<bool> AddReviewCommentAsync(Comment comment)
         {
-            _context.Object.ReviewComments.Add(reviewComment);
+            _context.Object.Comments.Add(comment);
             return Task.FromResult(true);
         }
 
-        public Task<bool> UpdateReviewCommentAsync(ReviewComment reviewComment)
+        public Task<bool> UpdateReviewCommentAsync(Comment comment)
         {
-            _context.Object.ReviewComments.Update(reviewComment);
+            _context.Object.Comments.Update(comment);
             return Task.FromResult(false);
         }
     }

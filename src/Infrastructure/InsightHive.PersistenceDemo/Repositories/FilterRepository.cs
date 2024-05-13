@@ -1,12 +1,7 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace InsightHive.PersistenceDemo
+namespace InsightHive.PersistenceDemo.Repositories
 {
     internal class FilterRepository : BaseRepository<Filter>, IFilterRepository
     {

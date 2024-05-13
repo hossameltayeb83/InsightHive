@@ -3,7 +3,7 @@ using InsightHive.Domain.Entities;
 using System.Collections;
 using System.Linq.Expressions;
 
-namespace InsightHive.PersistenceDemo
+namespace InsightHive.PersistenceDemo.Repositories
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {

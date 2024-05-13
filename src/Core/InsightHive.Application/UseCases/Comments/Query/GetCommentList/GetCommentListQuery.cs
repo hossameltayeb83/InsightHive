@@ -5,7 +5,7 @@ using MediatR;
 
 namespace InsightHive.Application.UseCases.Reviews.Query.GetCommentList
 {
-    public class GetCommentListQuery : IRequest<BaseResponse<PaginatedList<CommentDto, ReviewComment>>>
+    public class GetCommentListQuery : IRequest<BaseResponse<PaginatedList<CommentDto, Comment>>>
     {
         public int ReviewId { get; init; }
         public int Page { get; init; }

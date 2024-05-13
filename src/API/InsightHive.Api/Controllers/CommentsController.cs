@@ -2,14 +2,9 @@
 using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Comments.Query.GetCommentDetails;
 using InsightHive.Application.UseCases.Reviews.Command.CreateComment;
-using InsightHive.Application.UseCases.Reviews.Command.CreateReview;
 using InsightHive.Application.UseCases.Reviews.Command.DeleteComment;
-using InsightHive.Application.UseCases.Reviews.Command.DeleteReview;
 using InsightHive.Application.UseCases.Reviews.Command.UpdateComment;
-using InsightHive.Application.UseCases.Reviews.Command.UpdateReview;
 using InsightHive.Application.UseCases.Reviews.Query.GetCommentList;
-using InsightHive.Application.UseCases.Reviews.Query.GetReviewDetails;
-using InsightHive.Application.UseCases.Reviews.Query.GetReviewList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +26,7 @@ namespace InsightHive.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<BaseResponse<ReviewDto>>> Get(int commentId)
         {
-            var query = new GetCommentDetailsQuery { CommentId = commentId };
+            var query = new GetCommentDetailsQuery { Id = commentId };
             var response = await _mediator.Send(query);
             return Ok(response);
         }

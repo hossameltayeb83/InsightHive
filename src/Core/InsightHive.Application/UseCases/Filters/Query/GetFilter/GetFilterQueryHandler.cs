@@ -3,14 +3,8 @@ using InsightHive.Application.Exceptions;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Filters.Query.Dtos;
-using InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForSubCategory;
 using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Filters.Query.GetFilter
 {

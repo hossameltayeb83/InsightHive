@@ -14,8 +14,7 @@ namespace InsightHive.Application.UseCases.Reviews.Command.UpdateComment
         private readonly IValidator<UpdateCommentCommand> _validator;
         private readonly IMapper _mapper;
 
-        public UpdateCommentCommandHandler(IReviewRepository reviewRepo,
-                                           IRepository<Comment> commentRepo,
+        public UpdateCommentCommandHandler(IRepository<Comment> commentRepo,
                                            IMapper mapper)
         {
             _commentRepo = commentRepo;
@@ -41,23 +40,24 @@ namespace InsightHive.Application.UseCases.Reviews.Command.UpdateComment
             //if (comment.ReviewerId != request.CommenterId)
             //    throw new Exceptions.NotAuthorizedException("Not authorized to edit this comment!");
 
-            var commentToUpdate = _mapper.Map<Comment>(request);
-            bool updated = await _commentRepo.UpdateAsync(commentToUpdate);
+            comment.Content = request.Content;
+            bool updated = await _commentRepo.UpdateAsync(comment);
 
-            var response = new BaseResponse<CommentDto>();
-            if (updated)
-            {
-                response.Message = "Review updated successfully.";
-                // TODO: return CommentDto
-                //response.Result = _mapper.Map<CommentDto>(commentToUpdate);
-            }
-            else
-            {
-                response.Success = false;
-                response.Message = "Failed to update the review!";
-            }
+            if (!updated)
 
-            return response;
+                return new BaseResponse<CommentDto>
+                {
+                    Success = false,
+                    Message = "Failed to update comment!"
+                };
+
+
+
+            return new BaseResponse<CommentDto>
+            {
+                Message = "Comment updated successfully.",
+                Result = _mapper.Map<CommentDto>(comment)
+            };
         }
     }
 }

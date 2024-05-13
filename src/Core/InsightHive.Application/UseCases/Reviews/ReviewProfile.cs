@@ -3,6 +3,7 @@ using InsightHive.Application.Models.Review;
 using InsightHive.Application.UseCases.Reviews.Command.CreateReview;
 using InsightHive.Application.UseCases.Reviews.Command.UpdateReview;
 using InsightHive.Domain.Entities;
+using InsightHive.Domain.Enums;
 
 namespace InsightHive.Application.UseCases.Reviews
 {
@@ -17,15 +18,17 @@ namespace InsightHive.Application.UseCases.Reviews
             CreateMap<UpdateReviewCommand, Review>();
             CreateMap<Review, UpdateReviewDto>();
             // query review dto
-            CreateMap<ReviewComment, CommentDto>()
-                        .ForMember(dest => dest.CommenterId, opt => opt.MapFrom(src => src.ReviewerId))
-                        .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.CommentId))
-                        .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Comment.Content))
-                        .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => src.Comment.CreatedDate))
-                        .ForMember(dest => dest.LastModifiedDate, opt => opt.MapFrom(src => src.Comment.LastModifiedDate));
-
             CreateMap<Review, ReviewDto>()
                 .ForMember(dest => dest.Image, opt => opt.NullSubstitute("n/a"));
+
+            CreateMap<ICollection<ReviewReaction>, Dictionary<ReactionValue, int>>()
+                .ConstructUsing(e => new Dictionary<ReactionValue, int>
+                {
+                    { ReactionValue.Like, e.Count(e => e.Reaction.Name == ReactionValue.Like) },
+                    { ReactionValue.Dislike, e.Count(e => e.Reaction.Name == ReactionValue.Dislike) },
+                    { ReactionValue.Helpful, e.Count(e => e.Reaction.Name == ReactionValue.Helpful) },
+                    { ReactionValue.Exciting, e.Count(e => e.Reaction.Name == ReactionValue.Exciting) }
+                });
         }
     }
 }

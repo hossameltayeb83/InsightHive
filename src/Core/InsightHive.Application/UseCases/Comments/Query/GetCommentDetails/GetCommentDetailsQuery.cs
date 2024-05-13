@@ -6,6 +6,6 @@ namespace InsightHive.Application.UseCases.Comments.Query.GetCommentDetails
 {
     public class GetCommentDetailsQuery : IRequest<BaseResponse<CommentDto>>
     {
-        public int CommentId { get; init; }
+        public int Id { get; init; }
     }
 }

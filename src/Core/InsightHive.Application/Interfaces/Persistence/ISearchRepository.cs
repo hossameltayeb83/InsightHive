@@ -1,10 +1,4 @@
-﻿using InsightHive.Application.UseCases.Search.Query;
-using InsightHive.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InsightHive.Domain.Entities;
 
 namespace InsightHive.Application.Interfaces.Persistence
 {

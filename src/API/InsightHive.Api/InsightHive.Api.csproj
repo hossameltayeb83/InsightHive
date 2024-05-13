@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\InsightHive.Infrastructure\InsightHive.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Core\InsightHive.Application\InsightHive.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\InsightHive.Infrastructure\InsightHive.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\InsightHive.PersistenceDemo\InsightHive.PersistenceDemo.csproj" />
     <ProjectReference Include="..\..\Infrastructure\InsightHive.Persistence\InsightHive.Persistence.csproj" />
   </ItemGroup>

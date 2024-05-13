@@ -1,14 +1,10 @@
-﻿using Azure;
-using InsightHive.Application.UseCases.Reviewers.Command.CreateReviewer;
+﻿using InsightHive.Application.UseCases.Reviewers.Command.CreateReviewer;
 using InsightHive.Application.UseCases.Reviewers.Command.DeleteReviewer;
 using InsightHive.Application.UseCases.Reviewers.Command.UploadReviewerImage;
 using InsightHive.Application.UseCases.Reviewers.Query.GetAllReviewers;
 using InsightHive.Application.UseCases.Reviewers.Query.GetReviewer;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.Design;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace InsightHive.Api.Controllers
 {
@@ -52,10 +48,10 @@ namespace InsightHive.Api.Controllers
 
         [HttpPut("UploadProfileImage")]
         public async Task<IActionResult> UploadProfileImage(IFormFile formFile, UploadReviewerImageCommand command)
-        {               
+        {
             string fileExe = formFile.FileName.Split('.').Last();
             string imagePath = $"Reviewer\\{command.Id}_img.{fileExe}";
-            string fullPath = _path+imagePath; 
+            string fullPath = _path + imagePath;
             if (System.IO.File.Exists(imagePath))
             {
                 System.IO.File.Delete(imagePath);
@@ -64,7 +60,7 @@ namespace InsightHive.Api.Controllers
             {
                 await formFile.CopyToAsync(stream);
             }
-            Console.WriteLine("successful upload ! " +imagePath);
+            Console.WriteLine("successful upload ! " + imagePath);
             var response = await _mediatr.Send(command);
             return Ok(response);
         }

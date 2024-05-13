@@ -10,7 +10,7 @@ namespace InsightHive.Application.Models.Review
         public string? Image { get; init; }
         public DateTime CreatedDate { get; init; }
         public DateTime? LastModifiedDate { get; init; }
-        public IReadOnlyCollection<CommentDto> ReviewComments { get; set; }
-        public Dictionary<ReactionValue, int> ReactionsCount { get; }
+        public IReadOnlyCollection<CommentDto> Comments { get; set; }
+        public Dictionary<ReactionValue, int> ReviewReactions { get; set; }
     }
 }

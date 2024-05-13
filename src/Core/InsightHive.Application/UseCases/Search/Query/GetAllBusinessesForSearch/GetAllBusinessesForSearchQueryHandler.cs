@@ -2,15 +2,7 @@
 using FluentValidation;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
-using InsightHive.Application.UseCases.Filters.Command.CreateFilter;
-using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearch
 {
@@ -32,7 +24,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearc
             if (!validationResult.IsValid)
                 throw new Exceptions.ValidationException(validationResult);
             ///////////////////////////////////
-            var businesses =await _searchRepository.GetAllBySearch(request.Query);
+            var businesses = await _searchRepository.GetAllBySearch(request.Query);
             response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);
             ///////////////////////////////////
             return response;
