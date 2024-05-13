@@ -29,8 +29,8 @@ namespace InsightHive.PersistenceDemo
         }
         public Task<bool> AddAsync(T entity)
         {
-            (entity as Review)!.Id = 20;
-            (entity as Review)!.CreatedDate = DateTime.Now;
+            //(entity as Review)!.Id = 20;
+            //(entity as Review)!.CreatedDate = DateTime.Now;
             demoData[typeof(T)].Add(entity);
             return Task.FromResult(true);
         }

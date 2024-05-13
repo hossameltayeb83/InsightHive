@@ -16,7 +16,7 @@ namespace InsightHive.Application.UseCases.Reviews
             // update
             CreateMap<UpdateReviewCommand, Review>();
             CreateMap<Review, UpdateReviewDto>();
-            // general review dto
+            // query review dto
             CreateMap<ReviewComment, CommentDto>()
                         .ForMember(dest => dest.CommenterId, opt => opt.MapFrom(src => src.ReviewerId))
                         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.CommentId))

@@ -3,6 +3,7 @@ using InsightHive.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Moq.EntityFrameworkCore;
+using System.ComponentModel.Design;
 
 namespace InsightHive.PersistenceDemo
 {
@@ -83,6 +84,23 @@ namespace InsightHive.PersistenceDemo
             _context.Setup(e => e.ReviewComments).ReturnsDbSet(reviewComments);
         }
 
+        public Task<Review?> GetReviewByIdAsync(int reviewId, int maxComments)
+        {
+            var review = _context.Object.Reviews.Where(e => e.Id == reviewId)
+                                                 .Select(e => new Review
+                                                 {
+                                                     Id = e.Id,
+                                                     Content = e.Content,
+                                                     Rate = e.Rate,
+                                                     Image = e.Image,
+                                                     BusinessId = e.BusinessId,
+                                                     ReviewerId = e.ReviewerId,
+                                                     ReviewComments = e.ReviewComments.Take(maxComments).ToList()
+                                                 })
+                                                 .FirstOrDefault();
+            return Task.FromResult(review);
+        }
+
         public Task<IQueryable<Review>> GetReviewsByBusinessIdAsync(int businessId, int maxComments)
         {
             //return Task.FromResult(_reviewList.Where(e => e.BusinessId == businessId).AsQueryable());
@@ -121,6 +139,28 @@ namespace InsightHive.PersistenceDemo
             int oldCount = _reviewList.Count;
             _reviewList.Remove(review);
             return Task.FromResult(oldCount == _reviewList.Count - 1);
+        }
+
+        public Task<ReviewComment?> GetCommentAsync(int commentId)
+        {
+            return Task.FromResult(_context.Object.ReviewComments.FirstOrDefault(e => e.CommentId == commentId));
+        }
+
+        public Task<IQueryable<ReviewComment>> GetCommentListAsync(int reviewId)
+        {
+            return Task.FromResult(_context.Object.ReviewComments.Where(e => e.ReviewId == reviewId));
+        }
+
+        public Task<bool> AddReviewCommentAsync(ReviewComment reviewComment)
+        {
+            _context.Object.ReviewComments.Add(reviewComment);
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> UpdateReviewCommentAsync(ReviewComment reviewComment)
+        {
+            _context.Object.ReviewComments.Update(reviewComment);
+            return Task.FromResult(false);
         }
     }
 }

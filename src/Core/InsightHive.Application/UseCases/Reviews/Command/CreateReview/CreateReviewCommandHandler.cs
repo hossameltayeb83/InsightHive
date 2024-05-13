@@ -14,11 +14,10 @@ namespace InsightHive.Application.UseCases.Reviews.Command.CreateReview
         private readonly IMapper _mapper;
 
         public CreateReviewCommandHandler(IReviewRepository reviewRepo,
-                                          IValidator<CreateReviewCommand> validator,
                                           IMapper mapper)
         {
             _reviewRepo = reviewRepo;
-            _validator = validator;
+            _validator = new CreateReviewCommandValidator();
             _mapper = mapper;
         }
 
@@ -43,7 +42,7 @@ namespace InsightHive.Application.UseCases.Reviews.Command.CreateReview
             else
             {
                 response.Success = false;
-                response.Message = "Failed to created the review!";
+                response.Message = "Failed to create the review!";
             }
 
             return response;

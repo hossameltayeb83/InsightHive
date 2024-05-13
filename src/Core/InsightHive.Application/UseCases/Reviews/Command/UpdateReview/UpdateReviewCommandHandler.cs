@@ -14,17 +14,21 @@ namespace InsightHive.Application.UseCases.Reviews.Command.UpdateReview
         private readonly IMapper _mapper;
 
         public UpdateReviewCommandHandler(IReviewRepository reviewRepo,
-                                          IValidator<UpdateReviewCommand> validator,
                                           IMapper mapper)
         {
             _reviewRepo = reviewRepo;
-            _validator = validator;
+            _validator = new UpdateReviewCommandValidator();
             _mapper = mapper;
         }
 
         public async Task<BaseResponse<UpdateReviewDto>> Handle(UpdateReviewCommand request,
                                                        CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+                throw new Exceptions.ValidationException(validationResult);
+
             var review = await _reviewRepo.GetReviewByIdAsync(request.Id);
 
             if (review == null)
@@ -33,10 +37,6 @@ namespace InsightHive.Application.UseCases.Reviews.Command.UpdateReview
             if (review.ReviewerId != request.ReviewerId)
                 throw new Exceptions.NotAuthorizedException("Not authorized to edit this review!");
 
-            var validationResult = await _validator.ValidateAsync(request);
-
-            if (!validationResult.IsValid)
-                throw new Exceptions.ValidationException(validationResult);
 
             var reviewToUpdate = _mapper.Map<Review>(request);
             reviewToUpdate.BusinessId = review.BusinessId;

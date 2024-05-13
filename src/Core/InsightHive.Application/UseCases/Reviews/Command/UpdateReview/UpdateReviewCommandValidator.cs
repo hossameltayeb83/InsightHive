@@ -13,7 +13,7 @@ namespace InsightHive.Application.UseCases.Reviews.Command.UpdateReview
             RuleFor(p => p.Content)
                 .NotNull()
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(500).WithMessage("{PropertyName} must not exceed 20 characters.");
+                .MaximumLength(500).WithMessage("{PropertyName} must not exceed 500 characters.");
 
             RuleFor(p => p.Rate)
                 .GreaterThanOrEqualTo(1).WithMessage("{PropertyName} must be at least 1")
