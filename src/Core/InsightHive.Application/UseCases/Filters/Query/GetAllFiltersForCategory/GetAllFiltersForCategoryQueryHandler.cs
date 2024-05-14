@@ -2,13 +2,7 @@
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Filters.Query.Dtos;
-using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForCategory
 {
@@ -17,7 +11,7 @@ namespace InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForCategor
         private readonly IMapper _mapper;
         private readonly IFilterRepository _filterRepository;
 
-        public GetAllFiltersForCategoryQueryHandler(IMapper mapper,IFilterRepository filterRepository)
+        public GetAllFiltersForCategoryQueryHandler(IMapper mapper, IFilterRepository filterRepository)
         {
             _mapper = mapper;
             _filterRepository = filterRepository;
@@ -26,7 +20,7 @@ namespace InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForCategor
         {
             var filters = await _filterRepository.GetAllByCategoryIdAsync(request.CategoryId);
             var response = new BaseResponse<List<FilterDto>>();
-            response.Result =_mapper.Map<List<FilterDto>>(filters);
+            response.Result = _mapper.Map<List<FilterDto>>(filters);
             return response;
         }
     }

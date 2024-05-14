@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InsightHive.Application.UseCases.Filters.Query.Dtos
+﻿namespace InsightHive.Application.UseCases.Filters.Query.Dtos
 {
     public class OptionDto
     {

@@ -2,12 +2,6 @@
 using FluentValidation;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
-using InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCategory
 {
@@ -16,7 +10,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCa
         private readonly IValidator<GetAllBusinessesForSubCategoryQuery> _validator;
         private readonly IMapper _mapper;
         private readonly ISearchRepository _searchRepository;
-        public GetAllBusinessesForSubCategoryQueryHandler( IMapper mapper, ISearchRepository searchRepository)
+        public GetAllBusinessesForSubCategoryQueryHandler(IMapper mapper, ISearchRepository searchRepository)
         {
             _validator = new GetAllBusinessesForSubCategoryQueryValidator();
             _mapper = mapper;
@@ -30,8 +24,8 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCa
                 throw new Exceptions.ValidationException(validationResult);
 
             var optionsIds = request.Options.Split('+').Select(int.Parse).ToArray();
-            var businesses = await _searchRepository.GetAllBySubCategorySearch(request.Query,optionsIds);
-            response.Result= _mapper.Map<List<BusinessSearchDto>>(businesses);
+            var businesses = await _searchRepository.GetAllBySubCategorySearch(request.Query, optionsIds);
+            response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);
 
             return response;
         }

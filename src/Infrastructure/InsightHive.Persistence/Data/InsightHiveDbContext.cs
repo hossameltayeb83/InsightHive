@@ -3,14 +3,7 @@ using InsightHive.Domain.Common;
 using InsightHive.Domain.Entities;
 using InsightHive.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Persistence.Data
 {
@@ -58,9 +51,9 @@ namespace InsightHive.Persistence.Data
 
         public static class FakeData
         {
-            public static List<Badge> Badges = new ();
-            public static List<Attachment> Attachments = new ();
-            public static List<Business> Businesses = new ();
+            public static List<Badge> Badges = new();
+            public static List<Attachment> Attachments = new();
+            public static List<Business> Businesses = new();
             public static List<Category> Categories { get; set; } = new();
             public static List<Comment> Comments { get; set; } = new();
             public static List<Filter> Filters { get; set; } = new();
@@ -76,25 +69,25 @@ namespace InsightHive.Persistence.Data
 
             public static void Init(int count)
             {
-                
+
                 var attachmentFaker = new Faker<Attachment>()
                    .RuleFor(p => p.Image, f => f.Image.LoremPixelUrl("Business"));
-                   
+
 
                 var badgeId = 1;
                 var badgeFaker = new Faker<Badge>()
                    .RuleFor(b => b.Id, _ => badgeId++)
                    .RuleFor(b => b.Name, f => f.PickRandom<BadgeName>());
-                   //.RuleFor(b => b.Attachments, (f, b) =>
-                   //{
-                   //    attachmentFaker.RuleFor(p => p.BadgeId, _ => b.BadgeId);
+                //.RuleFor(b => b.Attachments, (f, b) =>
+                //{
+                //    attachmentFaker.RuleFor(p => p.BadgeId, _ => b.BadgeId);
 
-                   //    var attachments = attachmentFaker.GenerateBetween(3, 5);
+                //    var attachments = attachmentFaker.GenerateBetween(3, 5);
 
-                   //    FakeData.Attachments.AddRange(attachments);
+                //    FakeData.Attachments.AddRange(attachments);
 
-                   //    return null; // Badge.Posts is a getter only. The return value has no impact.
-                   //});
+                //    return null; // Badge.Posts is a getter only. The return value has no impact.
+                //});
 
                 var badges = badgeFaker.Generate(count);
 
@@ -106,7 +99,7 @@ namespace InsightHive.Persistence.Data
                    .RuleFor(b => b.Name, f => f.Company.CompanyName())
                    .RuleFor(b => b.Description, f => f.Lorem.Paragraph())
                    .RuleFor(b => b.Logo, f => f.Image.LoremPixelUrl("Business"));
-                   
+
                 //.RuleFor(b => b.Attachments, (f, b) =>
                 //{
                 //    attachmentFaker.RuleFor(p => p.BadgeId, _ => b.BadgeId);
@@ -127,7 +120,7 @@ namespace InsightHive.Persistence.Data
                 var categoryFaker = new Faker<Category>()
                    .RuleFor(b => b.Id, _ => categoryId++)
                    .RuleFor(b => b.Name, f => f.Commerce.Categories(1)[0]);
-                   
+
 
                 //.RuleFor(b => b.Attachments, (f, b) =>
                 //{
@@ -165,7 +158,7 @@ namespace InsightHive.Persistence.Data
 
                 FakeData.Comments.AddRange(comments);
 
-                
+
 
 
             }

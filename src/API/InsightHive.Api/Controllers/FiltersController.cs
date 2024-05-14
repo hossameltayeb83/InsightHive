@@ -37,17 +37,17 @@ namespace InsightHive.Api.Controllers
             return Ok(filters);
         }
         [HttpPost]
-        [ProducesResponseType(typeof(BaseResponse<CreateFilterDto>),StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(BaseResponse<CreateFilterDto>), StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateFilter(CreateFilterCommand command)
         {
             var response = await _mediatr.Send(command);
-            return CreatedAtRoute(response.Result.Id,response);
+            return CreatedAtRoute(response.Result.Id, response);
         }
         [HttpPut]
-        [ProducesResponseType(typeof(BaseResponse<List<UpdateFilterDto>>), StatusCodes.Status200OK)]      
+        [ProducesResponseType(typeof(BaseResponse<List<UpdateFilterDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateFilter(UpdateFilterCommand command)
         {
-            var response = await _mediatr.Send(command);       
+            var response = await _mediatr.Send(command);
             return Ok(response);
         }
         [HttpDelete("{id:int}")]

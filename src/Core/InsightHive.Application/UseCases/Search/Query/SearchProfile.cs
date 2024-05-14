@@ -1,10 +1,5 @@
 ﻿using AutoMapper;
 using InsightHive.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Search.Query
 {
@@ -12,7 +7,7 @@ namespace InsightHive.Application.UseCases.Search.Query
     {
         public SearchProfile()
         {
-            CreateMap<Business,BusinessSearchDto>();
+            CreateMap<Business, BusinessSearchDto>();
         }
     }
 }
