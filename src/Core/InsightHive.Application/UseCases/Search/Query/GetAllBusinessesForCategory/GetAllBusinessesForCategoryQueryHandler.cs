@@ -32,7 +32,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCateg
                 throw new Exceptions.ValidationException(validationResult);
             ///////////////////////////////////
             var optionsIds = request.Options.Split('+').Select(int.Parse).ToArray();
-            var businesses = await _searchRepository.GetAllByCategorySearch(request.Query, optionsIds);
+            var businesses = await _searchRepository.GetAllByCategorySearch(request.CategoryId,request.Query, optionsIds);
             response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);
             ///////////////////////////////////
             return response;

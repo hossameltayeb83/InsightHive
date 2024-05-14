@@ -15,12 +15,22 @@ namespace InsightHive.PersistenceDemo
             throw new NotImplementedException();
         }
 
+        public Task<IReadOnlyList<Business>> GetAllByCategorySearch(int categoryId, string? searchQuery, int[]? optionsIds)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IReadOnlyList<Business>> GetAllBySearch(string searchQuery)
         {
             throw new NotImplementedException();
         }
 
         public Task<IReadOnlyList<Business>> GetAllBySubCategorySearch(string searchQuery, int[] optionsIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<Business>> GetAllBySubCategorySearch(int subCategoryId, string? searchQuery, int[]? optionsIds)
         {
             throw new NotImplementedException();
         }

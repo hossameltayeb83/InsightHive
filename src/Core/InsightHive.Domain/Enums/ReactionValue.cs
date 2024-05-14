@@ -13,6 +13,5 @@ namespace InsightHive.Domain.Enums
         Dislike,
         Helpful,
         Exciting
-        
     }
 }

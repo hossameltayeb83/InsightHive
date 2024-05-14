@@ -30,7 +30,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCa
                 throw new Exceptions.ValidationException(validationResult);
 
             var optionsIds = request.Options.Split('+').Select(int.Parse).ToArray();
-            var businesses = await _searchRepository.GetAllBySubCategorySearch(request.Query,optionsIds);
+            var businesses = await _searchRepository.GetAllBySubCategorySearch(request.SubCategoryId,request.Query,optionsIds);
             response.Result= _mapper.Map<List<BusinessSearchDto>>(businesses);
 
             return response;

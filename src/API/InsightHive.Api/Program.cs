@@ -18,9 +18,10 @@ namespace InsightHive.Api
             builder.Services.AddDbContext<InsightHiveDbContext>(c =>
             {
                 c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
+                c.EnableSensitiveDataLogging(true);
             });
-            builder.Services.AddApplicationServices().AddPresistenceDemoServices().AddInfrastructureServices();
-
+            //builder.Services.AddApplicationServices().AddPresistenceDemoServices().AddInfrastructureServices();
+            builder.Services.AddApplicationServices().AddPresistenceDemoServices();
             builder.Services.AddCors(
                  options => options.AddPolicy(
                      "angularApp",
