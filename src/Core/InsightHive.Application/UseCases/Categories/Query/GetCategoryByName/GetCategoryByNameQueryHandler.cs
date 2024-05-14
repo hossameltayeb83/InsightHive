@@ -4,11 +4,6 @@ using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
 using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Categories.Query.GetCtegoryByName
 {
@@ -30,19 +25,19 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetCtegoryByName
         {
             var categoryName = request.Name;
             var category = await _categoryRepository.GetByNameWithSubCategoriesAsync(categoryName);
-            var response= new BaseResponse<CategoryByNameDto>();
+            var response = new BaseResponse<CategoryByNameDto>();
             if (category == null)
             {
                 throw new NotFoundException($"Category with name '{categoryName}' not found.");
-               
+
             }
             else
             {
                 response.Message = "Category found";
-                response.Result= _mapper.Map<CategoryByNameDto>(category);
+                response.Result = _mapper.Map<CategoryByNameDto>(category);
 
             }
-             
+
             return response;
         }
     }

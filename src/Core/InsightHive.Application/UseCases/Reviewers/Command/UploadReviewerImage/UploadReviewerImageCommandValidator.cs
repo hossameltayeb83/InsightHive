@@ -1,9 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Reviewers.Command.UploadReviewerImage
 {
@@ -16,6 +11,6 @@ namespace InsightHive.Application.UseCases.Reviewers.Command.UploadReviewerImage
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .MaximumLength(50).WithMessage("{PropertyName} Max lenght is 50.");
         }
-        
+
     }
 }

@@ -1,17 +1,9 @@
 ﻿using AutoMapper;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
-using InsightHive.Application.UseCases.Bussnisses.Command.UpdateBusssniss;
-using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
 using InsightHive.Application.UseCases.Owners.command.CreateOwner;
 using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace InsightHive.Application.UseCases.Owners.command.UpdateOwner
 {
@@ -42,7 +34,7 @@ namespace InsightHive.Application.UseCases.Owners.command.UpdateOwner
                 throw new Exceptions.NotFoundException("owner not found");
             }
 
-            _mapper.Map(request.ownerDto, Owner); 
+            _mapper.Map(request.ownerDto, Owner);
 
             var updated = await _ownerRepo.UpdateAsync(Owner);
 

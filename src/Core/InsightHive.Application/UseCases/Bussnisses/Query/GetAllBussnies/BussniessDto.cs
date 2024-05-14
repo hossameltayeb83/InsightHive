@@ -1,11 +1,4 @@
-﻿using InsightHive.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies
+﻿namespace InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies
 {
     public class BussniessDto
     {

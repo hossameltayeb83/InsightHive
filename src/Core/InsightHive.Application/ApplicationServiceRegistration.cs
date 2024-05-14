@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.UseCases.Categories.Command.CreateCategory;
 using InsightHive.Application.UseCases.Filters.Command.CreateFilter;
 using InsightHive.Application.UseCases.Filters.Command.UpdateFilter;

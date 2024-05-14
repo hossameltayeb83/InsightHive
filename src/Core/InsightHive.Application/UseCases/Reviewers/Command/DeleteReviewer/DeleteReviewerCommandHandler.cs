@@ -24,7 +24,7 @@ namespace InsightHive.Application.UseCases.Reviewers.Command.DeleteReviewer
             if (reviewerToDelete == null)
                 throw new Exceptions.NotFoundException("Reviewer not found!");
 
-            if ( reviewerToDelete.User.Id != request.UserId || user.User?.RoleId != 1 )
+            if (reviewerToDelete.User.Id != request.UserId || user.User?.RoleId != 1)
                 throw new Exceptions.NotAuthorizedException("Not authorized to delete this reviewer!");
 
 

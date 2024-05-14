@@ -3,11 +3,6 @@ using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Filters.Query.Dtos;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForSubCategory
 {
@@ -25,7 +20,7 @@ namespace InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForSubCate
         public async Task<BaseResponse<List<FilterDto>>> Handle(GetAllFiltersForSubCategoryQuery request, CancellationToken cancellationToken)
         {
             var filters = await _filterRepository.GetAllByCategoryIdAsync(request.SubCategoryId);
-            var response= new BaseResponse<List<FilterDto>>();
+            var response = new BaseResponse<List<FilterDto>>();
             response.Result = _mapper.Map<List<FilterDto>>(filters);
             return response;
         }

@@ -2,7 +2,7 @@
 
 namespace InsightHive.Application.Responses
 {
-    public class BaseResponse<T> 
+    public class BaseResponse<T>
     {
         [JsonPropertyOrder(-1)]
         public bool Success { get; set; } = true;

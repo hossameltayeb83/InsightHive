@@ -1,8 +1,5 @@
-﻿using InsightHive.Application.UseCases.Categories.Query.GetAllCategories;
-using InsightHive.Application.UseCases.SubCategories.Query;
-using InsightHive.Domain.Entities;
+﻿using InsightHive.Application.UseCases.SubCategories.Query;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers

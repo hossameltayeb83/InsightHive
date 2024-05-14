@@ -4,11 +4,6 @@ using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
 using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Bussnisses.Query.GetBussnissById
 {
@@ -29,14 +24,14 @@ namespace InsightHive.Application.UseCases.Bussnisses.Query.GetBussnissById
 
         public async Task<BaseResponse<BussniessDto>> Handle(GetBussnissByIdQuery request, CancellationToken cancellationToken)
         {
-            var bussniss = await _businessRepo.GetByIdAsync( request.Id );
-            if ( bussniss == null )
+            var bussniss = await _businessRepo.GetByIdAsync(request.Id);
+            if (bussniss == null)
             {
                 throw new Exceptions.NotFoundException("Business not found");
             }
-            var response= new BaseResponse<BussniessDto>();
+            var response = new BaseResponse<BussniessDto>();
             response.Message = "Business found";
-             response.Result = _mapper.Map<BussniessDto>(bussniss);
+            response.Result = _mapper.Map<BussniessDto>(bussniss);
             return (response);
         }
     }

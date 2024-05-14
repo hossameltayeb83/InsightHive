@@ -1,14 +1,4 @@
 ﻿using AutoMapper;
-using InsightHive.Application.UseCases.Reviewers.Command.CreateReviewer;
-using InsightHive.Application.UseCases.Reviewers.Command.UpdateReviewer;
-using InsightHive.Application.UseCases.Reviewers.Query.GetAllReviewers;
-using InsightHive.Application.UseCases.Reviewers.Query.GetReviewer;
-using InsightHive.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Reviewers
 {

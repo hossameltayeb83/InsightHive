@@ -1,5 +1,4 @@
-﻿using InsightHive.Application.Exceptions;
-using InsightHive.Application.Responses;
+﻿using InsightHive.Application.Responses;
 using InsightHive.Application.UseCases.Categories.Command.CreateCategory;
 using InsightHive.Application.UseCases.Categories.Command.DeleteCategory;
 using InsightHive.Application.UseCases.Categories.Command.UpdateCategory;
@@ -7,7 +6,6 @@ using InsightHive.Application.UseCases.Categories.Query.GetAllCategories;
 using InsightHive.Application.UseCases.Categories.Query.GetCategoryById;
 using InsightHive.Application.UseCases.Categories.Query.GetCtegoryByName;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
@@ -58,10 +56,10 @@ namespace InsightHive.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<BaseResponse<CategoryDto>>> UpdateCategory([FromBody] UpdateCategoryCommand updateCategoryCommand)
         {
-            var responce =await _mediatr.Send(updateCategoryCommand);
+            var responce = await _mediatr.Send(updateCategoryCommand);
             return Ok(responce);
         }
-        [HttpDelete(Name ="DeleteCategory")]
+        [HttpDelete(Name = "DeleteCategory")]
         public async Task<ActionResult> DeleteCategory([FromBody] DeleteCategoryCommand deleteCategoryCommand)
         {
             await _mediatr.Send(deleteCategoryCommand);

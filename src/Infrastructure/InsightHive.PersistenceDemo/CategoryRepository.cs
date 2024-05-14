@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using InsightHive.Application.Interfaces.Persistence;
+﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
+using System.Collections;
+using System.Linq.Expressions;
 
 namespace InsightHive.PersistenceDemo
 {
@@ -107,7 +103,7 @@ namespace InsightHive.PersistenceDemo
             {
                 var subCategories = ((List<SubCategory>)demoData[typeof(SubCategory)])
                     .Where(s => s.CategoryId == category.Id)
-                    .Select(s => new SubCategory{ Id = s.Id, Name = s.Name })
+                    .Select(s => new SubCategory { Id = s.Id, Name = s.Name })
                     .ToList();
 
                 category.SubCategories = subCategories;
@@ -116,5 +112,5 @@ namespace InsightHive.PersistenceDemo
         }
 
     }
-        
+
 }

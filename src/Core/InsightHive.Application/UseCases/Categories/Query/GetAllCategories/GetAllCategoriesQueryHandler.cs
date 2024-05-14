@@ -38,9 +38,9 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetAllCategories
                     categoryDto.SubCategories = _mapper.Map<List<SubcategoryDto>>(categoryDto.SubCategories);
                 }
             }
-                return response;
-            }
-
-
+            return response;
         }
+
+
     }
+}

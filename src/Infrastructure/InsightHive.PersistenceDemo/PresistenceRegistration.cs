@@ -1,12 +1,5 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
-using InsightHive.Application.UseCases.SubCategories.Query;
-using InsightHive.Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.PersistenceDemo
 {
@@ -18,8 +11,8 @@ namespace InsightHive.PersistenceDemo
             services.AddScoped<ISubCategoryRepo, SubCategoryRepo>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IReviewerRepository, ReviewerRepositroy>();
-            services.AddScoped<IFilterRepository,FilterRepository>();
-            services.AddScoped<ISearchRepository,SearchRepository>();
+            services.AddScoped<IFilterRepository, FilterRepository>();
+            services.AddScoped<ISearchRepository, SearchRepository>();
             return services;
 
         }

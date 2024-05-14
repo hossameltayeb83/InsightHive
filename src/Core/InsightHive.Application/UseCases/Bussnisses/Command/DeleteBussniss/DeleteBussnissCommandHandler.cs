@@ -2,15 +2,10 @@
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Bussnisses.Command.DeleteBussniss
 {
-    public class DeleteBussnissCommandHandler:IRequestHandler<DeleteBussnissCommand>
+    public class DeleteBussnissCommandHandler : IRequestHandler<DeleteBussnissCommand>
     {
         private readonly IRepository<Business> _businessRepo;
         private readonly IMapper _mapper;

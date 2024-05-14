@@ -1,11 +1,7 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
-using System;
 using System.Collections;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.PersistenceDemo
 {
@@ -46,8 +42,8 @@ namespace InsightHive.PersistenceDemo
                 new Owner { Id = 2, BusinessId = 2 }
             };
 
-            
-            demoData[typeof(Filter)] = new List<Filter> { 
+
+            demoData[typeof(Filter)] = new List<Filter> {
                 new Filter { Id=1,Name="Price",Categories=new List<Category> {
                 new Category { Id=1,Name="Restaurants" },
                 new Category {Id=2,Name="Repairs" }
@@ -55,7 +51,7 @@ namespace InsightHive.PersistenceDemo
                 new Filter {Id=2,Name="Features",Categories=new List<Category> {
                 new Category { Id=1,Name="Restaurants" },
                 new Category {Id=2,Name="Repairs" }
-            } } 
+            } }
             };
         }
         public Task<bool> AddAsync(T entity)
@@ -101,7 +97,7 @@ namespace InsightHive.PersistenceDemo
             {
                 foreach (var prop in typeof(T).GetProperties())
                 {
-                    if (prop.Name != "Id") 
+                    if (prop.Name != "Id")
                     {
                         var newValue = prop.GetValue(entity);
                         prop.SetValue(existingEntity, newValue);
@@ -111,7 +107,7 @@ namespace InsightHive.PersistenceDemo
             }
             else
             {
-                return Task.FromResult(false); 
+                return Task.FromResult(false);
             }
         }
 

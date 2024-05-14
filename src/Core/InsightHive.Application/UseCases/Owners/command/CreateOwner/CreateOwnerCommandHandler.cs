@@ -1,20 +1,12 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
-using InsightHive.Application.UseCases.Bussnisses.Command.CreateBussniss;
-using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
 using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Owners.command.CreateOwner
 {
-    public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand,BaseResponse<OwnerDto>>
+    public class CreateOwnerCommandHandler : IRequestHandler<CreateOwnerCommand, BaseResponse<OwnerDto>>
     {
 
         private readonly IRepository<Owner> _ownerRepo;
@@ -36,7 +28,7 @@ namespace InsightHive.Application.UseCases.Owners.command.CreateOwner
             }
             var response = new BaseResponse<OwnerDto>();
             var NewOwner = _mapper.Map<Owner>(request.ownerDto);
-            var created =await _ownerRepo.AddAsync(NewOwner);
+            var created = await _ownerRepo.AddAsync(NewOwner);
 
             if (created)
             {
@@ -52,7 +44,7 @@ namespace InsightHive.Application.UseCases.Owners.command.CreateOwner
 
 
 
-         
+
         }
     }
 }

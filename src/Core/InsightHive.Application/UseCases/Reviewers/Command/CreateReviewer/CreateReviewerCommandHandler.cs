@@ -33,7 +33,7 @@ namespace InsightHive.Application.UseCases.Reviewers.Command.CreateReviewer
             bool created = await _reviewerRepo.AddAsync(reviewer);
             var response = new BaseResponse<CreateReviewerDto>();
 
-            if(created)
+            if (created)
             {
                 response.Message = "Reviewer created successfully.";
                 response.Result = _mapper.Map<CreateReviewerDto>(reviewer);

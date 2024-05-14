@@ -29,6 +29,6 @@ namespace InsightHive.Application.UseCases.Owners
             CreateMap<UpdateOwnerCommand, Owner>();
 
         }
-             
+
     }
 }

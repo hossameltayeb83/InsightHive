@@ -5,9 +5,7 @@ using InsightHive.Application.UseCases.Bussnisses.Command.UpdateBusssniss;
 using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
 using InsightHive.Application.UseCases.Bussnisses.Query.GetBussnissById;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
 
 namespace InsightHive.Api.Controllers
 {

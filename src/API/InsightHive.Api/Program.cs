@@ -1,11 +1,10 @@
 
 using InsightHive.Api.Middleware;
 using InsightHive.Application;
-using InsightHive.PersistenceDemo;
 using InsightHive.Infrastructure;
 using InsightHive.Persistence.Data;
+using InsightHive.PersistenceDemo;
 using Microsoft.EntityFrameworkCore;
-using InsightHive.Api.Middleware;
 
 namespace InsightHive.Api
 {

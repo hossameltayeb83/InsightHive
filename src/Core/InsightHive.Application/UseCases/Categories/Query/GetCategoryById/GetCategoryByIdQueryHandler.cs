@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
-using InsightHive.Application.UseCases.SubCategories.Query;
 using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Categories.Query.GetCategoryById
 {
@@ -23,17 +17,17 @@ namespace InsightHive.Application.UseCases.Categories.Query.GetCategoryById
         {
             _categoryRepo = categoryRepo;
             _mapper = mapper;
-            _categoryRepository = categoryRepository;   
+            _categoryRepository = categoryRepository;
         }
 
         public async Task<BaseResponse<GetCategoryByIdDto>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
             var category = await _categoryRepository.GetByIdWithSubCategoriesAsync(request.CategoryId);
-            if (category == null) 
+            if (category == null)
             {
                 throw new Exceptions.NotFoundException("categoryId not found");
             }
-            var response= new BaseResponse<GetCategoryByIdDto>();
+            var response = new BaseResponse<GetCategoryByIdDto>();
             response.Message = "Category found";
             response.Result = _mapper.Map<GetCategoryByIdDto>(category);
             return response;

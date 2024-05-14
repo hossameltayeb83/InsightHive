@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
 using InsightHive.Application.Interfaces.Persistence;
-using InsightHive.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.SubCategories.Query
 {
@@ -15,7 +9,7 @@ namespace InsightHive.Application.UseCases.SubCategories.Query
         private readonly ISubCategoryRepo _subCategory;
         private readonly IMapper _mapper;
 
-        public GetSubCategoriesListWithCategoryQueryHandler( ISubCategoryRepo subCategory,
+        public GetSubCategoriesListWithCategoryQueryHandler(ISubCategoryRepo subCategory,
                                             IMapper mapper)
         {
             _mapper = mapper;

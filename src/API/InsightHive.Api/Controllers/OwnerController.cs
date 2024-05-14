@@ -2,7 +2,6 @@
 using InsightHive.Application.UseCases.Owners.command.CreateOwner;
 using InsightHive.Application.UseCases.Owners.command.UpdateOwner;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
@@ -27,7 +26,7 @@ namespace InsightHive.Api.Controllers
         public async Task<ActionResult> UpdateOwner([FromBody] UpdateOwnerCommand updateOwnerCommand)
         {
             var updatedOwner = await _mediatr.Send(updateOwnerCommand);
-            return Ok( updatedOwner);
+            return Ok(updatedOwner);
         }
 
 

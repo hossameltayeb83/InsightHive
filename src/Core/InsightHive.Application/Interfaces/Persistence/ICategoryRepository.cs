@@ -6,7 +6,7 @@ namespace InsightHive.Application.Interfaces.Persistence
     {
         Task<Category> GetByIdWithSubCategoriesAsync(int id);
         Task<Category> GetByNameWithSubCategoriesAsync(string name);
-        Task <List<Category>> GetAllCategoriesWithSubCategoriesAsync();
+        Task<List<Category>> GetAllCategoriesWithSubCategoriesAsync();
 
 
 
