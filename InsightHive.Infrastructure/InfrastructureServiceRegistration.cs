@@ -1,7 +1,7 @@
-﻿using InsightHive.Application.Interfaces.Infrastructure;
+﻿using Hangfire;
+using InsightHive.Application.Interfaces.Infrastructure;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Infrastructure.Background;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,10 +13,18 @@ namespace InsightHive.Infrastructure
 {
     public static class InfrastructureServiceRegistration
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services , IConfiguration configuration)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services ,string HFConnectionString)
         {
-            // complete Configration
-            services.AddTransient<IBackgroundService,BackgroundService>();
+            services.AddHangfire(config => config
+            .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(HFConnectionString)
+            );
+
+            services.AddHangfireServer();
+
+            services.AddScoped<IBackgroundService,BackgroundService>();
             return services;
         }
     }

@@ -5,6 +5,7 @@ using InsightHive.Infrastructure;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using InsightHive.Api.Middleware;
+using Hangfire;
 
 namespace InsightHive.Api
 {
@@ -19,7 +20,9 @@ namespace InsightHive.Api
             {
                 c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
             });
-            builder.Services.AddApplicationServices().AddPresistenceDemoServices().AddInfrastructureServices();
+            builder.Services.AddApplicationServices()
+                            .AddPresistenceDemoServices()
+                            .AddInfrastructureServices(builder.Configuration.GetConnectionString("HangfireConnection"));
 
             builder.Services.AddCors(
                  options => options.AddPolicy(
@@ -50,6 +53,9 @@ namespace InsightHive.Api
             
             app.UseCors("angularApp");
             app.MapControllers();
+
+            app.UseHangfireDashboard();
+            app.MapHangfireDashboard("/admin/hangfire");
 
             app.Run();
         }
