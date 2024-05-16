@@ -12,5 +12,7 @@
         public Owner Owner { get; set; }
         public ICollection<Attachment> Attachments { get; set; } = new HashSet<Attachment>();
         public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
+        public ICollection<Option> Options { get; set; } = new HashSet<Option>();
+       
     }
 }

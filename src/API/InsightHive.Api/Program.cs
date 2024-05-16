@@ -1,9 +1,9 @@
 
 using InsightHive.Api.Middleware;
 using InsightHive.Application;
+using InsightHive.Persistence;
 using InsightHive.Infrastructure;
 using InsightHive.Persistence.Data;
-using InsightHive.PersistenceDemo;
 using Microsoft.EntityFrameworkCore;
 using InsightHive.Api.Middleware;
 using Hangfire;
@@ -20,10 +20,11 @@ namespace InsightHive.Api
             builder.Services.AddDbContext<InsightHiveDbContext>(c =>
             {
                 c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
+                c.EnableSensitiveDataLogging(true);
             });
             builder.Services.AddApplicationServices()
-                            .AddPresistenceDemoServices()
-                            .AddInfrastructureServices(builder.Configuration.GetConnectionString("HangfireConnection"));
+                .AddPersistenceServices()
+                .AddInfrastructureServices(builder.Configuration.GetConnectionString("HangfireConnection"));
 
             builder.Services.AddCors(
                  options => options.AddPolicy(

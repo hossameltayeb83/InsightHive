@@ -13,7 +13,7 @@ namespace InsightHive.Persistence.Repositories
     public class ReviewerRepository : BaseRepository<Reviewer>, IReviewerRepository
     {
         public ReviewerRepository(InsightHiveDbContext context) : base(context){ }
-
+            
         public async Task AddImagePathAsync(int id, string path)
         {
             var reviewer = await GetByIdAsync(id);
