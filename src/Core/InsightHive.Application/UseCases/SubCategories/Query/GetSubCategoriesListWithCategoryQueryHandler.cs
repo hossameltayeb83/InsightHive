@@ -6,10 +6,10 @@ namespace InsightHive.Application.UseCases.SubCategories.Query
 {
     public class GetSubCategoriesListWithCategoryQueryHandler : IRequestHandler<GetSubCategoriesListWithCategoryQuery, CategoryWithSubcategoriesDto>
     {
-        private readonly ISubCategoryRepo _subCategory;
+        private readonly ISubCategoryRepository _subCategory;
         private readonly IMapper _mapper;
 
-        public GetSubCategoriesListWithCategoryQueryHandler(ISubCategoryRepo subCategory,
+        public GetSubCategoriesListWithCategoryQueryHandler(ISubCategoryRepository subCategory,
                                             IMapper mapper)
         {
             _mapper = mapper;

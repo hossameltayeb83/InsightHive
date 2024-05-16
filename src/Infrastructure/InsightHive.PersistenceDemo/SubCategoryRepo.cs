@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace InsightHive.PersistenceDemo
 {
-    public class SubCategoryRepo : ISubCategoryRepo
+    public class SubCategoryRepo : ISubCategoryRepository
     {
         private readonly Dictionary<Type, IList> demoData = new Dictionary<Type, IList>();
 

@@ -18,11 +18,6 @@ namespace InsightHive.Persistence.Repositories
 
         public async Task<IReadOnlyList<Filter>> GetAllByCategoryIdAsync(int categoryId)
         {
-            //var filters = await _context
-            //    .Categories.Where(e => e.Id == categoryId)
-            //    .SelectMany(e => e.Filters).ToListAsync();
-            //return filters.AsReadOnly();
-
             var filters = await _context.Categories
                 .Include(e => e.Filters)
                 .ThenInclude(e => e.Options)
@@ -34,17 +29,6 @@ namespace InsightHive.Persistence.Repositories
 
         public async Task<IReadOnlyList<Filter>> GetAllBySubCategoryIdAsync(int subCategoryId)
         {
-            //var subCategory = await _context.SubCategories.FindAsync(subCategoryId);
-
-            //return await GetAllByCategoryIdAsync(subCategory.CategoryId);
-            // var filters = await _context.SubCategories
-            //     .Include(e => e.Filters)
-            //     .ThenInclude(e => e.Options)
-            //     .Where(e => e.Id == subCategoryId)
-            //     .SelectMany(e => e.Filters)
-            //     .ToListAsync();
-            // return filters.AsReadOnly();
-
             var filters = await _context.SubCategories
                 .Include(e=>e.Category)
                 .ThenInclude(e=>e.Filters)
@@ -52,12 +36,6 @@ namespace InsightHive.Persistence.Repositories
                 .Where(e => e.Id == subCategoryId)
                 .SelectMany(e => e.Category.Filters).ToListAsync();
             return filters.AsReadOnly();
-
-            // var filters= await _context.SubCategories
-            //     .Include(e=>e.fil)
-            //     .Where(e=>e.Id==subCategoryId)
-            //     .SelectMany(e=>e.Category.Filters).ToListAsync();
-            //return filters.AsReadOnly();
         }
     }
 }

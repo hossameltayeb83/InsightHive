@@ -2,7 +2,7 @@
 
 namespace InsightHive.Application.Interfaces.Persistence
 {
-    public interface ISubCategoryRepo : IRepository<SubCategory>
+    public interface ISubCategoryRepository : IRepository<SubCategory>
     {
         Task<List<SubCategory>> GetByCategoryIdAsync(int categoryId);
     }

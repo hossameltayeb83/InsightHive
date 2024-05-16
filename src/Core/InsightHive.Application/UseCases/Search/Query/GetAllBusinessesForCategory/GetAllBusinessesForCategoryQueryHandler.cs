@@ -2,6 +2,7 @@
 using FluentValidation;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
+using InsightHive.Domain.Entities;
 using MediatR;
 
 namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCategory

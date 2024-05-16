@@ -16,6 +16,8 @@ namespace InsightHive.Persistence
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IBusinessRepository, BusinessRepository>();
             services.AddScoped<IFilterRepository, FilterRepository>();
+            services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IReviewerRepository, ReviewerRepository>();
             return services;
         }
