@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InsightHive.PersistenceDemo
 {
-    internal class SearchRepository : BaseRepository<Business>, ISearchRepository
+    internal class SearchRepository : BaseRepository<Business>
     {
         public Task<IReadOnlyList<Business>> GetAllByCategorySearch(string searchQuery, int[] optionsIds)
         {

@@ -15,7 +15,6 @@ namespace InsightHive.PersistenceDemo
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IReviewerRepository, ReviewerRepositroy>();
             services.AddScoped<IFilterRepository,FilterRepository>();
-            services.AddScoped<ISearchRepository,SearchRepository>();
             return services;
 
         }

@@ -53,21 +53,22 @@ namespace InsightHive.Persistence.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
      
-                FakeData.Init(5);
+                
+                FakeData.Init(5,25);
                 //modelBuilder.Entity<Attachment>().HasData(FakeData.Attachments);
                 modelBuilder.Entity<Badge>().HasData(FakeData.Badges);
-                modelBuilder.Entity<Business>().HasData(FakeData.Businesses); 
-                modelBuilder.Entity<Category>().HasData(FakeData.Categories);
-                modelBuilder.Entity<Comment>().HasData(FakeData.Comments);
-                modelBuilder.Entity<Filter>().HasData(FakeData.Filters);
-                modelBuilder.Entity<Option>().HasData(FakeData.Options);
-                modelBuilder.Entity<Owner>().HasData(FakeData.Owners);
+                modelBuilder.Entity<Business>().HasData(FakeData.Businesses.Take(FakeData.Businesses.Count / 2)); 
+                modelBuilder.Entity<Category>().HasData(FakeData.Categories.Take(FakeData.Categories.Count/2));
+                modelBuilder.Entity<Comment>().HasData(FakeData.Comments.Take(FakeData.Comments.Count / 2));
+                modelBuilder.Entity<Filter>().HasData(FakeData.Filters.Take(FakeData.Filters.Count / 2));
+                modelBuilder.Entity<Option>().HasData(FakeData.Options.Take(FakeData.Options.Count / 2));
+                modelBuilder.Entity<Owner>().HasData(FakeData.Owners.Take(FakeData.Owners.Count / 2));
                 modelBuilder.Entity<Reaction>().HasData(FakeData.Reactions);
-                modelBuilder.Entity<Review>().HasData(FakeData.Reviews);
-                modelBuilder.Entity<Reviewer>().HasData(FakeData.Reviewers);
+                modelBuilder.Entity<Review>().HasData(FakeData.Reviews.Take(FakeData.Reviews.Count / 2));
+                modelBuilder.Entity<Reviewer>().HasData(FakeData.Reviewers.Take(FakeData.Reviewers.Count / 2));
                 modelBuilder.Entity<Role>().HasData(FakeData.Roles);
-                modelBuilder.Entity<SubCategory>().HasData(FakeData.SubCategories);
-                modelBuilder.Entity<User>().HasData(FakeData.Users);
+                modelBuilder.Entity<SubCategory>().HasData(FakeData.SubCategories.Take(FakeData.SubCategories.Count / 2));
+                modelBuilder.Entity<User>().HasData(FakeData.Users.Take(FakeData.Users.Count / 2));
             
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -91,7 +92,7 @@ namespace InsightHive.Persistence.Data
             public static List<User> Users { get; } = new();
 
 
-            public static void Init(int count)
+            public static void Init(int count,int seed)
             {
                 var faker = new Faker();   
                 FakeData.Badges= new List<Badge> { 
@@ -120,6 +121,7 @@ namespace InsightHive.Persistence.Data
 
                 var businessId = FakeData.Businesses.Count+1;
                 var businessFaker = new Faker<Business>()
+                   .UseSeed(seed)
                    .RuleFor(b => b.Logo, _ => $"Business\\{businessId}_img.png")
                    .RuleFor(b => b.Id, _=>businessId++)
                    .RuleFor(b => b.Name, f => f.Company.CompanyName())
@@ -135,11 +137,13 @@ namespace InsightHive.Persistence.Data
 
                 var optionId = FakeData.Options.Count + 1;
                 var optionFaker = new Faker<Option>()
+                   .UseSeed(seed)
                    .RuleFor(b => b.Id, _ => optionId++)
                    .RuleFor(b => b.Content, f => f.Random.Word());
 
                 var filterId = FakeData.Filters.Count + 1;
                 var filterFaker = new Faker<Filter>()
+                   .UseSeed(seed)
                    .RuleFor(filter => filter.Id,_=> filterId++)
                    .RuleFor(filter => filter.Name, f => f.Commerce.Department())
                    .RuleFor(filter => filter.Options, (f, filter) =>
@@ -155,26 +159,40 @@ namespace InsightHive.Persistence.Data
 
                 var subCategoryId = FakeData.SubCategories.Count + 1;
                 var subCategoryFaker = new Faker<SubCategory>()
+                   .UseSeed(seed)
                    .RuleFor(sc => sc.Id, _ => subCategoryId++)
                    .RuleFor(sc => sc.Name, f => f.Commerce.Categories(1)[0]);
 
                 var categoryId = FakeData.Categories.Count + 1;
-                Debug.WriteLine(categoryId);
                 var categoryFaker = new Faker<Category>()
-                   .RuleFor(c => c.Id,_=>categoryId++)
+                   .UseSeed(seed)
+                   .RuleFor(c => c.Id, _ => categoryId++)
                    .RuleFor(c => c.Name, f => f.Commerce.Categories(1)[0])
                    .RuleFor(c => c.SubCategories, (f, c) =>
                    {
-                       subCategoryFaker.RuleFor(sc => sc.CategoryId, _ => c.Id);
+                       subCategoryFaker
+                       .RuleFor(sc => sc.CategoryId, _ => c.Id);
                        var subCategories = subCategoryFaker.GenerateBetween(2, 5);
                        FakeData.SubCategories.AddRange(subCategories);
                        return null;
                    });
+                   //.RuleFor(c => c.Filters, (f, c) =>
+                   //{
+                   //    if (System.Diagnostics.Debugger.IsAttached == false)
+                   //        System.Diagnostics.Debugger.Launch();
+                   //    var filters = f.PickRandom(FakeData.Filters, f.Random.Int(2,4)).ToList();
+                   //    foreach (var filter in filters)
+                   //    {
+                   //        filter.Categories.Add(c);
+                   //    }
+                   //    return filters;
+                   //});
                 var categories = categoryFaker.Generate(4);
                 FakeData.Categories.AddRange(categories);
 
                 var commentId = FakeData.Comments.Count + 1;
                 var commentFaker = new Faker<Comment>()
+                   .UseSeed(seed)
                    .UseDateTimeReference(new DateTime(2024, 5, 14))
                    .RuleFor(r => r.CreatedDate, f => f.Date.Recent(30))
                    .RuleFor(c => c.Id,_=> commentId++)
@@ -182,6 +200,7 @@ namespace InsightHive.Persistence.Data
 
                 var reviewId = FakeData.Reviews.Count + 1;
                 var reviewFaker = new Faker<Review>()
+                   .UseSeed(seed)
                    .UseDateTimeReference(new DateTime(2024,5,14))
                    .RuleFor(r=>r.CreatedDate,f=>f.Date.Recent(30))
                    .RuleFor(r => r.Image, _ => $"Review\\{reviewId}_img.png")
@@ -192,6 +211,7 @@ namespace InsightHive.Persistence.Data
 
                 var reviewerId = FakeData.Reviewers.Count + 1;
                 var reviewerFaker = new Faker<Reviewer>()
+                   .UseSeed(seed)
                    .RuleFor(r => r.Image, _ => $"Review\\{reviewerId}_img.png")
                    .RuleFor(r => r.Id,_=> reviewerId++)
                    .RuleFor(r => r.Age, f => f.Random.Int(18, 99))
@@ -216,10 +236,28 @@ namespace InsightHive.Persistence.Data
 
                 var ownerId = FakeData.Owners.Count + 1;
                 var ownerFaker = new Faker<Owner>()
+                   .UseSeed(seed)
                    .RuleFor(o => o.Id,_=> ownerId++)
                    .RuleFor(o => o.BusinessId, (f, o) =>
                    {
-                       
+                       //if (System.Diagnostics.Debugger.IsAttached == false)
+                       //    System.Diagnostics.Debugger.Launch();
+                       //var business = businessFaker.Generate(1)[0];
+                       //business.OwnerId = o.Id;
+                       //var subCategory = f.PickRandom(FakeData.SubCategories);
+                       //business.SubCategoryId = subCategory.Id;
+                       //var options = subCategory.Category.Filters.Select(e => e.Options);
+                       //foreach (var setOfOptions in options)
+                       //{
+                       //    for (int i = 0; i < f.Random.Int(1, setOfOptions.Count); i++)
+                       //    {
+                       //        var opt = f.PickRandom(setOfOptions);
+                       //        if (business.Options.Contains(opt))
+                       //            business.Options.Add(opt);
+                       //    }
+                       //}
+                       //FakeData.Businesses.Add(business);
+                       //return business.Id;
                        var business = businessFaker.Generate(1);
                        business[0].OwnerId = o.Id;
                        business[0].SubCategoryId = f.PickRandom(SubCategories.Select(e => e.Id));
@@ -233,6 +271,7 @@ namespace InsightHive.Persistence.Data
 
                 var userId = FakeData.Users.Count + 1;
                 var userFaker = new Faker<User>()
+                   .UseSeed(seed)
                    .RuleFor(u => u.Id, _ => userId++)
                    .RuleFor(u => u.Password, _ => "password")
                    .RuleFor(u => u.Name, f => f.Internet.UserName())
@@ -241,16 +280,16 @@ namespace InsightHive.Persistence.Data
                        int roleId= f.Random.Int(1, 2);
                        if (roleId == 1)
                        {
-                           u.Email = $"owner{u.Id}@gmail.com";
                            ownerFaker.RuleFor(o => o.UserId , _ => u.Id);
                            var owner = ownerFaker.Generate(1);
+                           u.Email = $"owner{owner[0].Id}@gmail.com";
                            FakeData.Owners.Add(owner[0]);
                        }
                        else
                        {
-                           u.Email = $"reviewer{u.Id}@gmail.com";
                            reviewerFaker.RuleFor(o => o.UserId, _ => u.Id);
                            var reviewer = reviewerFaker.Generate(1);
+                           u.Email = $"reviewer{reviewer[0].Id}@gmail.com";
                            FakeData.Reviewers.Add(reviewer[0]);
                        }
                        return roleId;

@@ -1,6 +1,5 @@
-
 using InsightHive.Application;
-using InsightHive.PersistenceDemo;
+using InsightHive.Persistence;
 using InsightHive.Infrastructure;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +20,7 @@ namespace InsightHive.Api
                 c.EnableSensitiveDataLogging(true);
             });
             //builder.Services.AddApplicationServices().AddPresistenceDemoServices().AddInfrastructureServices();
-            builder.Services.AddApplicationServices().AddPresistenceDemoServices();
+            builder.Services.AddApplicationServices().AddPersistenceServices();
             builder.Services.AddCors(
                  options => options.AddPolicy(
                      "angularApp",
