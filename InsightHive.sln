@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsightHive.PersistenceDemo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsightHive.Infrastructure", "src\Infrastructure\InsightHive.Infrastructure\InsightHive.Infrastructure.csproj", "{D83793F8-FE92-4B9F-8CCD-36B050D2ADF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsightHive.Identity", "src\Infrastructure\InsightHive.Identity\InsightHive.Identity.csproj", "{E55C2422-8E6C-49C4-BA5D-0EFC43E01CB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D83793F8-FE92-4B9F-8CCD-36B050D2ADF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D83793F8-FE92-4B9F-8CCD-36B050D2ADF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D83793F8-FE92-4B9F-8CCD-36B050D2ADF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55C2422-8E6C-49C4-BA5D-0EFC43E01CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55C2422-8E6C-49C4-BA5D-0EFC43E01CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55C2422-8E6C-49C4-BA5D-0EFC43E01CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55C2422-8E6C-49C4-BA5D-0EFC43E01CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{45D1D28D-ED21-48EA-9AD9-0D2F9D55C0BA} = {B728B19E-1B84-4620-81F9-F991A4A2131D}
 		{A94ED9ED-6A98-4C84-AB5A-C2FA1FD11C17} = {F2AA17C8-7678-46C7-8074-70A428AA3B24}
 		{D83793F8-FE92-4B9F-8CCD-36B050D2ADF5} = {F2AA17C8-7678-46C7-8074-70A428AA3B24}
+		{E55C2422-8E6C-49C4-BA5D-0EFC43E01CB6} = {F2AA17C8-7678-46C7-8074-70A428AA3B24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38E75ECB-4383-4A93-85A4-F5DC90615374}

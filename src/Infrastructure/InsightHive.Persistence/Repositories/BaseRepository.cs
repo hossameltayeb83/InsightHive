@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 
 namespace InsightHive.Persistence.Repositories
 {
-    internal class BaseRepository<T> : IRepository<T> where T : class
+    public class BaseRepository<T> : IRepository<T> where T : class
     {
-        private readonly InsightHiveDbContext _context;
+        protected readonly InsightHiveDbContext _context;
         public BaseRepository(InsightHiveDbContext context)
         {
             _context = context;

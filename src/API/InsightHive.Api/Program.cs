@@ -1,10 +1,9 @@
 
 using InsightHive.Api.Middleware;
 using InsightHive.Application;
+using InsightHive.Identity;
 using InsightHive.Infrastructure;
-using InsightHive.Persistence.Data;
-using InsightHive.PersistenceDemo;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace InsightHive.Api
 {
@@ -15,11 +14,48 @@ namespace InsightHive.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<InsightHiveDbContext>(c =>
-            {
-                c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
-            });
-            builder.Services.AddApplicationServices().AddPresistenceDemoServices().AddInfrastructureServices();
+            //builder.Services.AddDbContext<InsightHiveDbContext>(c =>
+            //{
+            //    c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
+            //});
+
+            //builder.Services.AddDbContext<InsightHiveIdentityDbContext>(c =>
+            //{
+            //    c.UseSqlServer(builder.Configuration.GetConnectionString("AuthConnection"));
+            //});
+
+            builder.Services.AddApplicationServices()
+                            .AddIdentityServices(builder.Configuration)
+                            .AddPersistenceServices(builder.Configuration)
+                            .AddInfrastructureServices();
+
+
+            //builder.Services.AddIdentityCore<AppUser>()
+            //        .AddEntityFrameworkStores<InsightHiveDbContext>();
+
+            //builder.Services.AddIdentityApiEndpoints<AppUser>();
+
+            //builder.Services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme =
+            //    options.DefaultChallengeScheme =
+            //    options.DefaultForbidScheme =
+            //    options.DefaultScheme =
+            //    options.DefaultSignInScheme =
+            //    options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+            //}).AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+            //        ValidateLifetime = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidateAudience = false,
+            //        ValidateIssuer = false
+            //    };
+            //});
+
+
 
             builder.Services.AddCors(
                  options => options.AddPolicy(
@@ -38,7 +74,31 @@ namespace InsightHive.Api
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(opt =>
+            {
+                opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                opt.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                        },
+                        new string[]{ }
+                    }
+                });
+            });
 
             var app = builder.Build();
 
@@ -49,10 +109,13 @@ namespace InsightHive.Api
                 app.UseSwaggerUI();
             }
 
+            //app.MapIdentityApi<AppUser>();
+
             app.UseExceptionHandlerMiddleware();
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseCors("angularApp");

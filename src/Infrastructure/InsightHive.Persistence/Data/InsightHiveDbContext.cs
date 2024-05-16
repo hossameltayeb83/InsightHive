@@ -2,12 +2,13 @@
 using InsightHive.Domain.Common;
 using InsightHive.Domain.Entities;
 using InsightHive.Domain.Enums;
+using InsightHive.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace InsightHive.Persistence.Data
 {
-    public class InsightHiveDbContext : DbContext
+    public class InsightHiveDbContext : InsightHiveIdentityDbContext
     {
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Badge> Badges { get; set; }
@@ -24,7 +25,7 @@ namespace InsightHive.Persistence.Data
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public InsightHiveDbContext(DbContextOptions options) : base(options) { }
+        public InsightHiveDbContext(DbContextOptions<InsightHiveDbContext> options) : base(options) { }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())

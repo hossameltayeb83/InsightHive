@@ -6,11 +6,13 @@ using InsightHive.Application.UseCases.Reviews.Command.UpdateReview;
 using InsightHive.Application.UseCases.Reviews.Query.GetReviewDetails;
 using InsightHive.Application.UseCases.Reviews.Query.GetReviewList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [Consumes("application/json")]
     [Produces("application/json")]
     [ApiController]
@@ -21,6 +23,14 @@ namespace InsightHive.Api.Controllers
         public ReviewsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("test", Name = "GetTest")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public ActionResult GetTest()
+        {
+            return Ok("DONE");
         }
 
         [HttpGet("{reviewId}", Name = "GetReview")]
