@@ -1,0 +1,112 @@
+/* 
+---------------------------------------------
+Courses Style
+--------------------------------------------- 
+*/
+
+.courses {
+    padding: 100px;
+    /* background-color: var(--first-color); */
+}
+
+
+
+.events_item .thumb {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.events_item .thumb img {
+    margin-bottom: -5px;
+    /* width: 250px; */
+    height: 260px;
+}
+
+.events_item .thumb span.category {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #7a6ad8;
+    background-color: rgba(250, 250, 250, 0.95);
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.events_item .thumb span.price {
+    position: absolute;
+    right: -30px;
+    top: -50px;
+    background-color: rgba(122, 106, 216, 0.95);
+    width: 90px;
+    height: 100px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all .3s;
+}
+
+.events_item .thumb span.price h6 {
+    margin-top: 55px;
+    margin-left: 0px;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 200;
+}
+
+.events_item .thumb span.price em {
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    vertical-align: top;
+}
+
+.events_item {
+    background-color:var(--first-color);
+    border-radius: 25px;
+    margin-bottom: 30px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    /* Add shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.events_item:hover {
+    transform: translateY(-10px);
+    /* Move card up slightly on hover */
+    box-shadow: 0 15px 30px rgb(132, 132, 169);
+    /* Enhance shadow on hover */
+}
+
+.events_item .down-content {
+    padding: 20px 30px 25px 30px;
+    
+}
+
+.events_item .down-content span.author {
+    color: #7a6ad8;
+    font-size: 15px;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.events_item .down-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--container-color);
+    transition: all .3s;
+}
+
+.events_item:hover .down-content h4 {
+    color:var(--second-color);
+}
+
+.events_item:hover .thumb span.price {
+    transform: scale(1.2);
+}
