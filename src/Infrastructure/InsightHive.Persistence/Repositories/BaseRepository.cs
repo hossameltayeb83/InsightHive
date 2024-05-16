@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 
 namespace InsightHive.Persistence.Repositories
 {
-    internal class BaseRepository<T> : IRepository<T> where T : class
+    public class BaseRepository<T> : IRepository<T> where T : class
     {
-        private readonly InsightHiveDbContext _context;
+        protected readonly InsightHiveDbContext _context;
         public BaseRepository(InsightHiveDbContext context)
         {
             _context = context;
@@ -32,16 +32,6 @@ namespace InsightHive.Persistence.Repositories
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
-        }
-
-        public Task<T> SelectAllAsync(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IReadOnlyList<T>> SelectOneAsync(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdateAsync(T entity)
