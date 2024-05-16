@@ -1,0 +1,126 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-6">
+    <div class="card__container swiper">
+        <div class="card__content">
+            <div class="swiper-wrapper">
+                <!-- ngIf directive starts here -->
+                <div *ngIf="profileData | async as profileData" class="swiper-slide">
+                    <div class="profile-card card__article">
+                        <div class="card__image">
+                            <img [src]="profileData.profileImage" alt="Profile Image" class="card__img">
+                            <div class="card__shadow"></div>
+                        </div>
+
+                        <div class="card__data">
+                            <h3 class="card__name">{{ profileData.name }}</h3>
+
+                            <!-- Reactions section -->
+                            <div class="reactions">
+                                <!-- Star Reaction -->
+                                <div class="reaction-item">
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="reaction-count">100</span>
+                                </div>
+
+                                <!-- Image Reaction -->
+                                <div class="reaction-item">
+                                    <i class="fa-regular fa-image"></i>
+                                    <span class="reaction-count">50</span>
+                                </div>
+                            </div>
+                      <div>
+                 <!-- Edit Profile Button -->
+                  <button *ngIf="!isEditMode" (click)="toggleEditMode()" class="card__button">
+                         <i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile
+                 </button>
+             </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ngIf directive ends here -->
+            </div>
+        </div>
+
+                <!-- Reactions and Reviews Section -->
+                <div class="col-md-6">
+                   
+                <div class="card__container ">
+                        <div *ngIf="!isEditMode" class="card__container1">
+                    <div class="card__content">
+                        
+                        <!-- Reactions -->
+                        <div class="reactions">
+                            <div class="reaction_title">Reactions</div>
+                            <div class="reaction-item">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="reaction-count">100</span>
+                            </div>
+                            <div class="reaction-item">
+                                <i class="far fa-heart"></i>
+                                <span class="reaction-count">50</span>
+                            </div>
+                            <div class="reaction-item">
+                                <i class="far fa-smile"></i>
+                                <span class="reaction-count">30</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                
+            <div class="">
+                <div *ngIf="!isEditMode" class="card__container1">
+                <div class="card__content">
+                        <!-- Reviews -->
+                        <div class="reviews">
+                            <div class="review">
+                                <p><strong>John:</strong> This is a great content!</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Jane:</strong> Amazing article. Thanks!</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Jane:</strong> Amazing article. Thanks!</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Jane:</strong> Amazing article. Thanks!</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Jane:</strong> Amazing article. Thanks!</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Jane:</strong> Amazing article. Thanks!</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Jane:</strong> Amazing article. Thanks!</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Jane:</strong> Amazing article. Thanks!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+        
+<!-- Edit Profile Form (conditionally displayed) -->
+<div *ngIf="isEditMode" class="edit-profile-form mt-2">
+    <div class="card edit-profile-card">
+        
+        <div class="card-body">
+            <button (click)="toggleEditMode()" class="btn btn-danger btn-cancel">
+                <i class="fa fa-times" aria-hidden="true"></i> 
+            </button>
+            <h3 class="card-title">Edit Profile</h3>
+            <!-- Placeholder for UpdateProfileComponent -->
+            <app-update-profile></app-update-profile>
+           
+        </div>
+    </div>
+</div>
+    </div>
+</section>
