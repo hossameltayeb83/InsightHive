@@ -263,21 +263,18 @@ namespace InsightHive.Persistence.Data
                    });
 
 
-
-
-
                 var userId = FakeData.Users.Count + 1;
                 var userFaker = new Faker<User>()
                    .UseSeed(seed)
                    .RuleFor(u => u.Id, _ => userId++)
                    .RuleFor(u => u.Password, _ => "password")
                    .RuleFor(u => u.Name, f => f.Internet.UserName())
-                   .RuleFor(u => u.RoleId, (f,u) => {
-
-                       int roleId= f.Random.Int(1, 2);
+                   .RuleFor(u => u.RoleId, (f, u) => {
+                       
+                       int roleId = f.Random.Int(1, 2);
                        if (roleId == 1)
                        {
-                           ownerFaker.RuleFor(o => o.UserId , _ => u.Id);
+                           ownerFaker.RuleFor(o => o.UserId, _ => u.Id);
                            var owner = ownerFaker.Generate(1);
                            u.Email = $"owner{owner[0].Id}@gmail.com";
                            FakeData.Owners.Add(owner[0]);
@@ -293,6 +290,35 @@ namespace InsightHive.Persistence.Data
                    });
                 var users = userFaker.Generate(20);
                 FakeData.Users.AddRange(users);
+
+
+                //var userId = FakeData.Users.Count + 1;
+                //var userFaker = new Faker<User>()
+                //   .UseSeed(seed)
+                //   .RuleFor(u => u.Id, _ => userId++)
+                //   .RuleFor(u => u.Password, _ => "password")
+                //   .RuleFor(u => u.Name, f => f.Internet.UserName())
+                //   .RuleFor(u => u.RoleId, (f,u) => {
+
+                //       int roleId= f.Random.Int(1, 2);
+                //       if (roleId == 1)
+                //       {
+                //           ownerFaker.RuleFor(o => o.UserId , _ => u.Id);
+                //           var owner = ownerFaker.Generate(1);
+                //           u.Email = $"owner{owner[0].Id}@gmail.com";
+                //           FakeData.Owners.Add(owner[0]);
+                //       }
+                //       else
+                //       {
+                //           reviewerFaker.RuleFor(o => o.UserId, _ => u.Id);
+                //           var reviewer = reviewerFaker.Generate(1);
+                //           u.Email = $"reviewer{reviewer[0].Id}@gmail.com";
+                //           FakeData.Reviewers.Add(reviewer[0]);
+                //       }
+                //       return roleId;
+                //   });
+                //var users = userFaker.Generate(20);
+                //FakeData.Users.AddRange(users);
             }
         }
     }
