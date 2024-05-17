@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Moq.EntityFrameworkCore" Version="8.0.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Core\InsightHive.Application\InsightHive.Application.csproj" />
   </ItemGroup>
 

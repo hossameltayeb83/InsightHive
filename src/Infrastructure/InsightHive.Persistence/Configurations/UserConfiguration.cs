@@ -8,12 +8,11 @@ namespace InsightHive.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.Property(e => e.Id).ValueGeneratedNever();
+
             builder.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            builder.Property(e => e.Password)
-              .HasMaxLength(100)
-              .IsUnicode(false);
             builder.Property(e => e.Name)
                .HasMaxLength(100);
             builder.HasOne(e => e.Owner)
