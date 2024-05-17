@@ -13,10 +13,8 @@ namespace InsightHive.PersistenceDemo
             services.AddScoped<IReviewReactionRepository, ReviewReactopnRepository>();
             services.AddScoped<IReviewerRepository, ReviewerRepository>();
             services.AddScoped<IFilterRepository, FilterRepository>();
-            services.AddScoped<ISearchRepository, SearchRepository>();
             services.AddScoped<ISubCategoryRepository, SubCategoryRepo>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IReviewerRepository, ReviewerRepositroy>();
             services.AddScoped<IFilterRepository, FilterRepository>();
             return services;
 

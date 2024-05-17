@@ -8,7 +8,7 @@ using System.Text;
 
 namespace InsightHive.Identity
 {
-    public static class IdentityServiceExtensions
+    public static class IdentityServiceRegistration
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
         {

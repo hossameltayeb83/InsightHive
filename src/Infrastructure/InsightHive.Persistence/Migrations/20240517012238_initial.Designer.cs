@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InsightHive.Persistence.Migrations
 {
     [DbContext(typeof(InsightHiveDbContext))]
-    [Migration("20240516222703_init")]
-    partial class init
+    [Migration("20240517012238_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -1672,10 +1672,7 @@ namespace InsightHive.Persistence.Migrations
             modelBuilder.Entity("InsightHive.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -1687,12 +1684,6 @@ namespace InsightHive.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
@@ -1709,7 +1700,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 1,
                             Email = "owner1@gmail.com",
                             Name = "Pansy89",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1717,7 +1707,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 2,
                             Email = "reviewer1@gmail.com",
                             Name = "Gust.Breitenberg49",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1725,7 +1714,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 3,
                             Email = "reviewer2@gmail.com",
                             Name = "Winnifred.Schuppe",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1733,7 +1721,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 4,
                             Email = "owner2@gmail.com",
                             Name = "Gabriella_Kunze",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1741,7 +1728,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 5,
                             Email = "owner3@gmail.com",
                             Name = "William.Emmerich60",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1749,7 +1735,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 6,
                             Email = "owner4@gmail.com",
                             Name = "Chase41",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1757,7 +1742,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 7,
                             Email = "reviewer3@gmail.com",
                             Name = "Felicia_Morissette",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1765,7 +1749,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 8,
                             Email = "reviewer4@gmail.com",
                             Name = "Hazle69",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1773,7 +1756,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 9,
                             Email = "reviewer5@gmail.com",
                             Name = "Helmer81",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1781,7 +1763,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 10,
                             Email = "reviewer6@gmail.com",
                             Name = "Rosie.McKenzie",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1789,7 +1770,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 11,
                             Email = "reviewer7@gmail.com",
                             Name = "Pasquale80",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1797,7 +1777,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 12,
                             Email = "reviewer8@gmail.com",
                             Name = "Jarrod_Roberts92",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1805,7 +1784,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 13,
                             Email = "owner5@gmail.com",
                             Name = "Rupert_Blanda20",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1813,7 +1791,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 14,
                             Email = "owner6@gmail.com",
                             Name = "Lori_Turner20",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1821,7 +1798,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 15,
                             Email = "owner7@gmail.com",
                             Name = "Jasen67",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1829,7 +1805,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 16,
                             Email = "reviewer9@gmail.com",
                             Name = "Norbert_McClure",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1837,7 +1812,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 17,
                             Email = "reviewer10@gmail.com",
                             Name = "Hilton.Fritsch56",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1845,7 +1819,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 18,
                             Email = "owner8@gmail.com",
                             Name = "Dewitt.Pacocha76",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1853,7 +1826,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 19,
                             Email = "reviewer11@gmail.com",
                             Name = "Kenton.Balistreri",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1861,9 +1833,216 @@ namespace InsightHive.Persistence.Migrations
                             Id = 20,
                             Email = "owner9@gmail.com",
                             Name = "Nathanael.Wilkinson",
-                            Password = "password",
                             RoleId = 1
                         });
+                });
+
+            modelBuilder.Entity("InsightHive.Identity.Models.AppUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("BadgeReviewer", b =>
@@ -2055,6 +2234,57 @@ namespace InsightHive.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.HasOne("InsightHive.Identity.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.HasOne("InsightHive.Identity.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InsightHive.Identity.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.HasOne("InsightHive.Identity.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Business", b =>

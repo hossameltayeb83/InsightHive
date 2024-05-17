@@ -1,12 +1,11 @@
 
+using Hangfire;
+using InsightHive.Api.Middleware;
 using InsightHive.Application;
-using InsightHive.Persistence;
 using InsightHive.Identity;
 using InsightHive.Infrastructure;
-using InsightHive.Persistence.Data;
-using Microsoft.EntityFrameworkCore;
-using InsightHive.Api.Middleware;
-using Hangfire;
+using InsightHive.Persistence;
+using Microsoft.OpenApi.Models;
 
 namespace InsightHive.Api
 {
@@ -16,48 +15,10 @@ namespace InsightHive.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            //builder.Services.AddDbContext<InsightHiveDbContext>(c =>
-            //{
-            //    c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
-            //});
-
-            //builder.Services.AddDbContext<InsightHiveIdentityDbContext>(c =>
-            //{
-            //    c.UseSqlServer(builder.Configuration.GetConnectionString("AuthConnection"));
-            //});
-
             builder.Services.AddApplicationServices()
                             .AddIdentityServices(builder.Configuration)
                             .AddPersistenceServices(builder.Configuration)
-                            .AddInfrastructureServices();
-
-
-            //builder.Services.AddIdentityCore<AppUser>()
-            //        .AddEntityFrameworkStores<InsightHiveDbContext>();
-
-            //builder.Services.AddIdentityApiEndpoints<AppUser>();
-
-            //builder.Services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme =
-            //    options.DefaultChallengeScheme =
-            //    options.DefaultForbidScheme =
-            //    options.DefaultScheme =
-            //    options.DefaultSignInScheme =
-            //    options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddJwtBearer(options =>
-            //{
-            //    options.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
-            //        ValidateLifetime = true,
-            //        ValidateIssuerSigningKey = true,
-            //        ValidateAudience = false,
-            //        ValidateIssuer = false
-            //    };
-            //});
-
+                            .AddInfrastructureServices(builder.Configuration);
 
 
             builder.Services.AddCors(

@@ -1697,7 +1697,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 1,
                             Email = "owner1@gmail.com",
                             Name = "Pansy89",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1705,7 +1704,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 2,
                             Email = "reviewer1@gmail.com",
                             Name = "Gust.Breitenberg49",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1713,7 +1711,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 3,
                             Email = "reviewer2@gmail.com",
                             Name = "Winnifred.Schuppe",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1721,7 +1718,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 4,
                             Email = "owner2@gmail.com",
                             Name = "Gabriella_Kunze",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1729,7 +1725,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 5,
                             Email = "owner3@gmail.com",
                             Name = "William.Emmerich60",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1737,7 +1732,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 6,
                             Email = "owner4@gmail.com",
                             Name = "Chase41",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1745,7 +1739,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 7,
                             Email = "reviewer3@gmail.com",
                             Name = "Felicia_Morissette",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1753,7 +1746,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 8,
                             Email = "reviewer4@gmail.com",
                             Name = "Hazle69",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1761,7 +1753,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 9,
                             Email = "reviewer5@gmail.com",
                             Name = "Helmer81",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1769,7 +1760,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 10,
                             Email = "reviewer6@gmail.com",
                             Name = "Rosie.McKenzie",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1777,7 +1767,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 11,
                             Email = "reviewer7@gmail.com",
                             Name = "Pasquale80",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1785,7 +1774,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 12,
                             Email = "reviewer8@gmail.com",
                             Name = "Jarrod_Roberts92",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1793,7 +1781,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 13,
                             Email = "owner5@gmail.com",
                             Name = "Rupert_Blanda20",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1801,7 +1788,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 14,
                             Email = "owner6@gmail.com",
                             Name = "Lori_Turner20",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1809,7 +1795,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 15,
                             Email = "owner7@gmail.com",
                             Name = "Jasen67",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1817,7 +1802,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 16,
                             Email = "reviewer9@gmail.com",
                             Name = "Norbert_McClure",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1825,7 +1809,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 17,
                             Email = "reviewer10@gmail.com",
                             Name = "Hilton.Fritsch56",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1833,7 +1816,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 18,
                             Email = "owner8@gmail.com",
                             Name = "Dewitt.Pacocha76",
-                            Password = "password",
                             RoleId = 1
                         },
                         new
@@ -1841,7 +1823,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 19,
                             Email = "reviewer11@gmail.com",
                             Name = "Kenton.Balistreri",
-                            Password = "password",
                             RoleId = 2
                         },
                         new
@@ -1849,7 +1830,6 @@ namespace InsightHive.Persistence.Migrations
                             Id = 20,
                             Email = "owner9@gmail.com",
                             Name = "Nathanael.Wilkinson",
-                            Password = "password",
                             RoleId = 1
                         });
                 });

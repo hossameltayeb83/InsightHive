@@ -3,6 +3,7 @@ using InsightHive.Domain.Common;
 using InsightHive.Domain.Entities;
 using InsightHive.Domain.Enums;
 using InsightHive.Identity.Data;
+using InsightHive.Identity.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 using System;
@@ -50,24 +51,24 @@ namespace InsightHive.Persistence.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-     
-                
-                FakeData.Init(5,25);
-                //modelBuilder.Entity<Attachment>().HasData(FakeData.Attachments);
-                modelBuilder.Entity<Badge>().HasData(FakeData.Badges);
-                modelBuilder.Entity<Business>().HasData(FakeData.Businesses.Take(FakeData.Businesses.Count / 2)); 
-                modelBuilder.Entity<Category>().HasData(FakeData.Categories.Take(FakeData.Categories.Count/2));
-                modelBuilder.Entity<Comment>().HasData(FakeData.Comments.Take(FakeData.Comments.Count / 2));
-                modelBuilder.Entity<Filter>().HasData(FakeData.Filters.Take(FakeData.Filters.Count / 2));
-                modelBuilder.Entity<Option>().HasData(FakeData.Options.Take(FakeData.Options.Count / 2));
-                modelBuilder.Entity<Owner>().HasData(FakeData.Owners.Take(FakeData.Owners.Count / 2));
-                modelBuilder.Entity<Reaction>().HasData(FakeData.Reactions);
-                modelBuilder.Entity<Review>().HasData(FakeData.Reviews.Take(FakeData.Reviews.Count / 2));
-                modelBuilder.Entity<Reviewer>().HasData(FakeData.Reviewers.Take(FakeData.Reviewers.Count / 2));
-                modelBuilder.Entity<Role>().HasData(FakeData.Roles);
-                modelBuilder.Entity<SubCategory>().HasData(FakeData.SubCategories.Take(FakeData.SubCategories.Count / 2));
-                modelBuilder.Entity<User>().HasData(FakeData.Users.Take(FakeData.Users.Count / 2));
-            
+
+
+            FakeData.Init(5, 25);
+            //modelBuilder.Entity<Attachment>().HasData(FakeData.Attachments);
+            modelBuilder.Entity<Badge>().HasData(FakeData.Badges);
+            modelBuilder.Entity<Business>().HasData(FakeData.Businesses.Take(FakeData.Businesses.Count / 2));
+            modelBuilder.Entity<Category>().HasData(FakeData.Categories.Take(FakeData.Categories.Count / 2));
+            modelBuilder.Entity<Comment>().HasData(FakeData.Comments.Take(FakeData.Comments.Count / 2));
+            modelBuilder.Entity<Filter>().HasData(FakeData.Filters.Take(FakeData.Filters.Count / 2));
+            modelBuilder.Entity<Option>().HasData(FakeData.Options.Take(FakeData.Options.Count / 2));
+            modelBuilder.Entity<Owner>().HasData(FakeData.Owners.Take(FakeData.Owners.Count / 2));
+            modelBuilder.Entity<Reaction>().HasData(FakeData.Reactions);
+            modelBuilder.Entity<Review>().HasData(FakeData.Reviews.Take(FakeData.Reviews.Count / 2));
+            modelBuilder.Entity<Reviewer>().HasData(FakeData.Reviewers.Take(FakeData.Reviewers.Count / 2));
+            modelBuilder.Entity<Role>().HasData(FakeData.Roles);
+            modelBuilder.Entity<SubCategory>().HasData(FakeData.SubCategories.Take(FakeData.SubCategories.Count / 2));
+            modelBuilder.Entity<User>().HasData(FakeData.Users.Take(FakeData.Users.Count ));
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
@@ -75,8 +76,8 @@ namespace InsightHive.Persistence.Data
         public static class FakeData
         {
             public static List<Badge> Badges { get; set; } = new();
-            public static List<Attachment> Attachments { get; } = new ();
-            public static List<Business> Businesses { get; } = new ();
+            public static List<Attachment> Attachments { get; } = new();
+            public static List<Business> Businesses { get; } = new();
             public static List<Category> Categories { get; set; } = new();
             public static List<Comment> Comments { get; } = new();
             public static List<Filter> Filters { get; } = new();
@@ -87,17 +88,18 @@ namespace InsightHive.Persistence.Data
             public static List<Reviewer> Reviewers { get; } = new();
             public static List<Role> Roles { get; set; } = new();
             public static List<SubCategory> SubCategories { get; } = new();
+            public static List<AppUser> AppUsers { get; } = new();
             public static List<User> Users { get; } = new();
 
 
-            public static void Init(int count,int seed)
+            public static void Init(int count, int seed)
             {
-                var faker = new Faker();   
-                FakeData.Badges= new List<Badge> { 
+                var faker = new Faker();
+                FakeData.Badges = new List<Badge> {
                     new Badge { Id=1,Name=BadgeName.TopContributor,Image="Badges/1_img.png" },
                     new Badge { Id=2,Name=BadgeName.CommentsMaster,Image="Badges/2_img.png" },
                     new Badge { Id=3,Name=BadgeName.ReviewsEmperor,Image="Badges/3_img.png" },
-                    new Badge { Id=4,Name=BadgeName.ReactionsLord,Image="Badges/4_img.png" }                   
+                    new Badge { Id=4,Name=BadgeName.ReactionsLord,Image="Badges/4_img.png" }
                 };
                 FakeData.Reactions = new List<Reaction> {
                     new Reaction { Id=1,Name=(ReactionValue)1 },
@@ -115,13 +117,13 @@ namespace InsightHive.Persistence.Data
 
 
                 var attachmentFaker = new Faker<Attachment>()
-                   .RuleFor(a => a.Image, f => f.Image.LoremPixelUrl("Business"));               
+                   .RuleFor(a => a.Image, f => f.Image.LoremPixelUrl("Business"));
 
-                var businessId = FakeData.Businesses.Count+1;
+                var businessId = FakeData.Businesses.Count + 1;
                 var businessFaker = new Faker<Business>()
                    .UseSeed(seed)
                    .RuleFor(b => b.Logo, _ => $"Business\\{businessId}_img.png")
-                   .RuleFor(b => b.Id, _=>businessId++)
+                   .RuleFor(b => b.Id, _ => businessId++)
                    .RuleFor(b => b.Name, f => f.Company.CompanyName())
                    .RuleFor(b => b.Description, f => f.Lorem.Paragraph())
                    .RuleFor(b => b.Attachments, (f, b) =>
@@ -142,7 +144,7 @@ namespace InsightHive.Persistence.Data
                 var filterId = FakeData.Filters.Count + 1;
                 var filterFaker = new Faker<Filter>()
                    .UseSeed(seed)
-                   .RuleFor(filter => filter.Id,_=> filterId++)
+                   .RuleFor(filter => filter.Id, _ => filterId++)
                    .RuleFor(filter => filter.Name, f => f.Commerce.Department())
                    .RuleFor(filter => filter.Options, (f, filter) =>
                    {
@@ -174,17 +176,17 @@ namespace InsightHive.Persistence.Data
                        FakeData.SubCategories.AddRange(subCategories);
                        return null;
                    });
-                   //.RuleFor(c => c.Filters, (f, c) =>
-                   //{
-                   //    if (System.Diagnostics.Debugger.IsAttached == false)
-                   //        System.Diagnostics.Debugger.Launch();
-                   //    var filters = f.PickRandom(FakeData.Filters, f.Random.Int(2,4)).ToList();
-                   //    foreach (var filter in filters)
-                   //    {
-                   //        filter.Categories.Add(c);
-                   //    }
-                   //    return filters;
-                   //});
+                //.RuleFor(c => c.Filters, (f, c) =>
+                //{
+                //    if (System.Diagnostics.Debugger.IsAttached == false)
+                //        System.Diagnostics.Debugger.Launch();
+                //    var filters = f.PickRandom(FakeData.Filters, f.Random.Int(2,4)).ToList();
+                //    foreach (var filter in filters)
+                //    {
+                //        filter.Categories.Add(c);
+                //    }
+                //    return filters;
+                //});
                 var categories = categoryFaker.Generate(4);
                 FakeData.Categories.AddRange(categories);
 
@@ -193,16 +195,16 @@ namespace InsightHive.Persistence.Data
                    .UseSeed(seed)
                    .UseDateTimeReference(new DateTime(2024, 5, 14))
                    .RuleFor(r => r.CreatedDate, f => f.Date.Recent(30))
-                   .RuleFor(c => c.Id,_=> commentId++)
+                   .RuleFor(c => c.Id, _ => commentId++)
                    .RuleFor(c => c.Content, f => f.Rant.Review());
 
                 var reviewId = FakeData.Reviews.Count + 1;
                 var reviewFaker = new Faker<Review>()
                    .UseSeed(seed)
-                   .UseDateTimeReference(new DateTime(2024,5,14))
-                   .RuleFor(r=>r.CreatedDate,f=>f.Date.Recent(30))
+                   .UseDateTimeReference(new DateTime(2024, 5, 14))
+                   .RuleFor(r => r.CreatedDate, f => f.Date.Recent(30))
                    .RuleFor(r => r.Image, _ => $"Review\\{reviewId}_img.png")
-                   .RuleFor(r => r.Id,_=> reviewId++)
+                   .RuleFor(r => r.Id, _ => reviewId++)
                    .RuleFor(r => r.Content, f => f.Rant.Review())
                    .RuleFor(r => r.Rate, f => f.Random.Float(1, 5))
                    .RuleFor(r => r.BusinessId, f => f.PickRandom(FakeData.Businesses.Select(e => e.Id)));
@@ -211,12 +213,12 @@ namespace InsightHive.Persistence.Data
                 var reviewerFaker = new Faker<Reviewer>()
                    .UseSeed(seed)
                    .RuleFor(r => r.Image, _ => $"Review\\{reviewerId}_img.png")
-                   .RuleFor(r => r.Id,_=> reviewerId++)
+                   .RuleFor(r => r.Id, _ => reviewerId++)
                    .RuleFor(r => r.Age, f => f.Random.Int(18, 99))
                    .RuleFor(r => r.Gender, f => f.PickRandom<Gender>())
-                   .RuleFor(r => r.Reviews , (f, r) =>
+                   .RuleFor(r => r.Reviews, (f, r) =>
                    {
-                       reviewFaker.RuleFor(review => review.ReviewerId , _ => r.Id);
+                       reviewFaker.RuleFor(review => review.ReviewerId, _ => r.Id);
                        var reviews = reviewFaker.GenerateBetween(2, 5);
                        FakeData.Reviews.AddRange(reviews);
                        return null;
@@ -226,7 +228,7 @@ namespace InsightHive.Persistence.Data
                        commentFaker.RuleFor(c => c.ReviewerId, _ => r.Id);
                        var comments = commentFaker.GenerateBetween(2, 5);
                        for (int i = 0; i < comments.Count; i++)
-                           comments[i].ReviewId = f.PickRandom(FakeData.Reviews.Select(e => e.Id));                     
+                           comments[i].ReviewId = f.PickRandom(FakeData.Reviews.Select(e => e.Id));
                        FakeData.Comments.AddRange(comments);
                        return null;
                    });
@@ -235,7 +237,7 @@ namespace InsightHive.Persistence.Data
                 var ownerId = FakeData.Owners.Count + 1;
                 var ownerFaker = new Faker<Owner>()
                    .UseSeed(seed)
-                   .RuleFor(o => o.Id,_=> ownerId++)
+                   .RuleFor(o => o.Id, _ => ownerId++)
                    .RuleFor(o => o.BusinessId, (f, o) =>
                    {
                        //if (System.Diagnostics.Debugger.IsAttached == false)
@@ -263,22 +265,19 @@ namespace InsightHive.Persistence.Data
                        return business[0].Id;
                    });
 
-
-
-
-
-                var userId = FakeData.Users.Count + 1;
-                var userFaker = new Faker<User>()
+                var userId = FakeData.AppUsers.Count + 1;
+                var appUserFaker = new Faker<AppUser>()
                    .UseSeed(seed)
                    .RuleFor(u => u.Id, _ => userId++)
-                   .RuleFor(u => u.Password, _ => "password")
                    .RuleFor(u => u.Name, f => f.Internet.UserName())
-                   .RuleFor(u => u.RoleId, (f,u) => {
+                   .RuleFor(u => u.PasswordHash, _ => "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7")
+                   .RuleFor(u => u.RoleId, (f, u) =>
+                   {
 
-                       int roleId= f.Random.Int(1, 2);
+                       int roleId = f.Random.Int(1, 2);
                        if (roleId == 1)
                        {
-                           ownerFaker.RuleFor(o => o.UserId , _ => u.Id);
+                           ownerFaker.RuleFor(o => o.UserId, _ => u.Id);
                            var owner = ownerFaker.Generate(1);
                            u.Email = $"owner{owner[0].Id}@gmail.com";
                            FakeData.Owners.Add(owner[0]);
@@ -292,8 +291,20 @@ namespace InsightHive.Persistence.Data
                        }
                        return roleId;
                    });
-                var users = userFaker.Generate(20);
-                FakeData.Users.AddRange(users);
+                //if (System.Diagnostics.Debugger.IsAttached == false)
+                //    System.Diagnostics.Debugger.Launch();
+                var appUsers = appUserFaker.Generate(20);
+                FakeData.AppUsers.AddRange(appUsers);
+
+                if (FakeData.Users.Count < 20)
+                {
+                    foreach(var u in appUsers)
+                        FakeData.Users.Add(new() { Id = u.Id, Name = u.Name, Email = u.Email, RoleId = u.RoleId });
+              /*      FakeData.AppUsers.ForEach(u =>
+                    {
+                       
+                    });*/
+                }
             }
         }
     }
