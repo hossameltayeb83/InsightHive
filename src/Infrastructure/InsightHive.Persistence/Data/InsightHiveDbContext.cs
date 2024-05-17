@@ -67,8 +67,8 @@ namespace InsightHive.Persistence.Data
             modelBuilder.Entity<Reviewer>().HasData(FakeData.Reviewers.Take(FakeData.Reviewers.Count / 2));
             modelBuilder.Entity<Role>().HasData(FakeData.Roles);
             modelBuilder.Entity<SubCategory>().HasData(FakeData.SubCategories.Take(FakeData.SubCategories.Count / 2));
-            modelBuilder.Entity<User>().HasData(FakeData.Users.Take(FakeData.Users.Count ));
-
+            modelBuilder.Entity<User>().HasData(FakeData.Users.Take(FakeData.Users.Count/2 ));
+            modelBuilder.Entity<AppUser>().HasData(FakeData.AppUsers.Take(FakeData.AppUsers.Count / 2));
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
@@ -215,7 +215,7 @@ namespace InsightHive.Persistence.Data
                    .RuleFor(r => r.Image, _ => $"Review\\{reviewerId}_img.png")
                    .RuleFor(r => r.Id, _ => reviewerId++)
                    .RuleFor(r => r.Age, f => f.Random.Int(18, 99))
-                   .RuleFor(r => r.Gender, f => f.PickRandom<Gender>())
+                   .RuleFor(r => r.Gender, f => (Gender)f.Random.Int(1, 2))
                    .RuleFor(r => r.Reviews, (f, r) =>
                    {
                        reviewFaker.RuleFor(review => review.ReviewerId, _ => r.Id);
@@ -265,46 +265,43 @@ namespace InsightHive.Persistence.Data
                        return business[0].Id;
                    });
 
-                var userId = FakeData.AppUsers.Count + 1;
+
+                var userFaker = new Faker<User>();
+                   
+
+                var appUserId = FakeData.AppUsers.Count + 1;
                 var appUserFaker = new Faker<AppUser>()
                    .UseSeed(seed)
-                   .RuleFor(u => u.Id, _ => userId++)
-                   .RuleFor(u => u.Name, f => f.Internet.UserName())
+                   .RuleFor(u => u.Id, _ => appUserId++)
                    .RuleFor(u => u.PasswordHash, _ => "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7")
-                   .RuleFor(u => u.RoleId, (f, u) =>
-                   {
+                   .RuleFor(u => u.Name, f => f.Internet.UserName())
+                   .RuleFor(u => u.RoleId, (f, u) => {
 
                        int roleId = f.Random.Int(1, 2);
+                       userFaker.RuleFor(uu => uu.Id, _ => u.Id)
+                               .RuleFor(uu => uu.RoleId, _ => roleId)
+                               .RuleFor(uu => uu.Name, _ => u.Name);
                        if (roleId == 1)
                        {
                            ownerFaker.RuleFor(o => o.UserId, _ => u.Id);
-                           var owner = ownerFaker.Generate(1);
-                           u.Email = $"owner{owner[0].Id}@gmail.com";
-                           FakeData.Owners.Add(owner[0]);
+                           var owner = ownerFaker.Generate(1)[0];
+                           u.Email = $"owner{owner.Id}@gmail.com";
+                           FakeData.Owners.Add(owner);
+                           userFaker.RuleFor(uu => uu.Email, _ => $"owner{owner.Id}@gmail.com");
                        }
                        else
                        {
                            reviewerFaker.RuleFor(o => o.UserId, _ => u.Id);
-                           var reviewer = reviewerFaker.Generate(1);
-                           u.Email = $"reviewer{reviewer[0].Id}@gmail.com";
-                           FakeData.Reviewers.Add(reviewer[0]);
+                           var reviewer = reviewerFaker.Generate(1)[0];
+                           u.Email = $"reviewer{reviewer.Id}@gmail.com";
+                           FakeData.Reviewers.Add(reviewer);
+                           userFaker.RuleFor(uu => uu.Email, _ => $"reviewer{reviewer.Id}@gmail.com");
                        }
+                           FakeData.Users.Add(userFaker.Generate(1)[0]);
                        return roleId;
                    });
-                //if (System.Diagnostics.Debugger.IsAttached == false)
-                //    System.Diagnostics.Debugger.Launch();
                 var appUsers = appUserFaker.Generate(20);
                 FakeData.AppUsers.AddRange(appUsers);
-
-                if (FakeData.Users.Count < 20)
-                {
-                    foreach(var u in appUsers)
-                        FakeData.Users.Add(new() { Id = u.Id, Name = u.Name, Email = u.Email, RoleId = u.RoleId });
-              /*      FakeData.AppUsers.ForEach(u =>
-                    {
-                       
-                    });*/
-                }
             }
         }
     }

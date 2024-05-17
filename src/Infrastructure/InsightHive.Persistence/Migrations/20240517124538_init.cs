@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InsightHive.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -540,6 +540,33 @@ namespace InsightHive.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RoleId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { 1, 0, "cb037fb0-67c2-4df8-9117-23c96524f43e", "owner1@gmail.com", false, false, null, "Pansy89", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 2, 0, "44b50a9e-8146-44fc-8bc0-6cf7532d5c0d", "reviewer1@gmail.com", false, false, null, "Gust.Breitenberg49", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 3, 0, "8c076c1f-09c1-4828-9ade-66837706a580", "reviewer2@gmail.com", false, false, null, "Winnifred.Schuppe", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 4, 0, "b3269b15-44c2-4d07-b553-5c6203cecb32", "owner2@gmail.com", false, false, null, "Gabriella_Kunze", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 5, 0, "0d8acd56-0605-40e3-89e8-e7b1f896923d", "owner3@gmail.com", false, false, null, "William.Emmerich60", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 6, 0, "d8a5caf6-6611-480f-9c91-0d7a66af8e47", "owner4@gmail.com", false, false, null, "Chase41", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 7, 0, "8c135103-f3c8-4bdf-aa59-48903446999f", "reviewer3@gmail.com", false, false, null, "Felicia_Morissette", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 8, 0, "e8db18af-fae3-4e76-8456-ef0d21c5d472", "reviewer4@gmail.com", false, false, null, "Hazle69", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 9, 0, "80a28012-56d5-4a0d-bb83-bfac0173a386", "reviewer5@gmail.com", false, false, null, "Helmer81", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 10, 0, "7546ff5e-0bd3-4f9e-b58f-620db349f040", "reviewer6@gmail.com", false, false, null, "Rosie.McKenzie", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 11, 0, "29ef79eb-09f6-480c-b88e-a451502de39d", "reviewer7@gmail.com", false, false, null, "Pasquale80", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 12, 0, "018b4f91-9b99-4e12-99bd-a27933b26015", "reviewer8@gmail.com", false, false, null, "Jarrod_Roberts92", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 13, 0, "7c5ce569-bf89-466d-a7d6-1bb7a70aefc5", "owner5@gmail.com", false, false, null, "Rupert_Blanda20", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 14, 0, "d30afafe-7583-43c0-aa62-9e94d1ad8109", "owner6@gmail.com", false, false, null, "Lori_Turner20", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 15, 0, "42696d2f-4f34-4837-acae-173f1275c456", "owner7@gmail.com", false, false, null, "Jasen67", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 16, 0, "78152252-0bb2-4ec9-8a11-9ba3ee63332e", "reviewer9@gmail.com", false, false, null, "Norbert_McClure", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 17, 0, "0e3aa100-61bc-4d12-9920-2b3a4c4dc5e5", "reviewer10@gmail.com", false, false, null, "Hilton.Fritsch56", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 18, 0, "1296865a-313e-42aa-b01b-9cd78faf2554", "owner8@gmail.com", false, false, null, "Dewitt.Pacocha76", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null },
+                    { 19, 0, "af1e2178-3f13-4c98-911b-6469a80b83f3", "reviewer11@gmail.com", false, false, null, "Kenton.Balistreri", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 2, null, false, null },
+                    { 20, 0, "9edb7ba3-90f1-43f1-be9d-8177f042647b", "owner9@gmail.com", false, false, null, "Nathanael.Wilkinson", null, null, "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7", null, false, 1, null, false, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Badges",
                 columns: new[] { "Id", "Image", "Name" },
                 values: new object[,]
@@ -687,16 +714,16 @@ namespace InsightHive.Persistence.Migrations
                 columns: new[] { "Id", "Age", "Gender", "Image", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 82, 0, "Review\\1_img.png", 2 },
-                    { 2, 98, 0, "Review\\2_img.png", 3 },
-                    { 3, 57, 1, "Review\\3_img.png", 7 },
+                    { 1, 82, 1, "Review\\1_img.png", 2 },
+                    { 2, 98, 1, "Review\\2_img.png", 3 },
+                    { 3, 57, 2, "Review\\3_img.png", 7 },
                     { 4, 47, 2, "Review\\4_img.png", 8 },
                     { 5, 35, 2, "Review\\5_img.png", 9 },
                     { 6, 32, 1, "Review\\6_img.png", 10 },
                     { 7, 21, 1, "Review\\7_img.png", 11 },
                     { 8, 87, 2, "Review\\8_img.png", 12 },
                     { 9, 72, 1, "Review\\9_img.png", 16 },
-                    { 10, 87, 1, "Review\\10_img.png", 17 },
+                    { 10, 87, 2, "Review\\10_img.png", 17 },
                     { 11, 98, 2, "Review\\11_img.png", 19 }
                 });
 

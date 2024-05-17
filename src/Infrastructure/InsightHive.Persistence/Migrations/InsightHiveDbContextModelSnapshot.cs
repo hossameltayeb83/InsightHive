@@ -1439,7 +1439,7 @@ namespace InsightHive.Persistence.Migrations
                         {
                             Id = 1,
                             Age = 82,
-                            Gender = 0,
+                            Gender = 1,
                             Image = "Review\\1_img.png",
                             UserId = 2
                         },
@@ -1447,7 +1447,7 @@ namespace InsightHive.Persistence.Migrations
                         {
                             Id = 2,
                             Age = 98,
-                            Gender = 0,
+                            Gender = 1,
                             Image = "Review\\2_img.png",
                             UserId = 3
                         },
@@ -1455,7 +1455,7 @@ namespace InsightHive.Persistence.Migrations
                         {
                             Id = 3,
                             Age = 57,
-                            Gender = 1,
+                            Gender = 2,
                             Image = "Review\\3_img.png",
                             UserId = 7
                         },
@@ -1511,7 +1511,7 @@ namespace InsightHive.Persistence.Migrations
                         {
                             Id = 10,
                             Age = 87,
-                            Gender = 1,
+                            Gender = 2,
                             Image = "Review\\10_img.png",
                             UserId = 17
                         },
@@ -1907,6 +1907,288 @@ namespace InsightHive.Persistence.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "cb037fb0-67c2-4df8-9117-23c96524f43e",
+                            Email = "owner1@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Pansy89",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "44b50a9e-8146-44fc-8bc0-6cf7532d5c0d",
+                            Email = "reviewer1@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Gust.Breitenberg49",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8c076c1f-09c1-4828-9ade-66837706a580",
+                            Email = "reviewer2@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Winnifred.Schuppe",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b3269b15-44c2-4d07-b553-5c6203cecb32",
+                            Email = "owner2@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Gabriella_Kunze",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0d8acd56-0605-40e3-89e8-e7b1f896923d",
+                            Email = "owner3@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "William.Emmerich60",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d8a5caf6-6611-480f-9c91-0d7a66af8e47",
+                            Email = "owner4@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Chase41",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8c135103-f3c8-4bdf-aa59-48903446999f",
+                            Email = "reviewer3@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Felicia_Morissette",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e8db18af-fae3-4e76-8456-ef0d21c5d472",
+                            Email = "reviewer4@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Hazle69",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "80a28012-56d5-4a0d-bb83-bfac0173a386",
+                            Email = "reviewer5@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Helmer81",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7546ff5e-0bd3-4f9e-b58f-620db349f040",
+                            Email = "reviewer6@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Rosie.McKenzie",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "29ef79eb-09f6-480c-b88e-a451502de39d",
+                            Email = "reviewer7@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Pasquale80",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "018b4f91-9b99-4e12-99bd-a27933b26015",
+                            Email = "reviewer8@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Jarrod_Roberts92",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7c5ce569-bf89-466d-a7d6-1bb7a70aefc5",
+                            Email = "owner5@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Rupert_Blanda20",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d30afafe-7583-43c0-aa62-9e94d1ad8109",
+                            Email = "owner6@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Lori_Turner20",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "42696d2f-4f34-4837-acae-173f1275c456",
+                            Email = "owner7@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Jasen67",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "78152252-0bb2-4ec9-8a11-9ba3ee63332e",
+                            Email = "reviewer9@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Norbert_McClure",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0e3aa100-61bc-4d12-9920-2b3a4c4dc5e5",
+                            Email = "reviewer10@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Hilton.Fritsch56",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1296865a-313e-42aa-b01b-9cd78faf2554",
+                            Email = "owner8@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Dewitt.Pacocha76",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "af1e2178-3f13-4c98-911b-6469a80b83f3",
+                            Email = "reviewer11@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Kenton.Balistreri",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 2,
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = 20,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "9edb7ba3-90f1-43f1-be9d-8177f042647b",
+                            Email = "owner9@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "Nathanael.Wilkinson",
+                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            PhoneNumberConfirmed = false,
+                            RoleId = 1,
+                            TwoFactorEnabled = false
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
