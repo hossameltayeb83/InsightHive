@@ -10,12 +10,12 @@ namespace InsightHive.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReviewerController : ControllerBase
+    public class ReviewersController : ControllerBase
     {
         private readonly IMediator _mediatr;
         private readonly string _path = @"wwwroot\Images\";
 
-        public ReviewerController(IMediator mediatr)
+        public ReviewersController(IMediator mediatr)
         {
             _mediatr = mediatr;
         }
@@ -47,8 +47,9 @@ namespace InsightHive.Api.Controllers
         }
 
         [HttpPut("UploadProfileImage")]
-        public async Task<IActionResult> UploadProfileImage(IFormFile formFile, UploadReviewerImageCommand command)
+        public async Task<IActionResult> UploadProfileImage(int Id , int UserId,IFormFile formFile)
         {
+            UploadReviewerImageCommand command = new UploadReviewerImageCommand() { Id = Id, UserId = UserId };
             string fileExe = formFile.FileName.Split('.').Last();
             string imagePath = $"Reviewer\\{command.Id}_img.{fileExe}";
             string fullPath = _path + imagePath;
@@ -60,9 +61,10 @@ namespace InsightHive.Api.Controllers
             {
                 await formFile.CopyToAsync(stream);
             }
-            Console.WriteLine("successful upload ! " + imagePath);
-            var response = await _mediatr.Send(command);
-            return Ok(response);
+            Console.WriteLine("successful upload ! " +imagePath);
+            command.Image = imagePath;
+            //var response = await _mediatr.Send(command);
+            return Ok(imagePath);
         }
 
         [HttpDelete("{id:int}")]

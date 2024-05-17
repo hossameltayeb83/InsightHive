@@ -1,9 +1,12 @@
 
-using InsightHive.Api.Middleware;
 using InsightHive.Application;
+using InsightHive.Persistence;
 using InsightHive.Identity;
 using InsightHive.Infrastructure;
-using Microsoft.OpenApi.Models;
+using InsightHive.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
+using InsightHive.Api.Middleware;
+using Hangfire;
 
 namespace InsightHive.Api
 {
@@ -120,6 +123,9 @@ namespace InsightHive.Api
 
             app.UseCors("angularApp");
             app.MapControllers();
+
+            app.UseHangfireDashboard();
+            app.MapHangfireDashboard("/admin/hangfire");
 
             app.Run();
         }

@@ -13,6 +13,7 @@ namespace InsightHive.Persistence.Configurations
             builder.Property(e => e.Image)
                 .HasMaxLength(50);
             builder.Property(e => e.Name)
+                .HasConversion<string>()
                 .HasSentinel(BadgeName.NaN);
         }
     }

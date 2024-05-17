@@ -1,18 +1,24 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
 using InsightHive.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace InsightHive.Persistence.Repositories
 {
     public class ReviewerRepository : BaseRepository<Reviewer>, IReviewerRepository
     {
-        public ReviewerRepository(InsightHiveDbContext context) : base(context)
+        public ReviewerRepository(InsightHiveDbContext context) : base(context){ }
+            
+        public async Task AddImagePathAsync(int id, string path)
         {
-        }
-
-        public Task AddImagePathAsync(int id, string path)
-        {
-            throw new NotImplementedException();
+            var reviewer = await GetByIdAsync(id);
+            reviewer.Image = path;
+            await _context.SaveChangesAsync();
         }
 
         public Task<List<Reviewer>> CalculateTopContributorsAsync()
@@ -20,19 +26,20 @@ namespace InsightHive.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Reviewer> GetByIdWithReviewsAndBadgesAsync(int id)
+        public async Task<Reviewer> GetByIdWithReviewsAndBadgesAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Reviewers.Include(e => e.Reviews)
+                .Include(e => e.Badges).FirstAsync(e => e.Id == id);
         }
 
-        public Task<Reviewer> GetByIdWithUserAsync(int id)
+        public async Task<Reviewer> GetByIdWithUserAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Reviewers.Include(e => e.User).FirstAsync(e => e.Id == id);
         }
 
-        public Task<Reviewer> GetByUserIdWithUserAsync(int id)
+        public async Task<Reviewer> GetByUserIdWithUserAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Reviewers.Include(e => e.User).FirstAsync(e => e.UserId == id);
         }
     }
 }

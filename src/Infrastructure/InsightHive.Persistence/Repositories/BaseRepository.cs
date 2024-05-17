@@ -34,16 +34,6 @@ namespace InsightHive.Persistence.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
-        public Task<IReadOnlyList<T>> SelectAllAsync(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> SelectOneAsync(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> UpdateAsync(T entity)
         {
             _context.Set<T>().Update(entity);

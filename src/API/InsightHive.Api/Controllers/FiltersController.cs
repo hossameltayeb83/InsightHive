@@ -22,7 +22,7 @@ namespace InsightHive.Api.Controllers
             _mediatr = mediatr;
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{Id:int}")]
         [ProducesResponseType(typeof(List<FilterDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFilter([FromRoute] GetFilterQuery query)
         {

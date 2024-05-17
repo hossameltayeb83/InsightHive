@@ -10,12 +10,12 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearc
     {
         private readonly IValidator<GetAllBusinessesForSearchQuery> _validator;
         private readonly IMapper _mapper;
-        private readonly ISearchRepository _searchRepository;
-        public GetAllBusinessesForSearchQueryHandler(IMapper mapper, ISearchRepository searchRepository)
+        private readonly IBusinessRepository _businessRepository;
+        public GetAllBusinessesForSearchQueryHandler(IMapper mapper, IBusinessRepository businessRepository)
         {
             _validator = new GetAllBusinessesForSearchQueryValidator();
             _mapper = mapper;
-            _searchRepository = searchRepository;
+            _businessRepository = businessRepository;
         }
         public async Task<BaseResponse<List<BusinessSearchDto>>> Handle(GetAllBusinessesForSearchQuery request, CancellationToken cancellationToken)
         {
@@ -24,7 +24,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearc
             if (!validationResult.IsValid)
                 throw new Exceptions.ValidationException(validationResult);
             ///////////////////////////////////
-            var businesses = await _searchRepository.GetAllBySearch(request.Query);
+            var businesses =await _businessRepository.GetAllBySearch(request.Query);
             response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);
             ///////////////////////////////////
             return response;

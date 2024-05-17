@@ -7,6 +7,5 @@
         Dislike,
         Helpful,
         Exciting
-
     }
 }

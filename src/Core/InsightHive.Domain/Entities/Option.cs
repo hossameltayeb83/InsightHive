@@ -6,5 +6,6 @@
         public string Content { get; set; }
         public int FilterId { get; set; }
         public Filter Filter { get; set; }
+        public ICollection<Business> Businesses { get; set; }
     }
 }

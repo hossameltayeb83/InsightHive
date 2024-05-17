@@ -37,6 +37,21 @@ namespace InsightHive.Persistence.Migrations
                     b.ToTable("BadgeReviewer");
                 });
 
+            modelBuilder.Entity("BusinessOption", b =>
+                {
+                    b.Property<int>("BusinessesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OptionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BusinessesId", "OptionsId");
+
+                    b.HasIndex("OptionsId");
+
+                    b.ToTable("BusinessOption");
+                });
+
             modelBuilder.Entity("CategoryFilter", b =>
                 {
                     b.Property<int>("CategoriesId")
@@ -81,12 +96,39 @@ namespace InsightHive.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Badges");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "Badges/1_img.png",
+                            Name = "TopContributor"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Image = "Badges/2_img.png",
+                            Name = "CommentsMaster"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Image = "Badges/3_img.png",
+                            Name = "ReviewsEmperor"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Image = "Badges/4_img.png",
+                            Name = "ReactionsLord"
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Business", b =>
@@ -124,7 +166,90 @@ namespace InsightHive.Persistence.Migrations
 
                     b.HasIndex("SubCategoryId");
 
-                    b.ToTable("Business");
+                    b.ToTable("Businesses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Odit maiores quasi quos impedit maiores. Voluptatum deleniti facilis quis dolores ex asperiores eos voluptatibus. Voluptas voluptatem id molestiae. Qui numquam esse eaque.",
+                            Logo = "Business\\1_img.png",
+                            Name = "Cremin, Flatley and Trantow",
+                            OwnerId = 1,
+                            SubCategoryId = 11
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Quam fuga voluptatem optio distinctio nihil aut dicta. Voluptas pariatur officia cupiditate ipsam maiores temporibus culpa velit. Itaque voluptatum maxime rerum reiciendis non provident at architecto. Quidem sed aut quidem et tenetur accusamus sed. Voluptatum natus fugit cum laboriosam. Culpa officia molestiae ut et magnam assumenda esse similique.",
+                            Logo = "Business\\2_img.png",
+                            Name = "Morissette - Hintz",
+                            OwnerId = 2,
+                            SubCategoryId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Magni similique accusantium esse quia rerum maxime tenetur dolorum. Fugit officia veniam est dolore. Quibusdam ea quia in laboriosam id tenetur facilis nihil.",
+                            Logo = "Business\\3_img.png",
+                            Name = "Gislason, Pacocha and Rippin",
+                            OwnerId = 3,
+                            SubCategoryId = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Dolores accusantium non ut doloribus. Voluptatem neque quia. Harum nemo ut ipsam distinctio atque eligendi voluptatem sunt. Enim laborum omnis molestiae cupiditate laborum. Asperiores enim pariatur quia incidunt reiciendis.",
+                            Logo = "Business\\4_img.png",
+                            Name = "Schamberger, Leuschke and Reilly",
+                            OwnerId = 4,
+                            SubCategoryId = 12
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Aliquam minus sed et alias error. Ullam esse sit omnis vel aspernatur numquam quidem. Aut occaecati magnam aut. Vel nihil ut at ad fuga ea voluptas blanditiis. Aut qui ipsam et ex. Doloremque laborum non quisquam modi adipisci ab ut non facere.",
+                            Logo = "Business\\5_img.png",
+                            Name = "Wunsch LLC",
+                            OwnerId = 5,
+                            SubCategoryId = 7
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Et omnis debitis accusantium ut. Est itaque corporis aut sapiente repellat. Est dolor voluptatem minima dolore voluptatibus voluptates ipsa. Animi sit expedita aperiam molestiae occaecati.",
+                            Logo = "Business\\6_img.png",
+                            Name = "Mertz, Schmitt and Blanda",
+                            OwnerId = 6,
+                            SubCategoryId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Autem beatae voluptas consectetur voluptas distinctio rerum rerum enim. Dolore ut illo in minima ut. Ipsam omnis explicabo omnis ut enim tenetur eligendi quis. Laudantium sed corporis quos.",
+                            Logo = "Business\\7_img.png",
+                            Name = "Schroeder - Ledner",
+                            OwnerId = 7,
+                            SubCategoryId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Sit sapiente hic officia laboriosam voluptatem assumenda. Aliquid rerum id blanditiis facilis omnis autem dolores ut quis. Cupiditate consequatur vel dolores a. Quia soluta ut molestiae quibusdam expedita. Quo impedit hic debitis consequatur delectus facere provident et nemo. Maxime assumenda dolor qui et molestias repellat.",
+                            Logo = "Business\\8_img.png",
+                            Name = "Mayert - Casper",
+                            OwnerId = 8,
+                            SubCategoryId = 13
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Quia totam doloribus dolorem dolorem laboriosam et aperiam omnis. Tempore quod itaque animi sint. Consequatur sed temporibus accusantium. Non placeat consectetur facilis ex doloremque praesentium.",
+                            Logo = "Business\\9_img.png",
+                            Name = "Greenfelder - Schneider",
+                            OwnerId = 9,
+                            SubCategoryId = 1
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Category", b =>
@@ -143,6 +268,28 @@ namespace InsightHive.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Jewelery"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Games"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Computers"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Outdoors"
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Comment", b =>
@@ -177,6 +324,296 @@ namespace InsightHive.Persistence.Migrations
                     b.HasIndex("ReviewerId");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "My scarab beetle loves to play with it.",
+                            CreatedDate = new DateTime(2024, 5, 9, 9, 59, 26, 248, DateTimeKind.Unspecified).AddTicks(1043),
+                            ReviewId = 2,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "I saw one of these in South Korea and I bought one.",
+                            CreatedDate = new DateTime(2024, 4, 17, 4, 9, 4, 289, DateTimeKind.Unspecified).AddTicks(8596),
+                            ReviewId = 5,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "I tried to hang it but got jelly bean all over it.",
+                            CreatedDate = new DateTime(2024, 5, 1, 19, 26, 32, 739, DateTimeKind.Unspecified).AddTicks(3181),
+                            ReviewId = 3,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "this product is brown.",
+                            CreatedDate = new DateTime(2024, 4, 14, 11, 18, 45, 649, DateTimeKind.Unspecified).AddTicks(9719),
+                            ReviewId = 3,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Content = "My neighbor Montserrat has one of these. She works as a circus performer and she says it looks shriveled.",
+                            CreatedDate = new DateTime(2024, 4, 29, 5, 24, 46, 918, DateTimeKind.Unspecified).AddTicks(4510),
+                            ReviewId = 1,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Content = "I saw one of these in Barbados and I bought one.",
+                            CreatedDate = new DateTime(2024, 4, 19, 10, 21, 59, 69, DateTimeKind.Unspecified).AddTicks(5743),
+                            ReviewId = 5,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Content = "It only works when I'm Nepal.",
+                            CreatedDate = new DateTime(2024, 4, 29, 13, 21, 27, 53, DateTimeKind.Unspecified).AddTicks(159),
+                            ReviewId = 8,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Content = "I saw one of these in Cote d'Ivoire and I bought one.",
+                            CreatedDate = new DateTime(2024, 5, 2, 20, 37, 48, 816, DateTimeKind.Unspecified).AddTicks(259),
+                            ReviewId = 10,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Content = "I saw this on TV and wanted to give it a try.",
+                            CreatedDate = new DateTime(2024, 5, 3, 9, 9, 45, 425, DateTimeKind.Unspecified).AddTicks(8885),
+                            ReviewId = 9,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Content = "talk about boredom!!!",
+                            CreatedDate = new DateTime(2024, 5, 9, 20, 9, 23, 823, DateTimeKind.Unspecified).AddTicks(9051),
+                            ReviewId = 5,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Content = "I tried to maim it but got nectarine all over it.",
+                            CreatedDate = new DateTime(2024, 4, 21, 0, 17, 2, 505, DateTimeKind.Unspecified).AddTicks(4582),
+                            ReviewId = 5,
+                            ReviewerId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Content = "This product works outstandingly well. It beautifully improves my basketball by a lot.",
+                            CreatedDate = new DateTime(2024, 4, 25, 19, 46, 52, 424, DateTimeKind.Unspecified).AddTicks(1937),
+                            ReviewId = 7,
+                            ReviewerId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Content = "i use it once in a while when i'm in my ring.",
+                            CreatedDate = new DateTime(2024, 4, 30, 10, 27, 32, 253, DateTimeKind.Unspecified).AddTicks(5648),
+                            ReviewId = 3,
+                            ReviewerId = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Content = "this product is ratty.",
+                            CreatedDate = new DateTime(2024, 5, 1, 12, 4, 15, 445, DateTimeKind.Unspecified).AddTicks(7077),
+                            ReviewId = 18,
+                            ReviewerId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Content = "The box this comes in is 3 meter by 6 yard and weights 12 pound.",
+                            CreatedDate = new DateTime(2024, 4, 25, 12, 58, 38, 121, DateTimeKind.Unspecified).AddTicks(3135),
+                            ReviewId = 4,
+                            ReviewerId = 5
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Content = "My neighbor Frona has one of these. She works as a gambler and she says it looks bearded.",
+                            CreatedDate = new DateTime(2024, 4, 18, 14, 34, 54, 901, DateTimeKind.Unspecified).AddTicks(8514),
+                            ReviewId = 14,
+                            ReviewerId = 5
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Content = "It only works when I'm Rwanda.",
+                            CreatedDate = new DateTime(2024, 5, 1, 10, 41, 52, 914, DateTimeKind.Unspecified).AddTicks(8797),
+                            ReviewId = 10,
+                            ReviewerId = 5
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Content = "It only works when I'm Juan de Nova Island.",
+                            CreatedDate = new DateTime(2024, 4, 23, 1, 46, 47, 807, DateTimeKind.Unspecified).AddTicks(89),
+                            ReviewId = 6,
+                            ReviewerId = 6
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Content = "I tried to nail it but got strawberry all over it.",
+                            CreatedDate = new DateTime(2024, 5, 1, 7, 42, 35, 494, DateTimeKind.Unspecified).AddTicks(6477),
+                            ReviewId = 11,
+                            ReviewerId = 6
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Content = "heard about this on Kansas City jazz radio, decided to give it a try.",
+                            CreatedDate = new DateTime(2024, 4, 19, 16, 14, 59, 711, DateTimeKind.Unspecified).AddTicks(4886),
+                            ReviewId = 18,
+                            ReviewerId = 7
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Content = "one of my hobbies is piano. and when i'm playing piano this works great.",
+                            CreatedDate = new DateTime(2024, 4, 18, 12, 49, 24, 836, DateTimeKind.Unspecified).AddTicks(20),
+                            ReviewId = 11,
+                            ReviewerId = 7
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Content = "This product, does exactly what it's suppose to do.",
+                            CreatedDate = new DateTime(2024, 5, 4, 13, 31, 7, 100, DateTimeKind.Unspecified).AddTicks(3628),
+                            ReviewId = 14,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Content = "one of my hobbies is antique-shopping. and when i'm antique-shopping this works great.",
+                            CreatedDate = new DateTime(2024, 4, 20, 8, 5, 12, 51, DateTimeKind.Unspecified).AddTicks(6436),
+                            ReviewId = 20,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Content = "My co-worker Erick has one of these. He says it looks fluffy.",
+                            CreatedDate = new DateTime(2024, 5, 7, 23, 31, 42, 207, DateTimeKind.Unspecified).AddTicks(6390),
+                            ReviewId = 5,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Content = "I saw one of these in Barbados and I bought one.",
+                            CreatedDate = new DateTime(2024, 4, 15, 22, 15, 1, 357, DateTimeKind.Unspecified).AddTicks(6776),
+                            ReviewId = 23,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Content = "talk about pleasure!",
+                            CreatedDate = new DateTime(2024, 4, 17, 9, 7, 53, 703, DateTimeKind.Unspecified).AddTicks(7827),
+                            ReviewId = 4,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Content = "I saw one of these in Juan de Nova Island and I bought one.",
+                            CreatedDate = new DateTime(2024, 4, 16, 2, 40, 11, 401, DateTimeKind.Unspecified).AddTicks(7442),
+                            ReviewId = 4,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Content = "this product is vertical.",
+                            CreatedDate = new DateTime(2024, 4, 18, 8, 8, 7, 321, DateTimeKind.Unspecified).AddTicks(209),
+                            ReviewId = 30,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Content = "It only works when I'm Mauritania.",
+                            CreatedDate = new DateTime(2024, 4, 23, 20, 23, 46, 836, DateTimeKind.Unspecified).AddTicks(4041),
+                            ReviewId = 32,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Content = "It only works when I'm Mauritania.",
+                            CreatedDate = new DateTime(2024, 5, 10, 21, 18, 50, 420, DateTimeKind.Unspecified).AddTicks(2169),
+                            ReviewId = 21,
+                            ReviewerId = 10
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Content = "talk about interest!!",
+                            CreatedDate = new DateTime(2024, 4, 16, 20, 55, 51, 727, DateTimeKind.Unspecified).AddTicks(1512),
+                            ReviewId = 13,
+                            ReviewerId = 10
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Content = "My Shih-Tzu loves to play with it.",
+                            CreatedDate = new DateTime(2024, 5, 7, 22, 59, 8, 708, DateTimeKind.Unspecified).AddTicks(2762),
+                            ReviewId = 25,
+                            ReviewerId = 11
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Content = "one of my hobbies is baking. and when i'm baking this works great.",
+                            CreatedDate = new DateTime(2024, 4, 29, 16, 29, 9, 252, DateTimeKind.Unspecified).AddTicks(6465),
+                            ReviewId = 9,
+                            ReviewerId = 11
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Content = "It only works when I'm Wake Island.",
+                            CreatedDate = new DateTime(2024, 5, 10, 13, 34, 38, 382, DateTimeKind.Unspecified).AddTicks(9827),
+                            ReviewId = 35,
+                            ReviewerId = 11
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Content = "My co-worker Linnie has one of these. He says it looks wide.",
+                            CreatedDate = new DateTime(2024, 5, 3, 19, 41, 20, 433, DateTimeKind.Unspecified).AddTicks(3972),
+                            ReviewId = 41,
+                            ReviewerId = 11
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Content = "one of my hobbies is piano. and when i'm playing piano this works great.",
+                            CreatedDate = new DateTime(2024, 4, 26, 14, 54, 49, 146, DateTimeKind.Unspecified).AddTicks(5914),
+                            ReviewId = 21,
+                            ReviewerId = 11
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Filter", b =>
@@ -195,6 +632,33 @@ namespace InsightHive.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Filters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Games, Computers & Outdoors"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Tools & Music"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Movies, Health & Clothing"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Sports, Health & Health"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Tools & Health"
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Option", b =>
@@ -217,7 +681,111 @@ namespace InsightHive.Persistence.Migrations
 
                     b.HasIndex("FilterId");
 
-                    b.ToTable("Option");
+                    b.ToTable("Options");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "Gorgeous Fresh Shoes",
+                            FilterId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "partnerships",
+                            FilterId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "Associate",
+                            FilterId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "Buckinghamshire",
+                            FilterId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Content = "Assistant",
+                            FilterId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Content = "Borders",
+                            FilterId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Content = "target",
+                            FilterId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Content = "rich",
+                            FilterId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Content = "Manager",
+                            FilterId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Content = "hack",
+                            FilterId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Content = "channels",
+                            FilterId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Content = "Field",
+                            FilterId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Content = "web-readiness",
+                            FilterId = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Content = "seamless",
+                            FilterId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Content = "calculating",
+                            FilterId = 5
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Content = "systems",
+                            FilterId = 5
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Content = "Handcrafted Metal Table",
+                            FilterId = 5
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Owner", b =>
@@ -239,7 +807,63 @@ namespace InsightHive.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Owner");
+                    b.ToTable("Owners");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BusinessId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BusinessId = 2,
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BusinessId = 3,
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BusinessId = 4,
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BusinessId = 5,
+                            UserId = 13
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BusinessId = 6,
+                            UserId = 14
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BusinessId = 7,
+                            UserId = 15
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BusinessId = 8,
+                            UserId = 18
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BusinessId = 9,
+                            UserId = 20
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Reaction", b =>
@@ -257,6 +881,28 @@ namespace InsightHive.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Reactions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Like"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Dislike"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Helpful"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Exciting"
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Review", b =>
@@ -299,6 +945,438 @@ namespace InsightHive.Persistence.Migrations
                     b.HasIndex("ReviewerId");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BusinessId = 1,
+                            Content = "My scarab beetle loves to play with it.",
+                            CreatedDate = new DateTime(2024, 5, 9, 9, 59, 26, 248, DateTimeKind.Unspecified).AddTicks(1043),
+                            Image = "Review\\1_img.png",
+                            Rate = 4.5769377f,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BusinessId = 1,
+                            Content = "I tried to hang it but got jelly bean all over it.",
+                            CreatedDate = new DateTime(2024, 5, 1, 19, 26, 32, 739, DateTimeKind.Unspecified).AddTicks(3181),
+                            Image = "Review\\2_img.png",
+                            Rate = 4.937152f,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BusinessId = 1,
+                            Content = "My neighbor Montserrat has one of these. She works as a circus performer and she says it looks shriveled.",
+                            CreatedDate = new DateTime(2024, 4, 29, 5, 24, 46, 918, DateTimeKind.Unspecified).AddTicks(4510),
+                            Image = "Review\\3_img.png",
+                            Rate = 4.9407034f,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BusinessId = 1,
+                            Content = "I saw one of these in Spratly Islands and I bought one.",
+                            CreatedDate = new DateTime(2024, 4, 29, 17, 21, 23, 763, DateTimeKind.Unspecified).AddTicks(1055),
+                            Image = "Review\\4_img.png",
+                            Rate = 3.5735576f,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BusinessId = 1,
+                            Content = "The box this comes in is 4 mile by 5 inch and weights 19 megaton!",
+                            CreatedDate = new DateTime(2024, 4, 29, 3, 21, 43, 972, DateTimeKind.Unspecified).AddTicks(3736),
+                            Image = "Review\\5_img.png",
+                            Rate = 4.9788556f,
+                            ReviewerId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BusinessId = 1,
+                            Content = "My co-worker Alek has one of these. He says it looks white.",
+                            CreatedDate = new DateTime(2024, 5, 7, 11, 44, 24, 890, DateTimeKind.Unspecified).AddTicks(4267),
+                            Image = "Review\\6_img.png",
+                            Rate = 1.6003393f,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BusinessId = 1,
+                            Content = "i use it once a week when i'm in my firetruck.",
+                            CreatedDate = new DateTime(2024, 5, 1, 3, 44, 13, 982, DateTimeKind.Unspecified).AddTicks(5934),
+                            Image = "Review\\7_img.png",
+                            Rate = 2.8085613f,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BusinessId = 1,
+                            Content = "this product is ratty.",
+                            CreatedDate = new DateTime(2024, 5, 1, 12, 4, 15, 445, DateTimeKind.Unspecified).AddTicks(7077),
+                            Image = "Review\\8_img.png",
+                            Rate = 2.4010842f,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BusinessId = 1,
+                            Content = "heard about this on wonky radio, decided to give it a try.",
+                            CreatedDate = new DateTime(2024, 5, 2, 20, 2, 33, 342, DateTimeKind.Unspecified).AddTicks(8886),
+                            Image = "Review\\9_img.png",
+                            Rate = 3.9565077f,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BusinessId = 1,
+                            Content = "I tried to scratch it but got cheeseburger all over it.",
+                            CreatedDate = new DateTime(2024, 4, 25, 6, 24, 12, 638, DateTimeKind.Unspecified).AddTicks(3194),
+                            Image = "Review\\10_img.png",
+                            Rate = 3.7901113f,
+                            ReviewerId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            BusinessId = 4,
+                            Content = "I tried to behead it but got truffle all over it.",
+                            CreatedDate = new DateTime(2024, 5, 10, 22, 9, 46, 507, DateTimeKind.Unspecified).AddTicks(4440),
+                            Image = "Review\\11_img.png",
+                            Rate = 4.243056f,
+                            ReviewerId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            BusinessId = 2,
+                            Content = "one of my hobbies is piano. and when i'm playing piano this works great.",
+                            CreatedDate = new DateTime(2024, 4, 18, 12, 49, 24, 836, DateTimeKind.Unspecified).AddTicks(20),
+                            Image = "Review\\12_img.png",
+                            Rate = 3.102196f,
+                            ReviewerId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            BusinessId = 1,
+                            Content = "My co-worker Luka has one of these. He says it looks purple.",
+                            CreatedDate = new DateTime(2024, 4, 14, 9, 54, 30, 620, DateTimeKind.Unspecified).AddTicks(557),
+                            Image = "Review\\13_img.png",
+                            Rate = 3.3245635f,
+                            ReviewerId = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            BusinessId = 4,
+                            Content = "I saw one of these in Barbados and I bought one.",
+                            CreatedDate = new DateTime(2024, 4, 15, 22, 15, 1, 357, DateTimeKind.Unspecified).AddTicks(6776),
+                            Image = "Review\\14_img.png",
+                            Rate = 3.9765985f,
+                            ReviewerId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            BusinessId = 4,
+                            Content = "talk about sadness!!",
+                            CreatedDate = new DateTime(2024, 4, 14, 15, 42, 18, 756, DateTimeKind.Unspecified).AddTicks(7247),
+                            Image = "Review\\15_img.png",
+                            Rate = 3.1285903f,
+                            ReviewerId = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            BusinessId = 1,
+                            Content = "It only works when I'm Argentina.",
+                            CreatedDate = new DateTime(2024, 5, 11, 17, 20, 31, 472, DateTimeKind.Unspecified).AddTicks(7433),
+                            Image = "Review\\16_img.png",
+                            Rate = 3.5396192f,
+                            ReviewerId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            BusinessId = 4,
+                            Content = "It only works when I'm Mauritania.",
+                            CreatedDate = new DateTime(2024, 5, 10, 21, 18, 50, 420, DateTimeKind.Unspecified).AddTicks(2169),
+                            Image = "Review\\17_img.png",
+                            Rate = 4.6170497f,
+                            ReviewerId = 4
+                        },
+                        new
+                        {
+                            Id = 18,
+                            BusinessId = 2,
+                            Content = "i use it every Tuesday when i'm in my homeless shelter.",
+                            CreatedDate = new DateTime(2024, 4, 17, 20, 57, 31, 334, DateTimeKind.Unspecified).AddTicks(541),
+                            Image = "Review\\18_img.png",
+                            Rate = 2.188744f,
+                            ReviewerId = 4
+                        },
+                        new
+                        {
+                            Id = 19,
+                            BusinessId = 4,
+                            Content = "It only works when I'm Wake Island.",
+                            CreatedDate = new DateTime(2024, 5, 10, 13, 34, 38, 382, DateTimeKind.Unspecified).AddTicks(9827),
+                            Image = "Review\\19_img.png",
+                            Rate = 2.3572834f,
+                            ReviewerId = 5
+                        },
+                        new
+                        {
+                            Id = 20,
+                            BusinessId = 4,
+                            Content = "one of my hobbies is piano. and when i'm playing piano this works great.",
+                            CreatedDate = new DateTime(2024, 4, 26, 14, 54, 49, 146, DateTimeKind.Unspecified).AddTicks(5914),
+                            Image = "Review\\20_img.png",
+                            Rate = 4.706365f,
+                            ReviewerId = 5
+                        },
+                        new
+                        {
+                            Id = 21,
+                            BusinessId = 2,
+                            Content = "My tyrannosaurus rex loves to play with it.",
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 9, 44, 825, DateTimeKind.Unspecified).AddTicks(6520),
+                            Image = "Review\\21_img.png",
+                            Rate = 4.076521f,
+                            ReviewerId = 5
+                        },
+                        new
+                        {
+                            Id = 22,
+                            BusinessId = 3,
+                            Content = "heard about this on folktronica radio, decided to give it a try.",
+                            CreatedDate = new DateTime(2024, 4, 26, 23, 56, 8, 35, DateTimeKind.Unspecified).AddTicks(139),
+                            Image = "Review\\22_img.png",
+                            Rate = 2.0507066f,
+                            ReviewerId = 5
+                        },
+                        new
+                        {
+                            Id = 23,
+                            BusinessId = 3,
+                            Content = "My co-worker Alek has one of these. He says it looks white.",
+                            CreatedDate = new DateTime(2024, 5, 8, 18, 28, 17, 960, DateTimeKind.Unspecified).AddTicks(8875),
+                            Image = "Review\\23_img.png",
+                            Rate = 1.5176834f,
+                            ReviewerId = 6
+                        },
+                        new
+                        {
+                            Id = 24,
+                            BusinessId = 3,
+                            Content = "This product works considerably well. It mildly improves my basketball by a lot.",
+                            CreatedDate = new DateTime(2024, 5, 13, 4, 49, 15, 34, DateTimeKind.Unspecified).AddTicks(7007),
+                            Image = "Review\\24_img.png",
+                            Rate = 1.7034367f,
+                            ReviewerId = 6
+                        },
+                        new
+                        {
+                            Id = 25,
+                            BusinessId = 2,
+                            Content = "talk about interest!!",
+                            CreatedDate = new DateTime(2024, 4, 21, 15, 30, 34, 415, DateTimeKind.Unspecified).AddTicks(7851),
+                            Image = "Review\\25_img.png",
+                            Rate = 3.4851463f,
+                            ReviewerId = 6
+                        },
+                        new
+                        {
+                            Id = 26,
+                            BusinessId = 3,
+                            Content = "one of my hobbies is cooking. and when i'm cooking this works great.",
+                            CreatedDate = new DateTime(2024, 5, 10, 12, 56, 59, 286, DateTimeKind.Unspecified).AddTicks(16),
+                            Image = "Review\\26_img.png",
+                            Rate = 2.1358194f,
+                            ReviewerId = 6
+                        },
+                        new
+                        {
+                            Id = 27,
+                            BusinessId = 1,
+                            Content = "My co-worker Bryton has one of these. He says it looks ragged.",
+                            CreatedDate = new DateTime(2024, 4, 19, 8, 40, 22, 974, DateTimeKind.Unspecified).AddTicks(6949),
+                            Image = "Review\\27_img.png",
+                            Rate = 2.6193151f,
+                            ReviewerId = 7
+                        },
+                        new
+                        {
+                            Id = 28,
+                            BusinessId = 4,
+                            Content = "The box this comes in is 3 light-year by 5 meter and weights 10 ounce!",
+                            CreatedDate = new DateTime(2024, 5, 2, 0, 47, 29, 610, DateTimeKind.Unspecified).AddTicks(1333),
+                            Image = "Review\\28_img.png",
+                            Rate = 3.4222252f,
+                            ReviewerId = 7
+                        },
+                        new
+                        {
+                            Id = 29,
+                            BusinessId = 3,
+                            Content = "heard about this on alternative dance radio, decided to give it a try.",
+                            CreatedDate = new DateTime(2024, 5, 1, 8, 12, 5, 25, DateTimeKind.Unspecified).AddTicks(1833),
+                            Image = "Review\\29_img.png",
+                            Rate = 4.155887f,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 30,
+                            BusinessId = 1,
+                            Content = "It only works when I'm Bolivia.",
+                            CreatedDate = new DateTime(2024, 4, 22, 6, 26, 38, 606, DateTimeKind.Unspecified).AddTicks(9906),
+                            Image = "Review\\30_img.png",
+                            Rate = 2.1141865f,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 31,
+                            BusinessId = 4,
+                            Content = "I saw one of these in New Zealand and I bought one.",
+                            CreatedDate = new DateTime(2024, 5, 13, 4, 30, 50, 747, DateTimeKind.Unspecified).AddTicks(3887),
+                            Image = "Review\\31_img.png",
+                            Rate = 2.3907282f,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 32,
+                            BusinessId = 1,
+                            Content = "My terrier loves to play with it.",
+                            CreatedDate = new DateTime(2024, 5, 11, 8, 45, 23, 348, DateTimeKind.Unspecified).AddTicks(2821),
+                            Image = "Review\\32_img.png",
+                            Rate = 1.6538465f,
+                            ReviewerId = 8
+                        },
+                        new
+                        {
+                            Id = 33,
+                            BusinessId = 3,
+                            Content = "My goldfinch loves to play with it.",
+                            CreatedDate = new DateTime(2024, 4, 24, 23, 8, 50, 316, DateTimeKind.Unspecified).AddTicks(5079),
+                            Image = "Review\\33_img.png",
+                            Rate = 3.1554272f,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 34,
+                            BusinessId = 3,
+                            Content = "I saw one of these in The Gambia and I bought one.",
+                            CreatedDate = new DateTime(2024, 4, 24, 3, 5, 38, 467, DateTimeKind.Unspecified).AddTicks(8535),
+                            Image = "Review\\34_img.png",
+                            Rate = 3.764409f,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 35,
+                            BusinessId = 5,
+                            Content = "This product works considerably well. It recklessly improves my basketball by a lot.",
+                            CreatedDate = new DateTime(2024, 5, 11, 7, 39, 30, 569, DateTimeKind.Unspecified).AddTicks(4789),
+                            Image = "Review\\35_img.png",
+                            Rate = 2.077986f,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 36,
+                            BusinessId = 5,
+                            Content = "This product works very well. It persistently improves my soccer by a lot.",
+                            CreatedDate = new DateTime(2024, 4, 20, 17, 40, 48, 350, DateTimeKind.Unspecified).AddTicks(7542),
+                            Image = "Review\\36_img.png",
+                            Rate = 3.0954583f,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 37,
+                            BusinessId = 6,
+                            Content = "I saw this on TV and wanted to give it a try.",
+                            CreatedDate = new DateTime(2024, 5, 2, 13, 38, 28, 387, DateTimeKind.Unspecified).AddTicks(6093),
+                            Image = "Review\\37_img.png",
+                            Rate = 2.2403383f,
+                            ReviewerId = 9
+                        },
+                        new
+                        {
+                            Id = 38,
+                            BusinessId = 7,
+                            Content = "talk about pleasure!",
+                            CreatedDate = new DateTime(2024, 5, 7, 2, 34, 46, 378, DateTimeKind.Unspecified).AddTicks(8842),
+                            Image = "Review\\38_img.png",
+                            Rate = 1.3325554f,
+                            ReviewerId = 10
+                        },
+                        new
+                        {
+                            Id = 39,
+                            BusinessId = 2,
+                            Content = "My neighbor Allean has one of these. She works as a sky diver and she says it looks weedy.",
+                            CreatedDate = new DateTime(2024, 4, 27, 4, 35, 12, 595, DateTimeKind.Unspecified).AddTicks(9786),
+                            Image = "Review\\39_img.png",
+                            Rate = 2.5034802f,
+                            ReviewerId = 10
+                        },
+                        new
+                        {
+                            Id = 40,
+                            BusinessId = 5,
+                            Content = "My scarab beetle loves to play with it.",
+                            CreatedDate = new DateTime(2024, 4, 27, 21, 55, 1, 348, DateTimeKind.Unspecified).AddTicks(7364),
+                            Image = "Review\\40_img.png",
+                            Rate = 1.0002134f,
+                            ReviewerId = 11
+                        },
+                        new
+                        {
+                            Id = 41,
+                            BusinessId = 3,
+                            Content = "My vulture loves to play with it.",
+                            CreatedDate = new DateTime(2024, 4, 22, 19, 21, 5, 782, DateTimeKind.Unspecified).AddTicks(8536),
+                            Image = "Review\\41_img.png",
+                            Rate = 2.663874f,
+                            ReviewerId = 11
+                        },
+                        new
+                        {
+                            Id = 42,
+                            BusinessId = 2,
+                            Content = "The box this comes in is 3 yard by 6 light-year and weights 11 megaton!!",
+                            CreatedDate = new DateTime(2024, 4, 21, 5, 6, 26, 557, DateTimeKind.Unspecified).AddTicks(3298),
+                            Image = "Review\\42_img.png",
+                            Rate = 1.3914783f,
+                            ReviewerId = 11
+                        },
+                        new
+                        {
+                            Id = 43,
+                            BusinessId = 5,
+                            Content = "i use it barely when i'm in my store.",
+                            CreatedDate = new DateTime(2024, 4, 24, 22, 47, 8, 37, DateTimeKind.Unspecified).AddTicks(5118),
+                            Image = "Review\\43_img.png",
+                            Rate = 1.0362005f,
+                            ReviewerId = 11
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.ReviewReaction", b =>
@@ -355,6 +1433,96 @@ namespace InsightHive.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Reviewers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 82,
+                            Gender = 0,
+                            Image = "Review\\1_img.png",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 98,
+                            Gender = 0,
+                            Image = "Review\\2_img.png",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 57,
+                            Gender = 1,
+                            Image = "Review\\3_img.png",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 47,
+                            Gender = 2,
+                            Image = "Review\\4_img.png",
+                            UserId = 8
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 35,
+                            Gender = 2,
+                            Image = "Review\\5_img.png",
+                            UserId = 9
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Age = 32,
+                            Gender = 1,
+                            Image = "Review\\6_img.png",
+                            UserId = 10
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Age = 21,
+                            Gender = 1,
+                            Image = "Review\\7_img.png",
+                            UserId = 11
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Age = 87,
+                            Gender = 2,
+                            Image = "Review\\8_img.png",
+                            UserId = 12
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Age = 72,
+                            Gender = 1,
+                            Image = "Review\\9_img.png",
+                            UserId = 16
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Age = 87,
+                            Gender = 1,
+                            Image = "Review\\10_img.png",
+                            UserId = 17
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Age = 98,
+                            Gender = 2,
+                            Image = "Review\\11_img.png",
+                            UserId = 19
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.Role", b =>
@@ -371,6 +1539,28 @@ namespace InsightHive.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Title = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Title = 4
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.SubCategory", b =>
@@ -394,6 +1584,86 @@ namespace InsightHive.Persistence.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("SubCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Name = "Games"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Name = "Computers"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Name = "Outdoors"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            Name = "Health"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 1,
+                            Name = "Tools"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 2,
+                            Name = "Industrial"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 2,
+                            Name = "Movies"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 3,
+                            Name = "Clothing"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 3,
+                            Name = "Industrial"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 3,
+                            Name = "Sports"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 4,
+                            Name = "Health"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 4,
+                            Name = "Baby"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 4,
+                            Name = "Tools"
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Domain.Entities.User", b =>
@@ -420,6 +1690,168 @@ namespace InsightHive.Persistence.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "owner1@gmail.com",
+                            Name = "Pansy89",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "reviewer1@gmail.com",
+                            Name = "Gust.Breitenberg49",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "reviewer2@gmail.com",
+                            Name = "Winnifred.Schuppe",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "owner2@gmail.com",
+                            Name = "Gabriella_Kunze",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Email = "owner3@gmail.com",
+                            Name = "William.Emmerich60",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Email = "owner4@gmail.com",
+                            Name = "Chase41",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Email = "reviewer3@gmail.com",
+                            Name = "Felicia_Morissette",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Email = "reviewer4@gmail.com",
+                            Name = "Hazle69",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Email = "reviewer5@gmail.com",
+                            Name = "Helmer81",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Email = "reviewer6@gmail.com",
+                            Name = "Rosie.McKenzie",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Email = "reviewer7@gmail.com",
+                            Name = "Pasquale80",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Email = "reviewer8@gmail.com",
+                            Name = "Jarrod_Roberts92",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Email = "owner5@gmail.com",
+                            Name = "Rupert_Blanda20",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Email = "owner6@gmail.com",
+                            Name = "Lori_Turner20",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Email = "owner7@gmail.com",
+                            Name = "Jasen67",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Email = "reviewer9@gmail.com",
+                            Name = "Norbert_McClure",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Email = "reviewer10@gmail.com",
+                            Name = "Hilton.Fritsch56",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Email = "owner8@gmail.com",
+                            Name = "Dewitt.Pacocha76",
+                            Password = "password",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Email = "reviewer11@gmail.com",
+                            Name = "Kenton.Balistreri",
+                            Password = "password",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Email = "owner9@gmail.com",
+                            Name = "Nathanael.Wilkinson",
+                            Password = "password",
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("InsightHive.Identity.Models.AppUser", b =>
@@ -641,6 +2073,21 @@ namespace InsightHive.Persistence.Migrations
                     b.HasOne("InsightHive.Domain.Entities.Reviewer", null)
                         .WithMany()
                         .HasForeignKey("ReviewersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BusinessOption", b =>
+                {
+                    b.HasOne("InsightHive.Domain.Entities.Business", null)
+                        .WithMany()
+                        .HasForeignKey("BusinessesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InsightHive.Domain.Entities.Option", null)
+                        .WithMany()
+                        .HasForeignKey("OptionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
