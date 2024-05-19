@@ -26,6 +26,11 @@ namespace InsightHive.Persistence.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<IReadOnlyList<Reviewer>> GetAllReviewersWithUserAsync()
+        {
+            return await _context.Reviewers.Include(e => e.User).ToListAsync();
+        }
+
         public async Task<Reviewer> GetByIdWithReviewsAndBadgesAsync(int id)
         {
             return await _context.Reviewers.Include(e => e.Reviews)

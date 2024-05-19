@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InsightHive.Persistence.Migrations
 {
     [DbContext(typeof(InsightHiveDbContext))]
-    [Migration("20240516222703_init")]
+    [Migration("20240519131704_init")]
     partial class init
     {
         /// <inheritdoc />

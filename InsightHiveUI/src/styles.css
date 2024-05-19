@@ -31,3 +31,10 @@ body {
     background-color: var(--body-color);
     color: var(--white-color);
 }
+
+.active-link {
+    background-color: var(--first-color) !important;
+    color: var( --dark-color) !important;
+    border-radius: 5px;
+  }
+  

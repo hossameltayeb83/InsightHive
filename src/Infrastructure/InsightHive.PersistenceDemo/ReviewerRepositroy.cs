@@ -15,6 +15,11 @@ namespace InsightHive.PersistenceDemo
             throw new NotImplementedException();
         }
 
+        public Task<IReadOnlyList<Reviewer>> GetAllReviewersWithUserAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Reviewer> GetByIdWithReviewsAndBadgesAsync(int id)
         {
             throw new NotImplementedException();
