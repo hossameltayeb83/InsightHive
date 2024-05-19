@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InsightHive.Persistence.Migrations
 {
     [DbContext(typeof(InsightHiveDbContext))]
-    [Migration("20240517124538_init")]
-    partial class init
+    [Migration("20240519123245_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1916,281 +1916,341 @@ namespace InsightHive.Persistence.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb037fb0-67c2-4df8-9117-23c96524f43e",
+                            ConcurrencyStamp = "3e2f6ce1-4569-4d04-bba6-f32cd67096ec",
                             Email = "owner1@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Pansy89",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER1@GMAIL.COM",
+                            NormalizedUserName = "OWNER1@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAECOMUsGGC+wCujf9SDl3eYr4VBGjVsYiMsLlbsqFr9nT+N4Cok75KUEowf+Ly0IUTQ==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner1@gmail.com"
                         },
                         new
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "44b50a9e-8146-44fc-8bc0-6cf7532d5c0d",
+                            ConcurrencyStamp = "b3a24e8f-4c78-42eb-a83b-1b7edbb9e7b4",
                             Email = "reviewer1@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Gust.Breitenberg49",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER1@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER1@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHSwDFYpYBeBKgqZNVK6SZyKbyRDPq+H5cngrWspxsTlX3r9zJYWcY5ge4tYS3+MDg==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer1@gmail.com"
                         },
                         new
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c076c1f-09c1-4828-9ade-66837706a580",
+                            ConcurrencyStamp = "050fc11d-a0b4-41d4-97d1-99b6413ab290",
                             Email = "reviewer2@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Winnifred.Schuppe",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER2@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER2@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELgznHql/Y0h/dRw2tVxLrayUmlP8p5WuTHC3A+Uh6A952YXA/qxdVK0tzMXm0jTSw==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer2@gmail.com"
                         },
                         new
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b3269b15-44c2-4d07-b553-5c6203cecb32",
+                            ConcurrencyStamp = "85923f7f-6e0e-49b2-9100-936a33f148ae",
                             Email = "owner2@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Gabriella_Kunze",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER2@GMAIL.COM",
+                            NormalizedUserName = "OWNER2@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIen389GDC/NUdKcF9iYQytgfdjPm0NJQFZaFOseGdlCPrsglc7DYswzLHBJfNe1GQ==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner2@gmail.com"
                         },
                         new
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d8acd56-0605-40e3-89e8-e7b1f896923d",
+                            ConcurrencyStamp = "74792ed2-3cec-48af-be4f-c315bd85c56c",
                             Email = "owner3@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "William.Emmerich60",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER3@GMAIL.COM",
+                            NormalizedUserName = "OWNER3@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOOyzQ9Di8E7eIhu+59GcQcPQhYUtzd8zlB86qUAYt70QdmLNiYctiB3yRuUJ1+wlg==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner3@gmail.com"
                         },
                         new
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d8a5caf6-6611-480f-9c91-0d7a66af8e47",
+                            ConcurrencyStamp = "499a61b5-fda2-4cb7-a815-803baf56509c",
                             Email = "owner4@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Chase41",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER4@GMAIL.COM",
+                            NormalizedUserName = "OWNER4@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHFHK+JkvDQteX+IxSNFqga5Rh48Px9lvXU3sx6jrgAgmr8xD5oVDu6nZZ/Tpq6c2Q==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner4@gmail.com"
                         },
                         new
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c135103-f3c8-4bdf-aa59-48903446999f",
+                            ConcurrencyStamp = "54b10a0d-30c6-4b4a-a752-3e9983c15767",
                             Email = "reviewer3@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Felicia_Morissette",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER3@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER3@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMjWZNvhrI7YvvcrGjwOsVdWLnsPOAXhTCGJsIQfpv7vC87/T1QSUURoOTnznop9SA==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer3@gmail.com"
                         },
                         new
                         {
                             Id = 8,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8db18af-fae3-4e76-8456-ef0d21c5d472",
+                            ConcurrencyStamp = "e36d8f8d-99e4-4c9f-9661-e07fa8858f60",
                             Email = "reviewer4@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Hazle69",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER4@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER4@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFp9INFtppJVHjLSyFZxna2uj21YOeMfbDfjxR7AjaPCdcl3oUocMAO4ZWnsbxpJKw==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer4@gmail.com"
                         },
                         new
                         {
                             Id = 9,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "80a28012-56d5-4a0d-bb83-bfac0173a386",
+                            ConcurrencyStamp = "2ec6d6de-77ed-43df-afdb-39389030d331",
                             Email = "reviewer5@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Helmer81",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER5@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER5@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHJjLgklE7im0Caks5gdVOUyxrpCapVMDFfyIyhYsCWAeyP1iUOg/sNDRtJvG5A9SA==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer5@gmail.com"
                         },
                         new
                         {
                             Id = 10,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7546ff5e-0bd3-4f9e-b58f-620db349f040",
+                            ConcurrencyStamp = "a17d7090-809c-44ca-bcd9-dba5a635c351",
                             Email = "reviewer6@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Rosie.McKenzie",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER6@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER6@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAENoHwAqW94GoF3VQLAEUQdeh34+o51jlXZBJovDGG7fkCsI/0xfYXb2o0uHYzSdUlQ==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer6@gmail.com"
                         },
                         new
                         {
                             Id = 11,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "29ef79eb-09f6-480c-b88e-a451502de39d",
+                            ConcurrencyStamp = "3b824c7f-c96e-4e0d-af43-8a2edeb61ff0",
                             Email = "reviewer7@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Pasquale80",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER7@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER7@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPZ7J8KOs2yrR0JV0Tj65ZXP3zO3oWNL/+DuT5Qh3Pq7lAtb6klqZvWFXOY9/F3uQw==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer7@gmail.com"
                         },
                         new
                         {
                             Id = 12,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "018b4f91-9b99-4e12-99bd-a27933b26015",
+                            ConcurrencyStamp = "197fae13-afd8-4aed-bcd5-3ea9db8d0bc3",
                             Email = "reviewer8@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Jarrod_Roberts92",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER8@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER8@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFKfqiZI5yAaNwzo1NihwnOZJpi+YqToVLjF8W6+jSI2Ny0n3c1bNmJd2Afhfa+E+A==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer8@gmail.com"
                         },
                         new
                         {
                             Id = 13,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7c5ce569-bf89-466d-a7d6-1bb7a70aefc5",
+                            ConcurrencyStamp = "f5a34b8a-32e4-4c57-af45-9b7768e54937",
                             Email = "owner5@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Rupert_Blanda20",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER5@GMAIL.COM",
+                            NormalizedUserName = "OWNER5@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGueuz7dMbH0V3mhMZ0B34QmsalmfoMXRe2JexmECJXVcWSMpVyMXoZXJeI+0+VpOA==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner5@gmail.com"
                         },
                         new
                         {
                             Id = 14,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d30afafe-7583-43c0-aa62-9e94d1ad8109",
+                            ConcurrencyStamp = "021de907-7e91-41e8-9c0f-2a1449505cf5",
                             Email = "owner6@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Lori_Turner20",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER6@GMAIL.COM",
+                            NormalizedUserName = "OWNER6@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPIR0PNn54xcCV5qTobNukqk5lCcFvRMFzTLkFPkl69KKoPTkmP2JEVxp++GzTvG3A==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner6@gmail.com"
                         },
                         new
                         {
                             Id = 15,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "42696d2f-4f34-4837-acae-173f1275c456",
+                            ConcurrencyStamp = "c9d69745-6e72-4902-90a5-360fdc7db637",
                             Email = "owner7@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Jasen67",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER7@GMAIL.COM",
+                            NormalizedUserName = "OWNER7@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDyOjT++HUeY+14U7QyHoN3oapJ+A5RCDaJysuOT5D9oTQcT/jHWx0yhpCH8SNXGbA==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner7@gmail.com"
                         },
                         new
                         {
                             Id = 16,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "78152252-0bb2-4ec9-8a11-9ba3ee63332e",
+                            ConcurrencyStamp = "d0d7ddfa-1e0e-4760-a098-06e4a61d74e3",
                             Email = "reviewer9@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Norbert_McClure",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER9@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER9@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAECidk0bsySM6g5SwwPvsmuyRpEWK8b/66GLj8th9LVtJmRqvsT+7yIkFac01DmbCxg==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer9@gmail.com"
                         },
                         new
                         {
                             Id = 17,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0e3aa100-61bc-4d12-9920-2b3a4c4dc5e5",
+                            ConcurrencyStamp = "eaebb7b6-fd53-4cce-90f2-fffa21b1a6ca",
                             Email = "reviewer10@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Hilton.Fritsch56",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER10@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER10@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAENPJIipbVxxv49wpcD6/eI8M4YcH8NNPGm2C85faRiZP12pitjsHyAHWBsjruFLi4A==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer10@gmail.com"
                         },
                         new
                         {
                             Id = 18,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1296865a-313e-42aa-b01b-9cd78faf2554",
+                            ConcurrencyStamp = "b5bb476b-8bfc-40ef-9259-0c37a2ba6347",
                             Email = "owner8@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Dewitt.Pacocha76",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER8@GMAIL.COM",
+                            NormalizedUserName = "OWNER8@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKWDZySPyWqWEVSNtJgZLVVkZEJiS8PTSpIOQhTrBtoPulfD6wlG55cHRaouquaxkA==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner8@gmail.com"
                         },
                         new
                         {
                             Id = 19,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "af1e2178-3f13-4c98-911b-6469a80b83f3",
+                            ConcurrencyStamp = "ac882e79-1406-431a-8a02-07b45a8d09cd",
                             Email = "reviewer11@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Kenton.Balistreri",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "REVIEWER11@GMAIL.COM",
+                            NormalizedUserName = "REVIEWER11@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDcxTGSCCXPeo9ETMSGiRmxvGVvimkJGrzqJvtWQPxSWoJ/MuOPNxEUPaO5CT6HGEA==",
                             PhoneNumberConfirmed = false,
                             RoleId = 2,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "reviewer11@gmail.com"
                         },
                         new
                         {
                             Id = 20,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9edb7ba3-90f1-43f1-be9d-8177f042647b",
+                            ConcurrencyStamp = "46143788-a888-40e9-b784-d89d54068af4",
                             Email = "owner9@gmail.com",
                             EmailConfirmed = false,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             Name = "Nathanael.Wilkinson",
-                            PasswordHash = "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7",
+                            NormalizedEmail = "OWNER9@GMAIL.COM",
+                            NormalizedUserName = "OWNER9@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELo1uIR7b+dxrfh9N+dVwPXx410EnbJ2O7g/cExVgVaGPh0voTVMEg1Fs+zB+RruLg==",
                             PhoneNumberConfirmed = false,
                             RoleId = 1,
-                            TwoFactorEnabled = false
+                            TwoFactorEnabled = false,
+                            UserName = "owner9@gmail.com"
                         });
                 });
 
