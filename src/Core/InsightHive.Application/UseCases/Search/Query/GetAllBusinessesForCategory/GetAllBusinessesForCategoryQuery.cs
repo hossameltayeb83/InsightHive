@@ -6,7 +6,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCateg
     public class GetAllBusinessesForCategoryQuery : IRequest<BaseResponse<List<BusinessSearchDto>>>
     {
         public int CategoryId { get; set; }
-        public string? Query { get; set; }
+        public string? Search { get; set; }
         public string? Options { get; set; }
     }
 }

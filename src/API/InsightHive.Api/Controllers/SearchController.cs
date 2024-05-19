@@ -26,14 +26,14 @@ namespace InsightHive.Api.Controllers
         [ProducesResponseType(typeof(BaseResponse<List<FilterDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllBuisnessesByCategory(int categoryId, string? query, string? options)
         {
-            var response = await _mediatr.Send(new GetAllBusinessesForCategoryQuery { CategoryId = categoryId, Query = query, Options = options });
+            var response = await _mediatr.Send(new GetAllBusinessesForCategoryQuery { CategoryId = categoryId, Search = query, Options = options });
             return Ok(response);
         }
         [HttpGet("/api/SubCategories/{SubCategoryId:int}/businesses")]
         [ProducesResponseType(typeof(BaseResponse<List<FilterDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllFiltersBySubCategory(int subCategoryId, string? query, string? options)
         {
-            var response = await _mediatr.Send(new GetAllBusinessesForSubCategoryQuery { SubCategoryId = subCategoryId, Query = query, Options = options });
+            var response = await _mediatr.Send(new GetAllBusinessesForSubCategoryQuery { SubCategoryId = subCategoryId, Search = query, Options = options });
             return Ok(response);
         }
     }

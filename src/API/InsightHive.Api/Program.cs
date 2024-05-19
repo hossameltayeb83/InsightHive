@@ -1,12 +1,11 @@
 
+using Hangfire;
 using InsightHive.Api.Middleware;
 using InsightHive.Application;
-using InsightHive.Persistence;
+using InsightHive.Identity;
 using InsightHive.Infrastructure;
-using InsightHive.Persistence.Data;
-using Microsoft.EntityFrameworkCore;
-using InsightHive.Api.Middleware;
-using Hangfire;
+using InsightHive.Persistence;
+using Microsoft.OpenApi.Models;
 
 namespace InsightHive.Api
 {
@@ -16,15 +15,11 @@ namespace InsightHive.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddDbContext<InsightHiveDbContext>(c =>
-            {
-                c.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
-                c.EnableSensitiveDataLogging(true);
-            });
             builder.Services.AddApplicationServices()
-                .AddPersistenceServices()
-                .AddInfrastructureServices(builder.Configuration.GetConnectionString("HangfireConnection"));
+                            .AddIdentityServices(builder.Configuration)
+                            .AddPersistenceServices(builder.Configuration)
+                            .AddInfrastructureServices(builder.Configuration);
+
 
             builder.Services.AddCors(
                  options => options.AddPolicy(
@@ -35,10 +30,39 @@ namespace InsightHive.Api
              .AllowAnyHeader()
              .AllowCredentials()));
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                            .ConfigureApiBehaviorOptions(options =>
+                            {
+                                options.SuppressMapClientErrors = true;
+                            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(opt =>
+            {
+                opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                opt.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                        },
+                        new string[]{ }
+                    }
+                });
+            });
 
             var app = builder.Build();
 
@@ -48,9 +72,14 @@ namespace InsightHive.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            //app.MapIdentityApi<AppUser>();
+
             app.UseExceptionHandlerMiddleware();
+
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseCors("angularApp");

@@ -25,16 +25,16 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCateg
             if (!validationResult.IsValid)
                 throw new Exceptions.ValidationException(validationResult);
             IReadOnlyList<Business> businesses;
-            if (request.Options == null && request.Query == null)
+            if (request.Options == null && request.Search == null)
             {
                 businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId,string.Empty,Array.Empty<int>());
             }
             else  
             {
                 var optionsIds = request.Options?.Split('+').Select(int.Parse).ToArray();
-                if(optionsIds!=null&&request.Query != null)
+                if(optionsIds!=null&&request.Search != null)
                 {
-                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId,request.Query,optionsIds);
+                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId,request.Search,optionsIds);
                 }
                 else if (optionsIds!= null)
                 {
@@ -42,7 +42,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCateg
                 }
                 else  
                 {
-                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId, request.Query!,Array.Empty<int>());
+                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId, request.Search!,Array.Empty<int>());
                 }
             }
             response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);

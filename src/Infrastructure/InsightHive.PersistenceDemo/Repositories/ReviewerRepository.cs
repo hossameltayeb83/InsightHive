@@ -1,9 +1,9 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
 
-namespace InsightHive.PersistenceDemo
+namespace InsightHive.PersistenceDemo.Repositories
 {
-    internal class ReviewerRepositroy : BaseRepository<Reviewer>, IReviewerRepository
+    internal class ReviewerRepository : BaseRepository<Reviewer>, IReviewerRepository
     {
         public Task AddImagePathAsync(int id, string path)
         {

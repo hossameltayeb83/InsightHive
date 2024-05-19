@@ -24,7 +24,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearc
             if (!validationResult.IsValid)
                 throw new Exceptions.ValidationException(validationResult);
             ///////////////////////////////////
-            var businesses =await _businessRepository.GetAllBySearch(request.Query);
+            var businesses =await _businessRepository.GetAllBySearch(request.Search);
             response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);
             ///////////////////////////////////
             return response;
