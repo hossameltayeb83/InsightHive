@@ -38,7 +38,6 @@ namespace InsightHive.Application.UseCases.Reviewers
                     {
                         Name = src.Name,
                         Email = src.Email,
-                        Password = src.Password,
                         RoleId = src.RoleId
                     }
                 });
@@ -52,8 +51,7 @@ namespace InsightHive.Application.UseCases.Reviewers
                        {
                            User = new User
                            {
-                               Name = src.Name,
-                               Password = src.Password  
+                               Name = src.Name
                            }
                        });
 
