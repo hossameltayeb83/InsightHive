@@ -63,7 +63,7 @@ namespace InsightHive.Api.Controllers
             }
             Console.WriteLine("successful upload ! " +imagePath);
             command.Image = imagePath;
-            //var response = await _mediatr.Send(command);
+            var response = await _mediatr.Send(command);
             return Ok(imagePath);
         }
 

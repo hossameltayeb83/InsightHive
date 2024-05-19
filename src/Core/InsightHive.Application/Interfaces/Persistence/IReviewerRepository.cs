@@ -4,6 +4,7 @@ namespace InsightHive.Application.Interfaces.Persistence
 {
     public interface IReviewerRepository : IRepository<Reviewer>
     {
+        Task<IReadOnlyList<Reviewer>> GetAllReviewersWithUserAsync();
         Task<Reviewer> GetByIdWithReviewsAndBadgesAsync(int id);
         Task<Reviewer> GetByIdWithUserAsync(int id);
         Task<Reviewer> GetByUserIdWithUserAsync(int id);
