@@ -32,7 +32,7 @@ namespace InsightHive.Application.UseCases.Reviews.Command.CreateReview
 
             var review = _mapper.Map<Review>(request);
             var response = new BaseResponse<CreateReviewDto>();
-            bool created = await _reviewRepo.AddReviewAsync(review);
+            bool created = await _reviewRepo.AddAsync(review);
 
             if (created)
             {

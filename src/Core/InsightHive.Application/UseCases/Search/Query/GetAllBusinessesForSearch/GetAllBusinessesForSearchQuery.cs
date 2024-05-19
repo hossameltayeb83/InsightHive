@@ -5,6 +5,6 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearc
 {
     public class GetAllBusinessesForSearchQuery : IRequest<BaseResponse<List<BusinessSearchDto>>>
     {
-        public string Query { get; set; }
+        public string Search { get; set; }
     }
 }

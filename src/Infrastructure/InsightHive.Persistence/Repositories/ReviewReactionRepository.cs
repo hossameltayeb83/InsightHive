@@ -1,6 +1,7 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
 using InsightHive.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsightHive.Persistence.Repositories
 {
@@ -11,14 +12,22 @@ namespace InsightHive.Persistence.Repositories
         {
         }
 
-        public Task<bool> DeleteAsync(int reviewId, int reviewerId)
+        public async Task<bool> DeleteAsync(int reviewId, int reviewerId)
         {
-            throw new NotImplementedException();
+            var reviewReacion= await _context.ReviewsReaction
+                .FirstOrDefaultAsync(e=>e.ReviewId==reviewerId&&e.ReviewerId==reviewerId);
+            _context.ReviewsReaction.Remove(reviewReacion);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<ReviewReaction?> GetByIdAsync(int reviewId, int reactionId, int reviewerId)
+        public async Task<ReviewReaction?> GetByIdAsync(int reviewId, int reactionId, int reviewerId)
         {
-            throw new NotImplementedException();
+            return await _context.ReviewsReaction
+                .FirstOrDefaultAsync(e =>
+                    e.ReviewerId == reviewerId &&
+                    e.ReactionId == reactionId &&
+                    e.ReviewId == reviewId 
+                );
         }
     }
 }

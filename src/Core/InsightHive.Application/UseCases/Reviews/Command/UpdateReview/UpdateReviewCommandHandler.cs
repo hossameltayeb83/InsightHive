@@ -29,7 +29,7 @@ namespace InsightHive.Application.UseCases.Reviews.Command.UpdateReview
             if (!validationResult.IsValid)
                 throw new Exceptions.ValidationException(validationResult);
 
-            var review = await _reviewRepo.GetReviewByIdAsync(request.Id);
+            var review = await _reviewRepo.GetByIdAsync(request.Id);
 
             if (review == null)
                 throw new Exceptions.NotFoundException("Review not found!");
@@ -40,7 +40,7 @@ namespace InsightHive.Application.UseCases.Reviews.Command.UpdateReview
 
             var reviewToUpdate = _mapper.Map<Review>(request);
             reviewToUpdate.BusinessId = review.BusinessId;
-            bool updated = await _reviewRepo.UpdateReviewAsync(reviewToUpdate);
+            bool updated = await _reviewRepo.UpdateAsync(reviewToUpdate);
 
             var response = new BaseResponse<UpdateReviewDto>();
             if (updated)

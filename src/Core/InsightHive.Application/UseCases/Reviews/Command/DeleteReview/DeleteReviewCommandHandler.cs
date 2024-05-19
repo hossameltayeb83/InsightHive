@@ -13,7 +13,7 @@ namespace InsightHive.Application.UseCases.Reviews.Command.DeleteReview
         }
         public async Task Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
         {
-            var reviewToDelete = await _reviewRepo.GetReviewByIdAsync(request.Id);
+            var reviewToDelete = await _reviewRepo.GetByIdAsync(request.Id);
 
             if (reviewToDelete == null)
                 throw new Exceptions.NotFoundException("Review not found!");

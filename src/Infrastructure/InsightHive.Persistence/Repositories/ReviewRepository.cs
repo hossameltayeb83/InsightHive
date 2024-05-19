@@ -1,6 +1,7 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Domain.Entities;
 using InsightHive.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsightHive.Persistence.Repositories
 {
@@ -10,49 +11,48 @@ namespace InsightHive.Persistence.Repositories
         {
         }
 
-        public Task<bool> AddReviewAsync(Review review)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> AddReviewCommentAsync(Comment comment)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Comment?> GetCommentAsync(int commentId)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<IQueryable<Comment>> GetCommentListAsync(int reviewId)
         {
-            throw new NotImplementedException();
+           return Task.FromResult(
+               _context.Reviews
+               .Where(e => e.Id == reviewId)
+               .SelectMany(e=>e.Comments)
+               );
         }
 
-        public Task<Review?> GetReviewByIdAsync(int reviewId, int maxComments)
+        public async Task<Review?> GetReviewByIdAsync(int reviewId, int maxComments)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Review?> GetReviewByIdAsync(int id)
-        {
-            throw new NotImplementedException();
+            return await _context.Reviews
+                .Where(e => e.Id == reviewId)
+                .Select(e => new Review
+                {
+                    Id = e.Id,
+                    Content = e.Content,
+                    Rate = e.Rate,
+                    Image = e.Image,
+                    BusinessId = e.BusinessId,
+                    ReviewerId = e.ReviewerId,
+                    Comments = e.Comments.Take(maxComments).ToList()
+                })
+                .FirstOrDefaultAsync();
+            
         }
 
         public Task<IQueryable<Review>> GetReviewsByBusinessIdAsync(int businessId, int maxComments)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateReviewAsync(Review review)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateReviewCommentAsync(Comment comment)
-        {
-            throw new NotImplementedException();
+            var review = _context.Reviews
+                .Where(e => e.BusinessId == businessId)
+                .Select(e => new Review
+                {
+                    Id = e.Id,
+                    Content = e.Content,
+                    Rate = e.Rate,
+                    Image = e.Image,
+                    BusinessId = e.BusinessId,
+                    ReviewerId = e.ReviewerId,
+                    Comments = e.Comments.Take(maxComments).ToList()
+                });
+            return Task.FromResult(review);
         }
     }
 }
