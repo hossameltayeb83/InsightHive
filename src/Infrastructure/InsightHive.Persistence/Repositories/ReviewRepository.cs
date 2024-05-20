@@ -13,11 +13,11 @@ namespace InsightHive.Persistence.Repositories
 
         public Task<IQueryable<Comment>> GetCommentListAsync(int reviewId)
         {
-           return Task.FromResult(
-               _context.Reviews
-               .Where(e => e.Id == reviewId)
-               .SelectMany(e=>e.Comments)
-               );
+            return Task.FromResult(
+                _context.Reviews
+                .Where(e => e.Id == reviewId)
+                .SelectMany(e => e.Comments)
+                );
         }
 
         public async Task<Review?> GetReviewByIdAsync(int reviewId, int maxComments)
@@ -35,7 +35,7 @@ namespace InsightHive.Persistence.Repositories
                     Comments = e.Comments.Take(maxComments).ToList()
                 })
                 .FirstOrDefaultAsync();
-            
+
         }
 
         public Task<IQueryable<Review>> GetReviewsByBusinessIdAsync(int businessId, int maxComments)

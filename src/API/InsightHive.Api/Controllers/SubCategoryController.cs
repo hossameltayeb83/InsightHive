@@ -1,9 +1,11 @@
 ﻿using InsightHive.Application.UseCases.SubCategories.Query;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SubCategoryController : ControllerBase

@@ -4,10 +4,12 @@ using InsightHive.Application.UseCases.Reviewers.Command.UploadReviewerImage;
 using InsightHive.Application.UseCases.Reviewers.Query.GetAllReviewers;
 using InsightHive.Application.UseCases.Reviewers.Query.GetReviewer;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewersController : ControllerBase
@@ -47,7 +49,7 @@ namespace InsightHive.Api.Controllers
         }
 
         [HttpPut("UploadProfileImage")]
-        public async Task<IActionResult> UploadProfileImage(int Id , int UserId,IFormFile formFile)
+        public async Task<IActionResult> UploadProfileImage(int Id, int UserId, IFormFile formFile)
         {
             UploadReviewerImageCommand command = new UploadReviewerImageCommand() { Id = Id, UserId = UserId };
             string fileExe = formFile.FileName.Split('.').Last();
@@ -61,7 +63,7 @@ namespace InsightHive.Api.Controllers
             {
                 await formFile.CopyToAsync(stream);
             }
-            Console.WriteLine("successful upload ! " +imagePath);
+            Console.WriteLine("successful upload ! " + imagePath);
             command.Image = imagePath;
             var response = await _mediatr.Send(command);
             return Ok(imagePath);

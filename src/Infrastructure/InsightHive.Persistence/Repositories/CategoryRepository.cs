@@ -2,11 +2,6 @@
 using InsightHive.Domain.Entities;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Persistence.Repositories
 {
@@ -19,7 +14,7 @@ namespace InsightHive.Persistence.Repositories
         public async Task<List<Category>> GetAllCategoriesWithSubCategoriesAsync()
         {
             return await _context.Categories
-                .Include(e=>e.SubCategories)
+                .Include(e => e.SubCategories)
                 .ToListAsync();
         }
 
@@ -34,7 +29,7 @@ namespace InsightHive.Persistence.Repositories
         {
             return await _context.Categories
                 .Include(e => e.SubCategories)
-                .FirstOrDefaultAsync(e => e.Name == name );
+                .FirstOrDefaultAsync(e => e.Name == name);
         }
     }
 }

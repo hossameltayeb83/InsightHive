@@ -8,10 +8,12 @@ using InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForCategory;
 using InsightHive.Application.UseCases.Filters.Query.GetAllFiltersForSubCategory;
 using InsightHive.Application.UseCases.Filters.Query.GetFilter;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FiltersController : ControllerBase

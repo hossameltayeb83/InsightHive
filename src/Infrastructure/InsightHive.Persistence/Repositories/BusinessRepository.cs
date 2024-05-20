@@ -3,19 +3,13 @@ using InsightHive.Domain.Entities;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Persistence.Repositories
 {
     public class BusinessRepository : BaseRepository<Business>, IBusinessRepository
     {
-        public BusinessRepository(InsightHiveDbContext context):base(context)
-        {      
+        public BusinessRepository(InsightHiveDbContext context) : base(context)
+        {
         }
         public async Task<IReadOnlyList<Business>> GetAllBySearch(string searchQuery)
         {
@@ -39,7 +33,7 @@ namespace InsightHive.Persistence.Repositories
         }
         private async Task<IReadOnlyList<Business>> Search(IQueryable<SubCategory> subCategories, string searchQuery, int[] optionsIds)
         {
-            var businesses=subCategories.SelectMany(e => e.Businesses);
+            var businesses = subCategories.SelectMany(e => e.Businesses);
             if (!searchQuery.IsNullOrEmpty())
             {
                 businesses.Where(e => e.Name.Contains(searchQuery));

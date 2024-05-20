@@ -2,10 +2,12 @@
 using InsightHive.Application.UseCases.Reactions.Command.RemoveReaction;
 using InsightHive.Application.UseCases.Reactions.Command.UpdateReaction;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReactionsController : ControllerBase

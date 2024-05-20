@@ -2,18 +2,13 @@
 using InsightHive.Domain.Entities;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Persistence.Repositories
 {
     public class ReviewerRepository : BaseRepository<Reviewer>, IReviewerRepository
     {
-        public ReviewerRepository(InsightHiveDbContext context) : base(context){ }
-            
+        public ReviewerRepository(InsightHiveDbContext context) : base(context) { }
+
         public async Task AddImagePathAsync(int id, string path)
         {
             var reviewer = await GetByIdAsync(id);

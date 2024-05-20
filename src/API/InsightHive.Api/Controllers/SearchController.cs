@@ -4,10 +4,12 @@ using InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCategory;
 using InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearch;
 using InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCategory;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     public class SearchController : ControllerBase
     {

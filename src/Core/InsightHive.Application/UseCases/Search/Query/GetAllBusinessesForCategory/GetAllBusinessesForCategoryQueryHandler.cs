@@ -12,7 +12,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCateg
         private readonly IValidator<GetAllBusinessesForCategoryQuery> _validator;
         private readonly IMapper _mapper;
         private readonly IBusinessRepository _businessRepository;
-        public GetAllBusinessesForCategoryQueryHandler( IMapper mapper, IBusinessRepository businessRepository)
+        public GetAllBusinessesForCategoryQueryHandler(IMapper mapper, IBusinessRepository businessRepository)
         {
             _validator = new GetAllBusinessesForCategoryQueryValidator();
             _mapper = mapper;
@@ -27,22 +27,22 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForCateg
             IReadOnlyList<Business> businesses;
             if (request.Options == null && request.Search == null)
             {
-                businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId,string.Empty,Array.Empty<int>());
+                businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId, string.Empty, Array.Empty<int>());
             }
-            else  
+            else
             {
                 var optionsIds = request.Options?.Split('+').Select(int.Parse).ToArray();
-                if(optionsIds!=null&&request.Search != null)
+                if (optionsIds != null && request.Search != null)
                 {
-                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId,request.Search,optionsIds);
+                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId, request.Search, optionsIds);
                 }
-                else if (optionsIds!= null)
+                else if (optionsIds != null)
                 {
-                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId,string.Empty, optionsIds);
+                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId, string.Empty, optionsIds);
                 }
-                else  
+                else
                 {
-                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId, request.Search!,Array.Empty<int>());
+                    businesses = await _businessRepository.GetAllByCategorySearch(request.CategoryId, request.Search!, Array.Empty<int>());
                 }
             }
             response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);

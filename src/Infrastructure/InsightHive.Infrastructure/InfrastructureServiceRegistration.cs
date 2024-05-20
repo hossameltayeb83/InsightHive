@@ -8,7 +8,7 @@ namespace InsightHive.Infrastructure
 {
     public static class InfrastructureServiceRegistration
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services ,IConfiguration configuration)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHangfire(config => config
             .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
@@ -19,7 +19,7 @@ namespace InsightHive.Infrastructure
 
             services.AddHangfireServer();
 
-            services.AddScoped<IBackgroundService,BackgroundService>();
+            services.AddScoped<IBackgroundService, BackgroundService>();
             return services;
         }
     }

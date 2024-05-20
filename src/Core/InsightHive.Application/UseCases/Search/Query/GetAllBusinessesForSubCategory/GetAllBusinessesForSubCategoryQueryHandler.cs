@@ -2,13 +2,7 @@
 using FluentValidation;
 using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Application.Responses;
-using InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSearch;
 using InsightHive.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCategory
 {
@@ -17,7 +11,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCa
         private readonly IValidator<GetAllBusinessesForSubCategoryQuery> _validator;
         private readonly IMapper _mapper;
         private readonly IBusinessRepository _businessRepository;
-        public GetAllBusinessesForSubCategoryQueryHandler( IMapper mapper, IBusinessRepository businessRepository)
+        public GetAllBusinessesForSubCategoryQueryHandler(IMapper mapper, IBusinessRepository businessRepository)
         {
             _validator = new GetAllBusinessesForSubCategoryQueryValidator();
             _mapper = mapper;
@@ -32,7 +26,7 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCa
             IReadOnlyList<Business> businesses;
             if (request.Options == null && request.Search == null)
             {
-                businesses = await _businessRepository.GetAllBySubCategorySearch(request.SubCategoryId,string.Empty,Array.Empty<int>());
+                businesses = await _businessRepository.GetAllBySubCategorySearch(request.SubCategoryId, string.Empty, Array.Empty<int>());
             }
             else
             {
@@ -43,14 +37,14 @@ namespace InsightHive.Application.UseCases.Search.Query.GetAllBusinessesForSubCa
                 }
                 else if (optionsIds != null)
                 {
-                    businesses = await _businessRepository.GetAllBySubCategorySearch(request.SubCategoryId,string.Empty, optionsIds);
+                    businesses = await _businessRepository.GetAllBySubCategorySearch(request.SubCategoryId, string.Empty, optionsIds);
                 }
                 else
                 {
                     businesses = await _businessRepository.GetAllBySubCategorySearch(request.SubCategoryId, request.Search!, Array.Empty<int>());
                 }
             }
-            response.Result= _mapper.Map<List<BusinessSearchDto>>(businesses);
+            response.Result = _mapper.Map<List<BusinessSearchDto>>(businesses);
 
             return response;
         }

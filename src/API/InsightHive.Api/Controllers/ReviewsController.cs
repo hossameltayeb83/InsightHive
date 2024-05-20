@@ -25,14 +25,6 @@ namespace InsightHive.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("test", Name = "GetTest")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public ActionResult GetTest()
-        {
-            return Ok("DONE");
-        }
-
         [HttpGet("{reviewId}", Name = "GetReview")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

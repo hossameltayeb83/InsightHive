@@ -1,7 +1,6 @@
 ﻿using InsightHive.Application.Interfaces.Persistence;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace InsightHive.Persistence.Repositories
 {

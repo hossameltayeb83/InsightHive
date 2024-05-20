@@ -10,7 +10,7 @@ namespace InsightHive.Persistence
 {
     public static class PersistenceServiceRegistraion
     {
-        public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration config)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<InsightHiveDbContext>(c =>
             {

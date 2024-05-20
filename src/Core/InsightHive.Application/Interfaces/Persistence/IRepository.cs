@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace InsightHive.Application.Interfaces.Persistence
+﻿namespace InsightHive.Application.Interfaces.Persistence
 {
     public interface IRepository<T> where T : class
     {

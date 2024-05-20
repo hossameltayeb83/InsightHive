@@ -6,10 +6,12 @@ using InsightHive.Application.UseCases.Reviews.Command.DeleteComment;
 using InsightHive.Application.UseCases.Reviews.Command.UpdateComment;
 using InsightHive.Application.UseCases.Reviews.Query.GetCommentList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CommentsController : ControllerBase

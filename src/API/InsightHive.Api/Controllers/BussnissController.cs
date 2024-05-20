@@ -5,10 +5,12 @@ using InsightHive.Application.UseCases.Bussnisses.Command.UpdateBusssniss;
 using InsightHive.Application.UseCases.Bussnisses.Query.GetAllBussnies;
 using InsightHive.Application.UseCases.Bussnisses.Query.GetBussnissById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHive.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BussnissController : ControllerBase

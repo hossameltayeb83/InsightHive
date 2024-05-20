@@ -2,11 +2,6 @@
 using InsightHive.Domain.Entities;
 using InsightHive.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsightHive.Persistence.Repositories
 {
@@ -30,9 +25,9 @@ namespace InsightHive.Persistence.Repositories
         public async Task<IReadOnlyList<Filter>> GetAllBySubCategoryIdAsync(int subCategoryId)
         {
             var filters = await _context.SubCategories
-                .Include(e=>e.Category)
-                .ThenInclude(e=>e.Filters)
-                .ThenInclude(e=>e.Options)
+                .Include(e => e.Category)
+                .ThenInclude(e => e.Filters)
+                .ThenInclude(e => e.Options)
                 .Where(e => e.Id == subCategoryId)
                 .SelectMany(e => e.Category.Filters).ToListAsync();
             return filters.AsReadOnly();

@@ -14,8 +14,8 @@ namespace InsightHive.Persistence.Repositories
 
         public async Task<bool> DeleteAsync(int reviewId, int reviewerId)
         {
-            var reviewReacion= await _context.ReviewsReaction
-                .FirstOrDefaultAsync(e=>e.ReviewId==reviewerId&&e.ReviewerId==reviewerId);
+            var reviewReacion = await _context.ReviewsReaction
+                .FirstOrDefaultAsync(e => e.ReviewId == reviewerId && e.ReviewerId == reviewerId);
             _context.ReviewsReaction.Remove(reviewReacion);
             return await _context.SaveChangesAsync() > 0;
         }
@@ -26,7 +26,7 @@ namespace InsightHive.Persistence.Repositories
                 .FirstOrDefaultAsync(e =>
                     e.ReviewerId == reviewerId &&
                     e.ReactionId == reactionId &&
-                    e.ReviewId == reviewId 
+                    e.ReviewId == reviewId
                 );
         }
     }
