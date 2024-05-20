@@ -9,9 +9,9 @@ namespace InsightHive.Application.UseCases.Reviewers.Query.GetAllReviewers
     internal class GetAllReviewersQueryHandler : IRequestHandler<GetAllReviewersQuery, BaseResponse<IReadOnlyList<ReviewerListDto>>>
     {
         private readonly IMapper _mapper;
-        private readonly IRepository<Reviewer> _reviewerRepository;
+        private readonly IReviewerRepository _reviewerRepository;
 
-        public GetAllReviewersQueryHandler(IMapper mapper, IRepository<Reviewer> reviewerRepository)
+        public GetAllReviewersQueryHandler(IMapper mapper, IReviewerRepository reviewerRepository)
         {
             _mapper = mapper;
             _reviewerRepository = reviewerRepository;
@@ -19,7 +19,7 @@ namespace InsightHive.Application.UseCases.Reviewers.Query.GetAllReviewers
 
         public async Task<BaseResponse<IReadOnlyList<ReviewerListDto>>> Handle(GetAllReviewersQuery request, CancellationToken cancellationToken)
         {
-            var reviewers = await _reviewerRepository.ListAllAsync();
+            var reviewers = await _reviewerRepository.GetAllReviewersWithUserAsync();
             var reviewersDtos = _mapper.Map<IReadOnlyList<ReviewerListDto>>(reviewers);
             var response = new BaseResponse<IReadOnlyList<ReviewerListDto>>() { Result = reviewersDtos };
             return response;

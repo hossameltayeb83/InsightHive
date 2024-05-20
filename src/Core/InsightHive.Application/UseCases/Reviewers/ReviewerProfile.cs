@@ -1,4 +1,9 @@
 ﻿using AutoMapper;
+using InsightHive.Application.UseCases.Reviewers.Command.CreateReviewer;
+using InsightHive.Application.UseCases.Reviewers.Command.UpdateReviewer;
+using InsightHive.Application.UseCases.Reviewers.Query.GetAllReviewers;
+using InsightHive.Application.UseCases.Reviewers.Query.GetReviewer;
+using InsightHive.Domain.Entities;
 
 namespace InsightHive.Application.UseCases.Reviewers
 {
@@ -7,38 +12,48 @@ namespace InsightHive.Application.UseCases.Reviewers
         public ReviewerProfile()
         {
             //GetReviewer
-            //CreateMap<Badge, ReviewerBadgeDto>();
+            CreateMap<Badge, ReviewerBadgeDto>();
 
-            //CreateMap<Review, ReviewerReviewDto>()
-            //    .ForMember(dest => dest.BusinessName, src => src.MapFrom(src => src.Business.Name));
+            CreateMap<Review, ReviewerReviewDto>()
+                .ForMember(dest => dest.BusinessName, src => src.MapFrom(src => src.Business.Name));
 
-            //CreateMap<Reviewer, ReviewerDetailsDto>()
-            //    .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name))
-            //    .ForMember(dest => dest.Email, src => src.MapFrom(src => src.User.Email));
+            CreateMap<Reviewer, ReviewerDetailsDto>()
+                .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name))
+                .ForMember(dest => dest.Email, src => src.MapFrom(src => src.User.Email));
 
-            ////GetAllReviewers
-            //CreateMap<Reviewer, ReviewerListDto>()
-            //    .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name))
-            //    .ForMember(dest => dest.Email, src => src.MapFrom(src => src.User.Email));
+            //GetAllReviewers
+            CreateMap<Reviewer, ReviewerListDto>()
+                .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name))
+                .ForMember(dest => dest.Email, src => src.MapFrom(src => src.User.Email));
 
-            ////createReviewer
-            //CreateMap<Reviewer, CreateReviewerDto>()
-            //    .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name))
-            //    .ForMember(dest => dest.Email, src => src.MapFrom(src => src.User.Email));
+            //createReviewer
+            CreateMap<Reviewer, CreateReviewerDto>()
+                .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name))
+                .ForMember(dest => dest.Email, src => src.MapFrom(src => src.User.Email));
 
-            //CreateMap<CreateReviewerCommand, Reviewer>()
-            //    .ForMember(dest => dest.User.Name, src => src.MapFrom(src => src.Name))
-            //    .ForMember(dest => dest.User.Email, src => src.MapFrom(src => src.Email))
-            //    .ForMember(dest => dest.User.Password, src => src.MapFrom(src => src.Password))
-            //    .ForMember(dest => dest.User.RoleId, src => src.MapFrom(src => src.RoleId));
+            CreateMap<CreateReviewerCommand, Reviewer>()
+                .ConstructUsing(src => new Reviewer
+                {
+                    User = new User
+                    {
+                        Name = src.Name,
+                        Email = src.Email,
+                        RoleId = src.RoleId
+                    }
+                });
 
-            ////UpdateReviewer
-            //CreateMap<Reviewer, UpdateReviewerDto>()
-            //    .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name));
+            //UpdateReviewer
+            CreateMap<Reviewer, UpdateReviewerDto>()
+                .ForMember(dest => dest.Name, src => src.MapFrom(src => src.User.Name));
 
-            //CreateMap<UpdateReviewerCommand, Reviewer>()
-            //    .ForMember(dest => dest.User.Name, src => src.MapFrom(src => src.Name))
-            //    .ForMember(dest => dest.User.Password, src => src.MapFrom(src => src.Password));
+            CreateMap<UpdateReviewerCommand, Reviewer>()
+                       .ConstructUsing(src => new Reviewer
+                       {
+                           User = new User
+                           {
+                               Name = src.Name
+                           }
+                       });
 
 
 

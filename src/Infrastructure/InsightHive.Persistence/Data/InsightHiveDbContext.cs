@@ -4,6 +4,7 @@ using InsightHive.Domain.Entities;
 using InsightHive.Domain.Enums;
 using InsightHive.Identity.Data;
 using InsightHive.Identity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 using System;
@@ -67,7 +68,7 @@ namespace InsightHive.Persistence.Data
             modelBuilder.Entity<Reviewer>().HasData(FakeData.Reviewers.Take(FakeData.Reviewers.Count / 2));
             modelBuilder.Entity<Role>().HasData(FakeData.Roles);
             modelBuilder.Entity<SubCategory>().HasData(FakeData.SubCategories.Take(FakeData.SubCategories.Count / 2));
-            modelBuilder.Entity<User>().HasData(FakeData.Users.Take(FakeData.Users.Count/2 ));
+            modelBuilder.Entity<User>().HasData(FakeData.Users.Take(FakeData.Users.Count / 2));
             modelBuilder.Entity<AppUser>().HasData(FakeData.AppUsers.Take(FakeData.AppUsers.Count / 2));
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -267,15 +268,17 @@ namespace InsightHive.Persistence.Data
 
 
                 var userFaker = new Faker<User>();
-                   
 
+
+                var passHasher = new PasswordHasher<AppUser>();
                 var appUserId = FakeData.AppUsers.Count + 1;
                 var appUserFaker = new Faker<AppUser>()
                    .UseSeed(seed)
                    .RuleFor(u => u.Id, _ => appUserId++)
-                   .RuleFor(u => u.PasswordHash, _ => "7721A00381081809EBF94EE9255892C887B82EEA98BC1FA04B367D1EE0A26CC7")
                    .RuleFor(u => u.Name, f => f.Internet.UserName())
-                   .RuleFor(u => u.RoleId, (f, u) => {
+                   .RuleFor(u => u.PasswordHash, _ => passHasher.HashPassword(null, "Password1-"))
+                   .RuleFor(u => u.RoleId, (f, u) =>
+                   {
 
                        int roleId = f.Random.Int(1, 2);
                        userFaker.RuleFor(uu => uu.Id, _ => u.Id)
@@ -297,7 +300,11 @@ namespace InsightHive.Persistence.Data
                            FakeData.Reviewers.Add(reviewer);
                            userFaker.RuleFor(uu => uu.Email, _ => $"reviewer{reviewer.Id}@gmail.com");
                        }
-                           FakeData.Users.Add(userFaker.Generate(1)[0]);
+                       u.UserName = u.Email;
+                       u.NormalizedUserName = u.Email.ToUpper();
+                       u.NormalizedEmail = u.Email.ToUpper();
+                       u.LockoutEnabled = true;
+                       FakeData.Users.Add(userFaker.Generate(1)[0]);
                        return roleId;
                    });
                 var appUsers = appUserFaker.Generate(20);

@@ -24,7 +24,7 @@ namespace InsightHive.Api
             builder.Services.AddCors(
                  options => options.AddPolicy(
                      "angularApp",
-                     policy => policy.WithOrigins(builder.Configuration["AngularUrl"] ?? "https://localhost:7020")
+                     policy => policy.WithOrigins(builder.Configuration["AngularUrl"] ?? "http://localhost:4200")
              .AllowAnyMethod()
              .SetIsOriginAllowed(pol => true)
              .AllowAnyHeader()
