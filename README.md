@@ -1,7 +1,7 @@
 
 <div align="center">
   <a href="https://github.com/hossameltayeb83/InsightHive">
-    <img src="assets/InsighHivelogo.svg" alt="Logo" width="80" height="80">
+    <img src="assets/InsightHiveLogo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Insight Hive</h3>
