@@ -88,9 +88,6 @@ To run InsightHive locally, follow these steps:
    dotnet run
    ```
    
-9. **Open your web browser:**
-    
-   Navigate to https://localhost:7076 to access the application.
    
 
 
